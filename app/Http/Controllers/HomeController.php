@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-
+namespace App\Http\Controllers; use Illuminate\Http\Request;
 class HomeController extends Controller
+
 {
-    public function index()
-    {
-        return view('dashboard');
-    }
-    public function contact()
-    {
-        return view('contact');
-    }
+public function index()
+{
+return view('dashboard');
+}
+public function contact()
+{
+return view('contact');
+}
+
+
 }
