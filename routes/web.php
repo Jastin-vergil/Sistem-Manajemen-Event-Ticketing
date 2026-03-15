@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route; 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ListBarangController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -27,5 +29,6 @@ Route::prefix('admin')->group(function (){
 
 Route::get('listbarang/{id}/{nama}', [ListBarangController::class, 'tampilkan']);
 
-Route::get('/', [HomeController::class, 'index']); 
+Route::get('/dashboard', [HomeController::class, 'index']); 
 Route::get('/contact', [HomeController::class, 'contact']);
+?>
