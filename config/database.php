@@ -40,10 +40,8 @@ return [
             'busy_timeout' => null,
             'journal_mode' => null,
             'synchronous' => null,
-<<<<<<< HEAD
+
             'transaction_mode' => 'DEFERRED',
-=======
->>>>>>> 6170f718171fadb17dc5beb361ea37d9812646d0
         ],
 
         'mysql' => [
@@ -51,15 +49,14 @@ return [
             'url' => env('DB_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-<<<<<<< HEAD
+
             'database' => env('DB_DATABASE', 'laravel'),
             'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', ''),
-=======
+
             'database' => env('DB_DATABASE', 'sistem_manajemen_event_dan_ticketing'),
             'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', 'Rickyarian228'),
->>>>>>> 6170f718171fadb17dc5beb361ea37d9812646d0
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => env('DB_CHARSET', 'utf8mb4'),
             'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
@@ -68,11 +65,9 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-<<<<<<< HEAD
                 (PHP_VERSION_ID >= 80500 ? \Pdo\Mysql::ATTR_SSL_CA : \PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA'),
-=======
+
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
->>>>>>> 6170f718171fadb17dc5beb361ea37d9812646d0
             ]) : [],
         ],
 
@@ -92,11 +87,10 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-<<<<<<< HEAD
+
                 (PHP_VERSION_ID >= 80500 ? \Pdo\Mysql::ATTR_SSL_CA : \PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA'),
-=======
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
->>>>>>> 6170f718171fadb17dc5beb361ea37d9812646d0
+
             ]) : [],
         ],
 
@@ -112,11 +106,11 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => 'public',
-<<<<<<< HEAD
+
             'sslmode' => env('DB_SSLMODE', 'prefer'),
-=======
+
             'sslmode' => 'prefer',
->>>>>>> 6170f718171fadb17dc5beb361ea37d9812646d0
+
         ],
 
         'sqlsrv' => [
@@ -169,11 +163,8 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-<<<<<<< HEAD
             'prefix' => env('REDIS_PREFIX', Str::slug((string) env('APP_NAME', 'laravel')).'-database-'),
-=======
             'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
->>>>>>> 6170f718171fadb17dc5beb361ea37d9812646d0
             'persistent' => env('REDIS_PERSISTENT', false),
         ],
 
@@ -184,13 +175,10 @@ return [
             'password' => env('REDIS_PASSWORD'),
             'port' => env('REDIS_PORT', '6379'),
             'database' => env('REDIS_DB', '0'),
-<<<<<<< HEAD
             'max_retries' => env('REDIS_MAX_RETRIES', 3),
             'backoff_algorithm' => env('REDIS_BACKOFF_ALGORITHM', 'decorrelated_jitter'),
             'backoff_base' => env('REDIS_BACKOFF_BASE', 100),
             'backoff_cap' => env('REDIS_BACKOFF_CAP', 1000),
-=======
->>>>>>> 6170f718171fadb17dc5beb361ea37d9812646d0
         ],
 
         'cache' => [
@@ -200,19 +188,12 @@ return [
             'password' => env('REDIS_PASSWORD'),
             'port' => env('REDIS_PORT', '6379'),
             'database' => env('REDIS_CACHE_DB', '1'),
-<<<<<<< HEAD
             'max_retries' => env('REDIS_MAX_RETRIES', 3),
             'backoff_algorithm' => env('REDIS_BACKOFF_ALGORITHM', 'decorrelated_jitter'),
             'backoff_base' => env('REDIS_BACKOFF_BASE', 100),
             'backoff_cap' => env('REDIS_BACKOFF_CAP', 1000),
-=======
->>>>>>> 6170f718171fadb17dc5beb361ea37d9812646d0
         ],
 
     ],
 
-<<<<<<< HEAD
 ];
-=======
-];
->>>>>>> 6170f718171fadb17dc5beb361ea37d9812646d0

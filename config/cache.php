@@ -95,7 +95,7 @@ return [
             'driver' => 'octane',
         ],
 
-<<<<<<< HEAD
+
         'failover' => [
             'driver' => 'failover',
             'stores' => [
@@ -104,8 +104,6 @@ return [
             ],
         ],
 
-=======
->>>>>>> 6170f718171fadb17dc5beb361ea37d9812646d0
     ],
 
     /*
@@ -119,10 +117,8 @@ return [
     |
     */
 
-<<<<<<< HEAD
     'prefix' => env('CACHE_PREFIX', Str::slug((string) env('APP_NAME', 'laravel')).'-cache-'),
-=======
+
     'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache_'),
->>>>>>> 6170f718171fadb17dc5beb361ea37d9812646d0
 
 ];
