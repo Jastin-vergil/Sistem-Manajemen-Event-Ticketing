@@ -12,6 +12,8 @@ public function contact()
 {
 return view('contact');
 }
-
+public function Event_view() {
+    return view('Event_view');
+}
 
 }
