@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="{{ asset('app.css') }}" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Ticketing System</title>
@@ -41,11 +41,12 @@
     <a href="/events">Events</a>
     <a href="/tickets">Tickets</a>
     <a href="/contact">Contact</a>
+    <a href="/login">Login</a>
 </div>
 
 <div class="container">
 
-    <h1>Dashboard Admin</h1>
+    <h1>Dashboard Pengunjung</h1>
     <p>Selamat datang di Sistem Manajemen Event & Ticketing</p>
 
 </div>
