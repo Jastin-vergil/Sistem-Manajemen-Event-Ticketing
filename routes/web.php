@@ -13,6 +13,9 @@ use App\Http\Controllers\dashboard_pengunjung;// Pindahkan ke sini
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/contact', [HomeController::class, 'contact']);
 Route::get('/navbar', [IndexController::class, 'index']);
+Route::get('/login', function () {
+    return view('login');
+});
 Route::get('/dashboard_pengunjung', function () {
     return view('dashboard_pengunjung');
 });
