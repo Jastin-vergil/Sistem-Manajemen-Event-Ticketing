@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* 1. Daftarkan font-nya dulu */
+@font-face {
+    font-family: 'FontTixly';
+    src: url('/fonts/nama-file-font-kamu.ttf'); /* Pastikan nama file sesuai */
+}
+
+/* 2. Terapkan khusus ke class navbar atau link di dalamnya */
+.navbar {
+    font-family: 'FontTixly', sans-serif;
+}
+
+/* Kalau mau lebih spesifik ke menu-menunya saja */
+.navbar-brand, .nav-link {
+    font-family: 'FontTixly', sans-serif;
+    font-weight: 600; /* Supaya kelihatan lebih tegas */
+}

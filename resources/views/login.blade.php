@@ -28,7 +28,7 @@
         <div
           class="border-[20px] border-transparent rounded-[20px] dark:bg-gray-900 bg-white shadow-lg xl:p-10 2xl:p-10 lg:p-10 md:p-10 sm:p-2 m-2"
         >
-          <h1 class="pt-8 pb-6 font-bold text-5xl dark:text-gray-400 text-center cursor-default">
+          <h1 class="pt-8 pb-6 font-bold text-5xl bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text text-center cursor-default">
             LOGIN
           </h1>
           <form action="#" method="post" class="space-y-4">
