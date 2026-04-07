@@ -29,3 +29,6 @@ Route::get('/welcome', function () {
 Route::get('/app', function () {
     return view('app');
 });
+Route::get('/landingpage', function () {
+    return view('landing_page');
+});
