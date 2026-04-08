@@ -32,3 +32,6 @@ Route::get('/app', function () {
 Route::get('/landingpage', function () {
     return view('landing_page');
 });
+Route::get('/admindashboard', function () {
+    return view('admin_dashboard');
+});
