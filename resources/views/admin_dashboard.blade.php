@@ -44,7 +44,7 @@
 
         <ul class="text-sm">
           <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
-          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Logout</a></li>
+          <li><a href="login" class="block px-4 py-2 hover:bg-gray-100">Logout</a></li>
         </ul>
 
       </div>
