@@ -12,7 +12,7 @@
 <body class="bg-gray-100">
 
 <!-- NAVBAR -->
-<nav class="bg-neutral-primary fixed w-full z-20 top-0 h-16 border-b border-default">
+<nav class="bg-white fixed top-0 left-0 w-full z-50 h-16 shadow border-b border-default">
   <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
 
     <!-- LOGO -->
@@ -58,16 +58,60 @@
 <aside class="fixed top-16 left-0 z-40 w-64 h-[calc(100vh-4rem)] bg-white border-r">
     <div class="h-full px-3 py-4 overflow-y-auto">
         <ul class="space-y-2 font-medium">
-            <li><a href="#" class="block px-3 py-2 hover:bg-gray-200 rounded">Home</a></li>
-            <li><a href="#" class="block px-3 py-2 hover:bg-gray-200 rounded">Daftar Event</a></li>
-            <li><a href="#" class="block px-3 py-2 hover:bg-gray-200 rounded">Informasi Pembayaran</a></li>
-        </ul>
+            <a href="{{ url('/admindashboard') }}" 
+            class="block px-3 py-2 hover:bg-gray-200 rounded">
+            Event List
+            </a>
+            <a href="{{ url('/informasipembayaran') }}" 
+            class="block px-3 py-2 hover:bg-gray-200 rounded">
+            Payment Information
+            </a>
     </div>
 </aside>
 
 
 <!-- CONTENT -->
 <div class="ml-64 mt-16 p-6">
+    <!-- Welcome Card -->
+<div class="bg-gray-200 rounded-2xl p-6 mb-6 shadow-sm">
+    <h1 class="text-2xl font-bold text-gray-800">
+        Welcome, Admin!
+    </h1>
+    <p class="text-sm text-gray-500 mt-1">
+        Kelola event dan pantau pesanan dengan mudah melalui dashboard ini. 
+    </p>
+    <p class="text-sm text-gray-500 mt-1">
+        Tambahkan event baru, edit informasi, dan pantau pesanan tiket dengan efisien.
+    </p>
+</div>
+
+<!-- card event active and orders -->
+    <div class="flex gap-6">
+    <div class="bg-white rounded-2xl p-6 shadow w-full">
+        <h2 class="text-lg font-semibold text-gray-700">
+            Event Active
+        </h2>
+        <p class="text-3xl font-bold text-blue-600 mt-2">
+            {{ $eventActive ?? 0 }}
+        </p>
+        <p class="text-sm text-gray-500">
+            Total event yang sedang berjalan
+        </p>
+    </div>
+
+    <div class="bg-white rounded-2xl p-6 shadow w-full">
+        <h2 class="text-lg font-semibold text-gray-700">
+            Orders
+        </h2>
+        <p class="text-3xl font-bold text-green-600 mt-2">
+            {{ $orders ?? 0 }}
+        </p>
+        <p class="text-sm text-gray-500">
+            Jumlah pesanan tiket
+        </p>
+    </div>
+
+</div>
 
 <!-- HEADER TABLE -->
     <div class="flex justify-between items-center p-4 border-b">
@@ -76,7 +120,7 @@
                 data-modal-target="crud-modal" 
                 data-modal-toggle="crud-modal"
                 class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                + Tambah Event
+                + Create New Event
         </button>
     </div>
 
@@ -105,9 +149,29 @@
                     <td class="px-6 py-4">Non-Akademik</td>
                     <td class="px-6 py-4"><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" alt="Event Image" class="w-16 h-16 object-cover rounded"></td>
                     <td class="px-6 py-4">
-                        <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">Edit</button>
-                        <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">Delete</button>
-                    </td
+                         <div class="flex gap-2">
+                        <button 
+                            class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600"
+                            data-modal-target="edit-modal"
+                            data-modal-toggle="edit-modal"
+
+                            data-judul="Festival Seni"
+                            data-deskripsi="Mari ramaikan festival seni..."
+                            data-tanggal="2026-10-10"
+                            data-waktu="18:30"
+                            data-lokasi="Lapangan Polibatam"
+                            data-kategori="Non-Akademik"
+                            data-foto="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg">
+                            Edit
+                        </button>
+                        <button 
+                            data-modal-target="popup-modal" 
+                            data-modal-toggle="popup-modal"
+                            class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">
+                            Delete
+                        </button>
+                    </td>
+                    </div>
                 </tr>
             </tbody>
         </table>
@@ -176,17 +240,199 @@ class="hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w
                         Cancel
                     </button>
 
-                    <button type="submit"
+                    <button type="button"
+                        data-modal-hide="crud-modal"
+                        data-modal-target="crud-modal-2"
+                        data-modal-toggle="crud-modal-2"
                         class="bg-blue-500 text-white px-4 py-2 rounded">
-                        Simpan
+                        Next
                     </button>
                 </div>
+            </form>
+        </div>
+    </div>
+</div>
+      
+<!-- MODAL 2 -->
+<div id="crud-modal-2" tabindex="-1" aria-hidden="true" class="hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full bg-white/80 backdrop-blur-sm">
+
+    <div class="relative p-4 w-full max-w-md">
+        <div class="bg-white rounded shadow-lg p-6">
+
+            <h3 class="text-lg font-semibold mb-3">Tambah Tiket</h3>
+
+            <form class="space-y-3">
+                <input type="number" placeholder="Early Bird (Kuota)" class="w-full border p-2 rounded">
+                <input type="number" placeholder="Harga Early Bird" class="w-full border p-2 rounded">
+
+                <input type="number" placeholder="Reguler (Kuota)" class="w-full border p-2 rounded">
+                <input type="number" placeholder="Harga Reguler" class="w-full border p-2 rounded">
+
+                <input type="number" placeholder="VIP (Kuota)" class="w-full border p-2 rounded">
+                <input type="number" placeholder="Harga VIP" class="w-full border p-2 rounded">
+
+                <div class="flex justify-end gap-2 pt-3">
+                    <button type="button"
+                        data-modal-hide="crud-modal-2"
+                        data-modal-target="crud-modal"
+                        data-modal-toggle="crud-modal"
+                        class="px-4 py-2 border rounded">
+                        Back
+                    </button>
+
+                    <button type="submit"
+                        class="bg-green-500 text-white px-4 py-2 rounded">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- modal edit -->
+<div id="edit-modal" tabindex="-1"
+   class="hidden fixed top-0 left-0 right-0 z-50 flex justify-center items-start overflow-y-auto w-full h-full bg-black/40 backdrop-blur-md">
+
+  <div class="relative p-4 w-full max-w-md my-8">
+
+   <div class="relative p-4 w-full max-w-md">
+        <div class="bg-white rounded shadow-lg p-6">
+            <h3 class="text-lg font-semibold mb-3">Edit Tiket</h3>
+
+            <form class="mt-4 space-y-3">
+                <input id="edit-judul" type="text" class="w-full border p-2 rounded">
+                <textarea id="edit-deskripsi" class="w-full border p-2 rounded"></textarea>
+                <input id="edit-tanggal" type="date" class="w-full border p-2 rounded">
+                <input id="edit-waktu" type="time" class="w-full border p-2 rounded">
+                <input id="edit-lokasi" type="text" class="w-full border p-2 rounded">
+                <select id="edit-kategori" class="w-full border p-2 rounded">
+                <option>Akademik</option>
+                <option>Non-Akademik</option>
+                </select>
+
+                <!-- Foto Lama -->
+                <img id="preview-foto" src="" class="w-32 h-32 object-cover rounded mb-2">
+
+                <!-- Upload Foto Baru -->
+                <input id="edit-foto" type="file" class="w-full border p-2 rounded">
+
+                <!-- Footer -->
+                <div class="flex justify-end gap-2 pt-3">
+                    <button type="button"
+                        data-modal-hide="edit-modal"
+                        class="px-4 py-2 border rounded">
+                        Cancel
+                    </button>
+
+                   <button type="button"
+                        data-modal-hide="edit-modal"
+                        data-modal-target="edit-ticket-modal"
+                        data-modal-toggle="edit-ticket-modal"
+                        class="bg-blue-500 text-white px-4 py-2 rounded">
+                        Next
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
+      
+<!-- MODAL EDIT TIKET -->
+<div id="edit-ticket-modal" tabindex="-1"
+class="hidden fixed top-0 left-0 right-0 z-50 flex justify-center items-center w-full h-full bg-black/40 backdrop-blur-md">
+
+    <div class="relative p-4 w-full max-w-md">
+        <div class="bg-white rounded shadow-lg p-6">
+
+            <!-- HEADER -->
+            <h3 class="text-lg font-semibold mb-3">Edit Tiket</h3>
+
+            <!-- FORM -->
+            <form class="space-y-3">
+
+                <input type="number" placeholder="Early Bird (Kuota)"
+                    class="w-full border p-2 rounded">
+
+                <input type="number" placeholder="Harga Early Bird"
+                    class="w-full border p-2 rounded">
+
+                <input type="number" placeholder="Reguler (Kuota)"
+                    class="w-full border p-2 rounded">
+
+                <input type="number" placeholder="Harga Reguler"
+                    class="w-full border p-2 rounded">
+
+                <input type="number" placeholder="VIP (Kuota)"
+                    class="w-full border p-2 rounded">
+
+                <input type="number" placeholder="Harga VIP"
+                    class="w-full border p-2 rounded">
+
+                <!-- FOOTER -->
+                <div class="flex justify-end gap-2 pt-3">
+                    <button type="button"
+                        data-modal-hide="edit-ticket-modal"
+                        class="px-4 py-2 border rounded">
+                        Cancel
+                    </button>
+
+                    <button type="submit"
+                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        Update
+                    </button>
+                </div>
+
             </form>
 
         </div>
     </div>
 </div>
+
+<!-- modal delete -->
+<div id="popup-modal" tabindex="-1" class="hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full bg-black/40 backdrop-blur-md">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <div class="relative bg-white border border-default rounded-base shadow-sm p-4 md:p-6">
+                <button type="button" class="absolute top-3 end-2.5 text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center" data-modal-hide="popup-modal">
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            <div class="p-4 md:p-5 text-center">
+                <svg class="mx-auto mb-4 text-fg-disabled w-12 h-12" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+                <h3 class="mb-6 text-body">Are you sure you want to delete this product from your account?</h3>
+                <div class="flex items-center space-x-4 justify-center">
+                    <button data-modal-hide="popup-modal" type="button" 
+                        class="text-white bg-blue-500 box-border border border-transparent hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                        Yes, I'm sure
+                    </button>
+                    <button data-modal-hide="popup-modal" type="button" 
+                        class="text-white bg-red-500 box-border border border-transparent hover:bg-red-600 focus:ring-4 focus:ring-red-300 shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                        No, cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- JS EDIT AUTO FILL -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('[data-modal-target="edit-modal"]').forEach(button => {
+        button.addEventListener('click', function () {
+
+            document.getElementById('edit-judul').value = this.dataset.judul;
+            document.getElementById('edit-deskripsi').value = this.dataset.deskripsi;
+            document.getElementById('edit-tanggal').value = this.dataset.tanggal;
+            document.getElementById('edit-waktu').value = this.dataset.waktu;
+            document.getElementById('edit-lokasi').value = this.dataset.lokasi;
+            document.getElementById('edit-kategori').value = this.dataset.kategori;
+
+            document.getElementById('preview-foto').src = this.dataset.foto;
+        });
+    });
+});
+</script>
 
 </body>
 </html>

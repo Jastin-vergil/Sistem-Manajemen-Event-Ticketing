@@ -35,3 +35,6 @@ Route::get('/landingpage', function () {
 Route::get('/admindashboard', function () {
     return view('admin_dashboard');
 });
+Route::get('/informasipembayaran', function () {
+    return view('informasi_pembayaran');
+});
