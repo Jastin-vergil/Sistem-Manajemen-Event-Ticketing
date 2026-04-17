@@ -1,3 +1,4 @@
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css?family=Mitr|Roboto+Slab|Source+Sans+Pro&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -24,42 +26,69 @@
     <div class="inset-0 bg-black opacity-25 absolute"></div>
 
     <header class="absolute top-0 left-0 right-0 z-20">
-        <nav class="container mx-auto px-6 md:px-12 py-4" x-data="{ open: false }">
-            <div class="md:flex justify-between items-center">
-                <div class="flex justify-between items-center">
-                    <a href="#" class="text-white">
-                        <svg class="w-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.16 12.57">
-                            <path d="M14.02 4.77v7.8H9.33V8.8h-2.5v3.77H2.14v-7.8h11.88z"/><path d="M16.16 5.82H0L8.08 0l8.08 5.82z"/>
-                        </svg>
-                    </a>
-
-                    <div class="md:hidden">
-                        <button @click="open = !open" class="text-white focus:outline-none">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path x-show="!open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                                <path x-show="open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="hidden md:flex items-center" style="font-family: 'Montserrat', sans-serif;">
-                    <a class="text-sm uppercase mx-3 text-white cursor-pointer hover:text-indigo-400 transition">About us</a>
-                    <a class="text-sm uppercase mx-3 text-white cursor-pointer hover:text-indigo-400 transition">Calendar</a>
-                    <a class="text-sm uppercase mx-3 text-white cursor-pointer hover:text-indigo-400 transition">Contact us</a>
-                </div>
+        <nav
+        class="flex items-center justify-between flex-wrap bg-white py-4 lg:px-12 shadow border-solid border-t-2 border-blue-700">
+        <div class="flex justify-between lg:w-auto w-full lg:border-b-0 pl-6 pr-2 border-solid border-b-2 border-gray-300 pb-5 lg:pb-0">
+            <div class="flex items-center flex-shrink-0 text-gray-800 mr-16">
+                <span class="text-3xl tracking-tight font-black px-10" style="font-family: 'Montserrat', sans-serif;">Tixly</span>
             </div>
+            <div class="block lg:hidden ">
+                <button
+                    id="nav"
+                    class="flex items-center px-3 py-2 border-2 rounded text-blue-700 border-blue-700 hover:text-blue-700 hover:border-blue-700">
+                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title>
+                        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
 
-        </nav>
+        <div class="menu w-full flex-grow lg:flex lg:items-center lg:w-auto lg:px-3 px-8">
+            <div class="text-md font-bold text-blue-700 lg:flex-grow"style="font-family: 'Montserrat', sans-serif;">
+                <a href="#responsive-header"
+                   class="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2">
+                    Menu 1
+                </a>
+                <a href="#responsive-header"
+                   class=" block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2">
+                    Menu 2
+                </a>
+                <a href="#responsive-header"
+                   class="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2">
+                    Menu 3
+                </a>
+            </div>
+            <!-- This is an example component -->
+            <div class="relative mx-auto text-gray-600 lg:block hidden">
+                <input
+                    class="border-2 border-gray-300 bg-white h-10 pl-2 pr-8 rounded-lg text-sm focus:outline-none"
+                    type="search" name="search" placeholder="Search">
+                <button type="submit" class="absolute right-0 top-0 mt-3 mr-2">
+                    <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
+                         version="1.1" id="Capa_1" x="0px" y="0px"
+                         viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;"
+                         xml:space="preserve"
+                         width="512px" height="512px">
+                <path
+                    d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"/>
+              </svg>
+                </button>
+            </div>
+            <div class="flex items-center lg:ml-6" style="font-family: 'Poppins', sans-serif;">
+
+           </div>
+        </div>
+
+    </nav>
     </header>
 
     <div class="container mx-auto px-6 md:px-12 relative z-10 flex items-center py-24 xl:py-40">
         <div class="lg:w-3/5 xl:w-2/5 flex flex-col items-start relative z-10">
-            <span class="font-mitr uppercase text-indigo-400 font-bold tracking-widest">Discover Your Next Great Experience</span>
+            <span class="font-mitr text-xl uppercase text-indigo-400 font-bold tracking-widest">Discover Your Next Great Experience</span>
 
-            <h1 class="font-roboto-slab text-5xl sm:text-7xl text-red-400 leading-tight mt-4">
+            <b><h1 class="font-roboto-slab text-5xl sm:text-7xl text-red-400 leading-tight mt-4">
                 Explore New Event  <br> and Get Your Tickets Now!
-            </h1>
+            </h1></b>
 
                        <a href="#" class="block bg-indigo-500 hover:bg-indigo-400 py-3 px-8 rounded-full text-md font-mitr text-white uppercase mt-10 shadow-lg transition-all transform hover:-translate-y-1">
                 Find Event

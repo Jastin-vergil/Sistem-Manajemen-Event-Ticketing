@@ -38,3 +38,16 @@ Route::get('/admindashboard', function () {
 Route::get('/informasipembayaran', function () {
     return view('informasi_pembayaran');
 });
+
+Route::get('/ticket', function () {
+    return view('ticket');
+})->name('ticket');
+
+Route::get('/payment', function () {
+    return view('payment');
+})->name('payment');
+
+Route::post('/payment/confirm', function () {
+    return "Payment Success (dummy)";
+})->name('payment.confirm');
+

@@ -11,11 +11,12 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link
       href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-    <script src="https://cdn.tailwindcss.com"></script>
+   <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body
     class="flex font-poppins items-center justify-center dark:bg-gray-900 min-w-screen min-h-screen"
@@ -28,7 +29,7 @@
         <div
           class="border-[20px] border-transparent rounded-[20px] dark:bg-gray-900 bg-white shadow-lg xl:p-10 2xl:p-10 lg:p-10 md:p-10 sm:p-2 m-2"
         >
-          <h1 class="pt-8 pb-6 font-bold text-5xl bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text text-center cursor-default">
+          <h1 class="pt-8 pb-6 font-bold text-5xl bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text text-center cursor-default" style="font-family: 'Lobster Two', cursive;">
             LOGIN
           </h1>
           <form action="#" method="post" class="space-y-4">
@@ -54,11 +55,26 @@
             </div>
             <button
               class="bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg mt-6 p-2 text-white rounded-lg w-full hover:scale-105 hover:from-purple-500 hover:to-blue-500 transition duration-300 ease-in-out"
-              type="submit"
+              type="submit" style="font-family: 'Montserrat', cursive;"
             >
               LOGIN
             </button>
           </form>
+                    <div class="flex flex-col mt-4 items-center justify-center text-sm">
+            <h3>
+              <span class="cursor-default dark:text-gray-300">Forgot Password?</span>
+              <a
+                class="group text-blue-400 transition-all duration-100 ease-in-out"
+                href="#"
+              >
+                <span
+                  class="bg-left-bottom ml-1 bg-gradient-to-r from-blue-400 to-blue-400 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out"
+                >
+                  Forgot
+                </span>
+              </a>
+            </h3>
+          </div>
         </div>
 
               </a>

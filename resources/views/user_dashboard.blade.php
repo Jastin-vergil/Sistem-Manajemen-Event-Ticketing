@@ -84,8 +84,8 @@
       Event musik terbesar tahun ini dengan berbagai artis terkenal.
     </p>
 
-    <button class="bg-green-500 text-white px-4 py-2 rounded-lg items-center justify-center">
-      Beli Tiket
+    <button onclick="window.location='{{ route('ticket') }}'">
+    Confirm
     </button>
   </div>
 </div>
