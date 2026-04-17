@@ -129,33 +129,34 @@ button {
 
             <form action="{{ route('payment') }}" method="GET" class="space-y-4">
 
-                <input 
-                    type="text" 
-                    name="name" 
+                <input
+                    type="text"
+                    name="name"
                     placeholder="Enter Your Name"
                     class="w-full h-11 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
                     required
                 >
 
-                <input 
-                    type="email" 
-                    name="email" 
+                <input
+                    type="email"
+                    name="email"
                     placeholder="Enter your E-Mail"
                     class="w-full h-11 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
                     required
                 >
 
-                <select 
+                <select
                     name="ticket_type"
                     class="w-full h-11 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
                     required
                 >
                     <option value="">Select Ticket Type</option>
+                    <option value="early_bird">Early Bird - Rp 50.000</option>
                     <option value="regular">Regular - Rp 100.000</option>
                     <option value="vip">VIP - Rp 200.000</option>
                 </select>
 
-                <button 
+                <button
                     type="submit"
                     class="w-full h-11 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition"
                 >
