@@ -35,3 +35,15 @@ Route::get('/landingpage', function () {
 Route::get('/admindashboard', function () {
     return view('admin_dashboard');
 });
+
+Route::get('/ticket', function () {
+    return view('ticket');
+})->name('ticket');
+
+Route::get('/payment', function () {
+    return view('payment');
+})->name('payment');
+
+Route::post('/payment/confirm', function () {
+    return "Payment Success (dummy)";
+})->name('payment.confirm');
