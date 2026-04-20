@@ -16,16 +16,11 @@
 
     <link rel="stylesheet" href="{{ asset('app.css') }}">
 
-    <style>
-        .font-mitr { font-family: 'Mitr', sans-serif; }
-        .font-roboto-slab { font-family: 'Roboto Slab', serif; }
-        .font-source-sans-pro { font-family: 'Source Sans Pro', sans-serif; }
-    </style>
 </head>
-<div class="bg-indigo-900 relative overflow-hidden min-h-screen">
+<div class="bg-indigo-900 relative min-h-screen">
     <div class="inset-0 bg-black opacity-25 absolute"></div>
 
-    <header class="absolute top-0 left-0 right-0 z-20">
+    <header class="sticky top-0 left-0 right-0 z-[100] w-full bg-[#0a0a2e]/60 backdrop-blur-lg border-b border-white/5">
         <nav
         class="flex items-center justify-between flex-wrap bg-white py-4 lg:px-12 shadow border-solid border-t-2 border-blue-700">
         <div class="flex justify-between lg:w-auto w-full lg:border-b-0 pl-6 pr-2 border-solid border-b-2 border-gray-300 pb-5 lg:pb-0">
@@ -82,18 +77,115 @@
     </nav>
     </header>
 
-    <div class="container mx-auto px-6 md:px-12 relative z-10 flex items-center py-24 xl:py-40">
-        <div class="lg:w-3/5 xl:w-2/5 flex flex-col items-start relative z-10">
-            <span class="font-mitr text-xl uppercase text-indigo-400 font-bold tracking-widest">Discover Your Next Great Experience</span>
+<div class="relative overflow-hidden min-h-screen bg-[#0a0a2e] flex flex-col justify-center">
 
-            <b><h1 class="font-roboto-slab text-5xl sm:text-7xl text-red-400 leading-tight mt-4">
-                Explore New Event  <br> and Get Your Tickets Now!
-            </h1></b>
+    <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-600/20 blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-red-600/10 blur-[120px] pointer-events-none"></div>
 
-                       <a href="#" class="block bg-indigo-500 hover:bg-indigo-400 py-3 px-8 rounded-full text-md font-mitr text-white uppercase mt-10 shadow-lg transition-all transform hover:-translate-y-1">
-                Find Event
+    <div class="absolute inset-0 z-0 opacity-20"
+         style="background-image: radial-gradient(#4f46e5 0.5px, transparent 0.5px); background-size: 30px 30px;">
+    </div>
+
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0a2e]/50 to-[#0a0a2e] z-0"></div>
+
+    <header class="absolute top-0 left-0 right-0 z-50">
+        </header>
+
+    <div class="container mx-auto px-6 md:px-12 relative z-10 flex flex-col lg:flex-row items-center py-24 xl:py-40"
+         x-data="{
+            activeStack: 1,
+            total: 4,
+            init() {
+                setInterval(() => {
+                    this.activeStack = this.activeStack < this.total ? this.activeStack + 1 : 1;
+                }, 3000);
+            }
+         }">
+
+        <div class="lg:w-3/5 xl:w-2/5 flex flex-col items-start relative z-10 mb-20 lg:mb-100">
+            <span class="font-mitr text-sm uppercase text-indigo-400 font-bold tracking-[0.3em] mb-4">
+                Premium Event Experience
+            </span>
+
+            <b>
+                <h1 class="font-roboto-slab text-5xl sm:text-7xl leading-tight mt-4 relative inline-block">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-red-200 to-red-400">
+                        Explore New Event <br> & Get Tickets.
+                    </span>
+
+                    <div class="h-1 w-24 bg-red-500 mt-4 rounded-full"></div>
+                </h1>
+            </b>
+
+            <p class="text-gray-400 mt-6 text-lg font-source-sans-pro max-w-md">
+                Experience the ease of booking tickets for your favorite events with Tixly. Safe, fast, and reliable.
+            </p>
+
+            <a href="#" class="group relative px-10 py-4 mt-10 font-mitr text-white uppercase tracking-widest overflow-hidden rounded-full bg-indigo-600 transition-all duration-300 hover:bg-indigo-500 shadow-[0_0_20px_rgba(79,70,229,0.4)]">
+                <span class="relative z-10">Find Event</span>
+                <div class="absolute inset-0 w-0 bg-red-400 transition-all duration-300 group-hover:w-full"></div>
             </a>
         </div>
-        </div>
-</div>
 
+
+        <div class="lg:w-1/2 w-full flex justify-center lg:justify-end lg:ml-auto relative h-[600px] md:h-[750px] items-center">
+
+            <div class="relative w-80 md:w-[450px] aspect-[3/4]">
+
+                <div class="absolute -bottom-12 left-1/2 -translate-x-1/2 w-[90%] h-12 bg-black/60 blur-[40px] rounded-full z-0 transition-all duration-1000"
+                     :class="activeStack ? 'scale-110 opacity-80' : 'scale-100 opacity-50'">
+                </div>
+
+                <div class="absolute inset-0 transition-all duration-1000 ease-in-out transform-gpu"
+                     :class="{
+                        'z-30 opacity-100 scale-100 translate-x-0 translate-y-0 rotate-0 shadow-[20px_20px_60px_rgba(0,0,0,0.9)]': activeStack === 1,
+                        'z-20 opacity-80 scale-95 translate-x-12 translate-y-6 rotate-3': activeStack === 2,
+                        'z-10 opacity-60 scale-90 translate-x-24 translate-y-12 rotate-6': activeStack === 3,
+                        'z-0 opacity-0 scale-80 translate-x-32 translate-y-16 rotate-12': activeStack === 4
+                     }">
+                    <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=800"
+                         class="w-full h-full object-cover rounded-[3rem] border border-white/5">
+                </div>
+
+                <div class="absolute inset-0 transition-all duration-1000 ease-in-out transform-gpu"
+                     :class="{
+                        'z-30 opacity-100 scale-100 translate-x-0 translate-y-0 rotate-0 shadow-[20px_20px_60px_rgba(0,0,0,0.9)]': activeStack === 2,
+                        'z-20 opacity-80 scale-95 translate-x-12 translate-y-6 rotate-3': activeStack === 3,
+                        'z-10 opacity-60 scale-90 translate-x-24 translate-y-12 rotate-6': activeStack === 4,
+                        'z-0 opacity-0 scale-80 translate-x-32 translate-y-16 rotate-12': activeStack === 1
+                     }">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=800"
+                         class="w-full h-full object-cover rounded-[3rem] border border-white/5">
+                </div>
+
+                <div class="absolute inset-0 transition-all duration-1000 ease-in-out transform-gpu"
+                     :class="{
+                        'z-30 opacity-100 scale-100 translate-x-0 translate-y-0 rotate-0 shadow-[20px_20px_60px_rgba(0,0,0,0.9)]': activeStack === 3,
+                        'z-20 opacity-80 scale-95 translate-x-12 translate-y-6 rotate-3': activeStack === 4,
+                        'z-10 opacity-60 scale-90 translate-x-24 translate-y-12 rotate-6': activeStack === 1,
+                        'z-0 opacity-0 scale-80 translate-x-32 translate-y-16 rotate-12': activeStack === 2
+                     }">
+                    <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=800"
+                         class="w-full h-full object-cover rounded-[3rem] border border-white/5">
+                </div>
+
+                <div class="absolute inset-0 transition-all duration-1000 ease-in-out transform-gpu"
+                     :class="{
+                        'z-30 opacity-100 scale-100 translate-x-0 translate-y-0 rotate-0 shadow-[20px_20px_60px_rgba(0,0,0,0.9)]': activeStack === 4,
+                        'z-20 opacity-80 scale-95 translate-x-12 translate-y-6 rotate-3': activeStack === 1,
+                        'z-10 opacity-60 scale-90 translate-x-24 translate-y-12 rotate-6': activeStack === 2,
+                        'z-0 opacity-0 scale-80 translate-x-32 translate-y-16 rotate-12': activeStack === 3
+                     }">
+                    <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=800"
+                         class="w-full h-full object-cover rounded-[3rem] border border-white/5">
+                </div>
+
+                <div class="absolute -bottom-24 left-[50%] -translate-x-1/2 flex space-x-3 items-center z-50">
+                    <template x-for="i in total">
+                        <div class="h-1.5 rounded-full transition-all duration-500"
+                        :class="activeStack === i ? 'w-10 bg-red-500' : 'w-4 bg-white/10'"></div>
+                    </template>
+                </div>
+
+            </div>
+        </div>
