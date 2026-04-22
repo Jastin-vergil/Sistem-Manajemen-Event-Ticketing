@@ -53,8 +53,8 @@ Route::get('header', function () {
 Route::get('footer', function () {
     return view('components.footer');
 })->name('footer');
-Route::get('/body', function() {
-    return view('components.body');
+Route::get('/movingtext', function() {
+    return view('movingtext');
 });
 
 
