@@ -7,12 +7,10 @@ use App\Http\Controllers\ListEventController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\dashboard_pengunjung;// Pindahkan ke sini
+use App\Http\Controllers\dashboard_pengunjung;
+use App\Http\Controllers\ProductController;// Pindahkan ke sini
 
 // --- Public Routes ---
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/contact', [HomeController::class, 'contact']);
-Route::get('/navbar', [IndexController::class, 'index']);
 Route::get('/login', function () {
     return view('login');
 });
@@ -25,7 +23,9 @@ Route::get('/navbar', function () {
 Route::get('/welcome', function () {
     return view('welcome');
 });
-
+Route::get('/list_product', function () {
+    return view('list_product');
+});
 Route::get('/app', function () {
     return view('app');
 });
@@ -38,16 +38,15 @@ Route::get('/admindashboard', function () {
 Route::get('/informasipembayaran', function () {
     return view('informasi_pembayaran');
 });
-
 Route::get('/ticket', function () {
     return view('ticket');
 })->name('ticket');
-
 Route::get('/payment', function () {
     return view('payment');
 })->name('payment');
-
 Route::post('/payment/confirm', function () {
     return "Payment Success (dummy)";
 })->name('payment.confirm');
 
+
+Route::get('/list_product', [ProductController::class, 'index']);

@@ -1,7 +1,4 @@
-<html>
-<div>
-    <h1>List Event</h1>
-    <p>ID Event: {{$id}}</p>
-    <p>Nama Event: {{$nama}}</p>
+@vite(['resources/css/app.css', 'resources/js/app.js'])
+<div class="bg-blue-500 p-4 m-4 rounded-lg text-red-500">
+    ini pakai Tailwind
 </div>
-</html>

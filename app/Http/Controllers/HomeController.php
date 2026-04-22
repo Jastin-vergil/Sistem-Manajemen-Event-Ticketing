@@ -6,14 +6,12 @@ class HomeController extends Controller
 {
 public function index()
 {
-return view('dashboard');
+return view('landing_page');
 }
 public function contact()
 {
 return view('contact');
 }
-public function Event_view() {
-    return view('Event_view');
-}
+
 
 }
