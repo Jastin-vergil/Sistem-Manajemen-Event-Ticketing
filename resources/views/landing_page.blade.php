@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Mitr|Roboto+Slab|Source+Sans+Pro&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -57,14 +58,19 @@
             },
         };
     </script>
+    <style>
+        .glass-effect {
+            background: rgba(47, 47, 48, 0.666);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(38, 10, 91, 0.115);
+        }
+    </style>
 </head>
 
 <body class="bg-[#0a0a2e]">
 
-    <div class="bg-indigo-900 relative">
-        <div class="inset-0 bg-black opacity-25 absolute"></div>
-        <header
-            class="sticky top-0 left-0 right-0 z-[100] w-full bg-[#0a0a2e]/60 backdrop-blur-lg border-b border-white/5">
+    <div>
+        <header class="sticky z-[100] w-full">
             @include('components.header')
         </header>
 
@@ -91,17 +97,14 @@
                         Premium Event Experience
                     </span>
 
-                    <h1 class="font-roboto-slab text-5xl sm:text-7xl leading-tight mt-4 relative inline-block">
-                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-red-200 to-red-400">
+                    <h1 class="font-roboto-slab text-5xl md:text-7xl leading-[1.2] mt-4">
+                        <span
+                            class="bg-clip-text text-transparent bg-gradient-to-l from-white via-indigo-400 to-red-400 block md:inline">
                             Explore
                         </span>
 
-                        <span
-                            class="text-red-500 inline-flex flex-col h-[calc(theme(fontSize.5xl)*theme(lineHeight.tight))] sm:h-[calc(theme(fontSize.7xl)*theme(lineHeight.tight))] overflow-hidden">
-                            <ul
-                                class="block animate-text-slide-5 text-left leading-tight [&_li]:block
-                             via-red-400
-                                bg-[length:200%_auto] bg-clip-text">
+                        <span class="text-red-500 inline-flex flex-col h-[1.2em] overflow-hidden align-middle">
+                            <ul class="block animate-text-slide-5 text-left leading-[1.2]">
                                 <li>Concerts</li>
                                 <li>Festivals</li>
                                 <li>Workshops</li>
@@ -111,13 +114,10 @@
                             </ul>
                         </span>
 
-                        <br>
-
-                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-red-300 to-red-400">
+                        <br class="hidden md:block"> <span
+                            class="bg-clip-text text-transparent bg-gradient-to-l from-white via-indigo-400 to-red-400 block md:inline">
                             & Get Your Tickets
                         </span>
-
-                        <div class="h-1 w-24 bg-red-500 mt-4 rounded-full"></div>
                     </h1>
 
                     <p class="text-gray-400 mt-6 text-lg font-source-sans-pro max-w-md">
@@ -134,7 +134,7 @@
                 </div>
 
                 <div
-                    class="lg:w-1/3 w-full flex justify-center lg:justify-end lg:ml-auto relative h-[600px] md:h-[750px] items-center">
+                    class="lg:w-1/2 w-full flex justify-center lg:justify-end lg:ml-auto relative h-[600px] md:h-[800px] items-center">
                     <div class="relative w-80 md:w-[450px] aspect-[3/4]">
 
                         <div class="absolute -bottom-12 left-1/2 -translate-x-1/2 w-[90%] h-12 bg-black/60 blur-[40px] rounded-full z-0 transition-all duration-1000"
@@ -211,8 +211,14 @@
                     </div>
                 </div>
             </div>
+            <section class="relative z-[50] w-full bg-[#0b0e29] min-h-[500px]">
+    <div class="container mx-auto">
+        <div class="dashboard-box">
+            @include('user_dashboard')
         </div>
-
+    </div>
+</section>
+        </div>
         <footer>
             @include('components.footer')
         </footer>

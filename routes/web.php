@@ -17,12 +17,6 @@ Route::get('/login', function () {
 Route::get('/dashboard', function () {
     return view('user_dashboard');
 });
-Route::get('/navbar', function () {
-    return view('partials.navbar');
-});
-Route::get('/welcome', function () {
-    return view('welcome');
-});
 Route::get('/list_product', function () {
     return view('list_product');
 });
