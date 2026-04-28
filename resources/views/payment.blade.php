@@ -5,22 +5,21 @@
     <title>Ticket Payment</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-r from-blue-400 to-cyan-400 min-h-screen">
+<body class="bg-gradient-to-r from-[#0f172a] to-[#020617] text-white min-h-screen">
 
     <!-- Navbar -->
-    <div class="bg-white shadow-md flex justify-between px-10 py-4">
-        <div class="font-bold">Event Polibatam</div>
-        <div class="space-x-6">
-            <a href="#" class="hover:text-blue-500">History</a>
-            <a href="#" class="hover:text-blue-500">Home</a>
-            <a href="#" class="hover:text-blue-500">Events</a>
-            <a href="#" class="hover:text-blue-500">Contact</a>
+    <div class="flex justify-between items-center px-10 py-5">
+        <div class="text-xl font-bold text-purple-400">Tixly</div>
+        <div class="space-x-8 text-gray-300">
+            <a href="#" class="hover:text-white">Menu 1</a>
+            <a href="#" class="hover:text-white">Menu 2</a>
+            <a href="#" class="hover:text-white">Menu 3</a>
         </div>
     </div>
 
     <!-- Container -->
     <div class="flex justify-center items-center mt-16">
-        <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-lg">
+        <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-2xl shadow-xl w-full max-w-lg">
 
             <h2 class="text-xl font-semibold text-center mb-6">
                 💳 Ticket Payment
@@ -33,7 +32,7 @@
                 <input 
                     type="text" 
                     value="Total Payment: Rp {{ request('ticket_type') == 'vip' ? '200000' : '100000' }}"
-                    class="w-full h-11 px-4 rounded-lg border border-gray-300 bg-gray-100"
+                    class="w-full h-11 px-4 rounded-lg bg-white/10 border border-gray-600 text-gray-200"
                     readonly
                 >
 
@@ -41,36 +40,38 @@
                 <input 
                     type="text" 
                     value="Payment Method: QRIS"
-                    class="w-full h-11 px-4 rounded-lg border border-gray-300 bg-gray-100"
+                    class="w-full h-11 px-4 rounded-lg bg-white/10 border border-gray-600 text-gray-200"
                     readonly
                 >
 
                 <!-- QR Code -->
                 <div class="flex justify-center">
-                    <div class="w-48 h-48 bg-gray-300 flex items-center justify-center rounded-lg">
-                        QR Code
+                    <div class="w-48 h-48 bg-white/10 border border-gray-600 flex items-center justify-center rounded-lg">
+                        <span class="text-gray-400">QR Code</span>
                     </div>
                 </div>
 
-                <p class="text-center text-sm text-gray-600">
+                <p class="text-center text-sm text-gray-400">
                     Scan QR with E-Wallet or Mobile Banking
                 </p>
 
-                <p class="text-xs text-center text-red-500">
+                <p class="text-xs text-center text-red-400">
                     Note: If the time limit is exceeded, the transaction will fail.
                 </p>
 
-                <p class="text-center font-semibold">
+                <p class="text-center font-semibold text-purple-400">
                     Remaining Time: 4:59 Minute(s)
                 </p>
 
                 <!-- Upload -->
                 <div>
-                    <label class="text-sm font-medium">Upload Proof of Payment</label>
+                    <label class="text-sm font-medium text-gray-300">
+                        Upload Proof of Payment
+                    </label>
                     <input 
                         type="file" 
                         name="proof"
-                        class="w-full mt-1 text-sm border border-gray-300 rounded-lg p-2 bg-white"
+                        class="w-full mt-1 text-sm border border-gray-600 rounded-lg p-2 bg-white/10 text-gray-300"
                         required
                     >
                 </div>
@@ -78,7 +79,7 @@
                 <!-- Button -->
                 <button 
                     type="submit"
-                    class="w-full h-11 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition"
+                    class="w-full h-11 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition"
                 >
                     Confirm Payment
                 </button>

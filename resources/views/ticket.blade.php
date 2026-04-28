@@ -5,160 +5,71 @@
     <title>Ticket Form</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Font -->
+    <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
+        body {
             font-family: 'Poppins', sans-serif;
         }
-
-        body {
-            background: linear-gradient(to right, #4facfe, #00f2fe);
-        }
-
-        /* Navbar */
-        .navbar {
-            background: white;
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 40px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .menu a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-
-        .menu a:hover {
-            color: #4facfe;
-        }
-
-        /* Container */
-        .container {
-            width: 400px;
-            margin: 80px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            text-align: center;
-        }
-
-        h2 {
-            margin-bottom: 30px;
-            color: #333;
-        }
-
-        /* Input */
-        .form-group {
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-input, select {
-    width: 100%;
-    height: 45px;
-    padding: 0 15px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    box-sizing: border-box;
-    outline: none;
-    transition: 0.3s;
-}
-
-/* Biar dropdown panahnya sejajar */
-select {
-    appearance: none;
-}
-
-/* Fokus effect */
-input:focus, select:focus {
-    border-color: #4facfe;
-    box-shadow: 0 0 5px rgba(79,172,254,0.4);
-}
-
-/* Placeholder lebih rapi */
-input::placeholder {
-    color: #999;
-}
-
-/* Button full & sejajar */
-button {
-    width: 100%;
-    height: 45px;
-    border-radius: 10px;
-    background: #4facfe;
-    color: white;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-}
     </style>
 </head>
-<body>
+<body class="bg-gradient-to-r from-[#0f172a] to-[#020617] text-white min-h-screen">
 
     <!-- Navbar -->
-<div class="min-h-screen bg-gradient-to-r from-blue-400 to-cyan-400">
-
-    <!-- Navbar -->
-    <div class="bg-white shadow-md flex justify-between px-10 py-4">
-        <div class="font-bold">Event Polibatam</div>
-        <div class="space-x-6">
-            <a href="#" class="hover:text-blue-500">History</a>
-            <a href="#" class="hover:text-blue-500">Home</a>
-            <a href="#" class="hover:text-blue-500">Events</a>
-            <a href="#" class="hover:text-blue-500">Contact</a>
+    <div class="flex justify-between items-center px-10 py-5">
+        <div class="text-xl font-bold text-purple-400">Tixly</div>
+        <div class="space-x-8 text-gray-300">
+            <a href="#" class="hover:text-white">Menu 1</a>
+            <a href="#" class="hover:text-white">Menu 2</a>
+            <a href="#" class="hover:text-white">Menu 3</a>
         </div>
     </div>
 
-    <!-- Form Container -->
+    <!-- Form -->
     <div class="flex justify-center items-center mt-20">
-        <div class="bg-white p-10 rounded-2xl shadow-lg w-full max-w-md">
+        <div class="bg-white/5 backdrop-blur-md border border-white/10 p-10 rounded-2xl shadow-xl w-full max-w-md">
 
-            <h2 class="text-xl font-semibold text-center mb-6">
+            <h2 class="text-2xl font-semibold text-center mb-6">
                 🎟 Ticket Form
             </h2>
 
             <form action="{{ route('payment') }}" method="GET" class="space-y-4">
 
+                <!-- Name -->
                 <input
                     type="text"
                     name="name"
                     placeholder="Enter Your Name"
-                    class="w-full h-11 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    class="w-full h-11 px-4 rounded-lg bg-transparent border border-gray-600 text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 outline-none"
                     required
                 >
 
+                <!-- Email -->
                 <input
                     type="email"
                     name="email"
                     placeholder="Enter your E-Mail"
-                    class="w-full h-11 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    class="w-full h-11 px-4 rounded-lg bg-transparent border border-gray-600 text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 outline-none"
                     required
                 >
 
+                <!-- Ticket -->
                 <select
                     name="ticket_type"
-                    class="w-full h-11 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    class="w-full h-11 px-4 rounded-lg bg-transparent border border-gray-600 text-gray-300 focus:ring-2 focus:ring-purple-500 outline-none"
                     required
                 >
-                    <option value="">Select Ticket Type</option>
-                    <option value="early_bird">Early Bird - Rp 50.000</option>
-                    <option value="regular">Regular - Rp 100.000</option>
-                    <option value="vip">VIP - Rp 200.000</option>
+                    <option value="" class="text-black">Select Ticket Type</option>
+                    <option value="early_bird" class="text-black">Early Bird - Rp 50.000</option>
+                    <option value="regular" class="text-black">Regular - Rp 100.000</option>
+                    <option value="vip" class="text-black">VIP - Rp 200.000</option>
                 </select>
 
+                <!-- Button -->
                 <button
                     type="submit"
-                    class="w-full h-11 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition"
+                    class="w-full h-11 bg-purple-600 hover:bg-purple-700 transition rounded-lg font-semibold"
                 >
                     Confirm
                 </button>
@@ -166,9 +77,6 @@ button {
             </form>
 
         </div>
-    </div>
-
-</div>
     </div>
 
 </body>
