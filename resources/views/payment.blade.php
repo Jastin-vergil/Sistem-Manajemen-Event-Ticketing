@@ -39,29 +39,22 @@
                 <!-- Payment Method -->
                 <input 
                     type="text" 
-                    value="Payment Method: QRIS"
+                    value="Payment Method: BCA - 8080123456"
                     class="w-full h-11 px-4 rounded-lg bg-white/10 border border-gray-600 text-gray-200"
                     readonly
                 >
 
-                <!-- QR Code -->
-                <div class="flex justify-center">
-                    <div class="w-48 h-48 bg-white/10 border border-gray-600 flex items-center justify-center rounded-lg">
-                        <span class="text-gray-400">QR Code</span>
-                    </div>
+                <div class="bg-indigo-900/40 border border-indigo-500/30 p-4 rounded-xl text-sm text-gray-300 text-center">
+                    📌 Open your Mobile Banking, add this account to your transfer list, then transfer the exact amount and save the receipt.
                 </div>
-
-                <p class="text-center text-sm text-gray-400">
-                    Scan QR with E-Wallet or Mobile Banking
-                </p>
-
-                <p class="text-xs text-center text-red-400">
-                    Note: If the time limit is exceeded, the transaction will fail.
-                </p>
 
                 <p class="text-center font-semibold text-purple-400">
                     Remaining Time: 4:59 Minute(s)
                 </p>
+                
+                <div class="bg-red-900/30 border border-red-500/40 text-red-300 text-xs p-3 rounded-lg text-center mt-2">
+                    ⚠️ Payment will be automatically cancelled if the time limit is exceeded.
+                </div>
 
                 <!-- Upload -->
                 <div>
