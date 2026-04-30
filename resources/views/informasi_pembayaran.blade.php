@@ -9,16 +9,17 @@
     <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-gradient-to-b from-[#0b0f2a] to-[#05071a] text-white">
 
 <!-- NAVBAR -->
-<nav class="bg-neutral-primary fixed w-full z-20 top-0 h-16 border-b border-default">
+<nav class="bg-[#0b0f2a]/80 backdrop-blur-md fixed top-0 left-0 w-full z-50 h-16 border-b border-gray-700">
   <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
 
     <!-- LOGO -->
     <a href="#" class="flex items-center space-x-3">
       <img src="https://www.polibatam.ac.id/wp-content/uploads/2021/09/logo.png" class="h-7" alt="logo" />
-      <span class="text-xl font-semibold">Admin Dashboard</span>
+      <span class="text-xl font-bold bg-gradient-to-r from-indigo-400 via-purple-500 to-blue-500 bg-clip-text text-transparent">Admin Dashboard
+</span>
     </a>
 
     <!-- USER -->
@@ -34,7 +35,7 @@
       </button>
 
       <!-- DROPDOWN -->
-      <div class="hidden bg-white border rounded shadow w-44 mt-2"
+      <div class="hidden bg-[#0f1335] border border-gray-700 rounded-xl shadow w-44 mt-2"
         id="user-dropdown">
 
         <div class="px-4 py-3 text-sm border-b">
@@ -53,179 +54,146 @@
   </div>
 </nav>
 
-
 <!-- SIDEBAR -->
-<aside class="fixed top-16 left-0 z-40 w-64 h-[calc(100vh-4rem)] bg-white border-r">
+<aside class="fixed top-16 left-0 z-40 w-64 h-[calc(100vh-4rem)] bg-[#0f1335] border-r border-gray-700">
     <div class="h-full px-3 py-4 overflow-y-auto">
         <ul class="space-y-2 font-medium">
-            <li>
-                <a href="{{ url('/admindashboard') }}" 
-                class="block px-3 py-2 hover:bg-gray-200 rounded">
-                Event List
-                </a>
-            </li>
-            <li>
-                <a href="{{ url('/informasipembayaran') }}" 
-                class="block px-3 py-2 hover:bg-gray-200 rounded">
-                Payment Information
-                </a>
-            </li>
+            <a href="{{ url('/admindashboard') }}" 
+            class="flex items-center px-3 py-2 hover:bg-gray-200 rounded">
+             <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2L2 8h2v8h4v-5h4v5h4V8h2L10 2z"/>
+            </svg>
+            <span>Event List</span>
+            </a>
+
+            <a href="{{ url('/informasipembayaran') }}" 
+            class="flex items-center px-3 py-2 hover:bg-gray-200 rounded">
+            <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v2H2V5zm0 4h16v6a2 2 0 01-2 2H4a2 2 0 01-2-2V9zm3 3h4v2H5v-2z"/>
+            </svg>
+            <span>Payment Information</span>
+            </a>
+
+            <a href="{{ url('/categories') }}" 
+            class="flex items-center px-3 py-2 hover:bg-gray-200 rounded">
+            <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M3 3h6v6H3V3zm8 0h6v6h-6V3zM3 11h6v6H3v-6zm8 0h6v6h-6v-6z"/>
+            </svg>
+            <span>Categories</span>
+            </a>
     </div>
 </aside>
 
-
 <!-- CONTENT -->
-<div class="ml-64 mt-16 p-6">
-     <!-- Welcome Card -->
-<div class="bg-gray-200 rounded-2xl p-6 mb-6 shadow-sm">
-    <h1 class="text-2xl font-bold text-gray-800">
+<div class="ml-64 mt-16 p-6 text-white">
+    <!-- Welcome Card -->
+<div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 mb-6 border border-white/10">
+    <h1 class="text-2xl font-bold text-white">
         Welcome, Admin!
     </h1>
-    <p class="text-sm text-gray-500 mt-1">
-        Kelola event dan pantau pesanan dengan mudah melalui dashboard ini. 
+    <p class="text-sm text-gray-300">
+        Manage events and monitor orders easily through this dashboard. 
     </p>
-    <p class="text-sm text-gray-500 mt-1">
-        Tambahkan event baru, edit informasi, dan pantau pesanan tiket dengan efisien.
+    <p class="text-sm text-gray-300">
+        Add new events, edit information, and track ticket orders efficiently.
     </p>
 </div>
 
 <!-- card event active and orders -->
     <div class="flex gap-6">
-    <div class="bg-white rounded-2xl p-6 shadow w-full">
-        <h2 class="text-lg font-semibold text-gray-700">
+    <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 w-full">
+        <h2 class="text-lg font-semibold text-gray-300">
             Event Active
         </h2>
         <p class="text-3xl font-bold text-blue-600 mt-2">
-            {{ $eventActive ?? 0 }}
+            {{ $eventActive ?? 4 }}
         </p>
-        <p class="text-sm text-gray-500">
-            Total event yang sedang berjalan
+        <p class="text-sm text-gray-400">
+            Total events currently running
         </p>
     </div>
 
-    <div class="bg-white rounded-2xl p-6 shadow w-full">
-        <h2 class="text-lg font-semibold text-gray-700">
+    <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 w-full">
+        <h2 class="text-lg font-semibold text-gray-300">
             Orders
         </h2>
         <p class="text-3xl font-bold text-green-600 mt-2">
-            {{ $orders ?? 0 }}
+            {{ $orders ?? 3 }}
         </p>
-        <p class="text-sm text-gray-500">
-            Jumlah pesanan tiket
+        <p class="text-sm text-gray-400">
+            Total ticket orders
         </p>
     </div>
-    </div>
+
+</div>
 
 <!-- HEADER TABLE -->
-    <div class="relative p-4 border-b">
-        <h2 class="text-lg font-semibold text-center m-4">Informasi Pembayaran</h2>
-    </div>
+<div class="flex flex-col gap-3 p-4 border-b">
+    <h2 class="text-lg font-semibold text-center m-4">
+        Payment Information
+    </h2>
+</div>
 
-    <!-- TABLE -->
-    <div class="bg-white shadow rounded border mb-6 overflow-x-auto">
-        <table class="w-full text-sm text-left">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="px-6 py-3">Name</th>
-                    <th class="px-6 py-3">Email</th>
-                    <th class="px-6 py-3">Event Name</th>
-                    <th class="px-6 py-3">Status</th>
-                    <th class="px-6 py-3">Proof of Payment</th>
-                    <th class="px-6 py-3">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="border-b">
-                    <td class="px-6 py-4 font-medium"> Anisya</td>
-                    <td class="px-6 py-4">Anisya@gmail.com</td>
-                    <td class="px-6 py-4">Festival Seni</td>
-                    <td class="px-6 py-4">Paid</td>
-                    <td class="px-6 py-4"></td>
-                    <td class="px-6 py-4">
-                        <div class="flex gap-2">
-                        <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">Disetujui</button>
-                        <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">Ditolak</button>
-                    </td>
+<!-- TABLE -->
+<div class="bg-[#0f1335] border border-gray-700 rounded mb-6 overflow-x-auto">
+    <table class="w-full text-sm text-left">
+
+        <thead class="bg-[#1a1f4a] text-gray-300">
+            <tr>
+                <th class="px-6 py-3">Name</th>
+                <th class="px-6 py-3">Email</th>
+                <th class="px-6 py-3">Event Name</th>
+                <th class="px-6 py-3">Status</th>
+                <th class="px-6 py-3">Proof of Payment</th>
+                <th class="px-6 py-3">Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr class="border-b border-gray-700 hover:bg-[#1a1f4a]">
+                
+                <td class="px-6 py-4 font-medium">Anisya</td>
+                <td class="px-6 py-4">anisya@gmail.com</td>
+                <td class="px-6 py-4">Festival Seni</td>
+                <td class="px-6 py-4">Paid</td>
+                <td class="px-6 py-4">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsvw0i3smzP3raqqKHNq-RKcxMZdLcNTW8sg&sh=1200" alt="proof of payment"
+                        onclick="showImage(this.src)"
+                        class="w-24 h-16 object-cover rounded cursor-pointer hover:scale-105 transition"></td>
+                <td class="px-6 py-4">
+                    <div class="flex gap-2">
+                        <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">
+                            Approved
+                        </button>
+                        <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">
+                            Rejected
+                        </button>
                     </div>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                </td>
 
-    <!-- CONTENT BOX -->
-    <div class="p-4 border border-dashed rounded bg-white">
-        <div class="grid grid-cols-3 gap-4 mb-4">
-            <div class="h-24 bg-gray-200 rounded"></div>
-            <div class="h-24 bg-gray-200 rounded"></div>
-            <div class="h-24 bg-gray-200 rounded"></div>
-        </div>
+            </tr>
+        </tbody>
 
-        <div class="h-48 bg-gray-200 rounded mb-4"></div>
-
-        <div class="grid grid-cols-2 gap-4">
-            <div class="h-24 bg-gray-200 rounded"></div>
-            <div class="h-24 bg-gray-200 rounded"></div>
-        </div>
-    </div>
-
-<!-- MODAL -->
-<div id="crud-modal" tabindex="-1" aria-hidden="true"
-class="hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full bg-white/80 backdrop-blur-sm">
-
-    <div class="relative p-4 w-full max-w-md max-h-full">
-
-        <!-- Modal content -->
-        <div class="bg-white rounded shadow-lg p-6">
-
-            <!-- Header -->
-            <div class="flex justify-between items-center border-b pb-3">
-                <h3 class="text-lg font-semibold">
-                    Edit Event
-                </h3>
-                <button data-modal-hide="crud-modal" class="text-gray-500 hover:text-black">
-                </button>
-            </div>
-
-            <!-- Body -->
-            <form class="mt-4 space-y-3">
-                <input type="text" placeholder="Judul Event"
-                    class="w-full border p-2 rounded">
-                <textarea placeholder="Deskripsi"
-                    class="w-full border p-2 rounded"></textarea>
-                <input type="date" placeholder="Tanggal"
-                    class="w-full border p-2 rounded">
-                <input type="time" placeholder="Waktu"
-                    class="w-full border p-2 rounded">
-                <input type="text" placeholder="Lokasi"
-                    class="w-full border p-2 rounded">
-                <select class="w-full border p-2 rounded">
-                    <option>Pilih Kategori</option>
-                    <option>Akademik</option>
-                    <option>Non-Akademik</option>
-                </select>
-                <input type="file" placeholder="Foto"
-                    class="w-full border p-2 rounded">
-                </form>
-
-                <!-- Footer -->
-                <div class="flex justify-end gap-2 pt-3">
-                    <button type="button"
-                        data-modal-hide="crud-modal"
-                        class="px-4 py-2 border rounded">
-                        Cancel
-                    </button>
-
-                    <button type="submit"
-                        class="bg-blue-500 text-white px-4 py-2 rounded">
-                        Simpan
-                    </button>
-                </div>
-            </form>
-
-        </div>
-    </div>
-</div>
+    </table>
 </div>
 
+<!--Modal for Image-->
+<div id="imageModal" 
+     class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+
+    <img id="modalImage" class="max-w-lg rounded-lg">
+
+</div>
+
+<script>
+function showImage(src) {
+    document.getElementById('modalImage').src = src;
+    document.getElementById('imageModal').classList.remove('hidden');
+}
+
+document.getElementById('imageModal').onclick = function() {
+    this.classList.add('hidden');
+}
+</script>       
 </body>
 </html>

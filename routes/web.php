@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\dashboard_pengunjung;
+use App\Http\Controllers\informasipembayaranController;
 use App\Http\Controllers\ProductController;// Pindahkan ke sini
 
 // --- Public Routes ---
@@ -29,8 +30,12 @@ Route::get('/landingpage', function () {
 Route::get('/admindashboard', function () {
     return view('admin_dashboard');
 });
+
 Route::get('/informasipembayaran', function () {
     return view('informasi_pembayaran');
+});
+Route::get('/categories', function () {
+    return view('categories');
 });
 Route::get('/ticket', function () {
     return view('ticket');
