@@ -56,19 +56,13 @@
             },
         };
     </script>
-    <style>
-        .glass-effect {
-            background: rgba(47, 47, 48, 0.666);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(38, 10, 91, 0.115);
-        }
-    </style>
+
 </head>
 
 <body class="bg-[#0a0a2e]">
 
     <div>
-        <header class="sticky z-[100] w-full">
+        <header>
             @include('components.header')
         </header>
 

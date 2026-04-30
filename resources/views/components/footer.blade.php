@@ -34,27 +34,16 @@
         </a>
       </div>
     </div>
-    <!-- Links -->
-    <div>
-      <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
-      <ul class="space-y-2">
-        <li><a href="#" class="hover:text-purple-400 transition">Home</a></li>
-        <li><a href="#" class="hover:text-purple-400 transition">About</a></li>
-        <li><a href="#" class="hover:text-purple-400 transition">Services</a></li>
-        <li><a href="#" class="hover:text-purple-400 transition">Contact</a></li>
-      </ul>
-    </div>
     <!-- Contact Info -->
     <div>
       <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
-      <p class="mb-2">123 Main Street, City, Country</p>
-      <p class="mb-2">Email: info@yourbrand.com</p>
-      <p>Phone: +123 456 7890</p>
+      <p class="mb-2">JL.H Ungar. Lr.Mursala, Tanjungpinang, Indonesia</p>
+      <p class="mb-2">Email: jastinreja@gmail.com</p>
+      <p>Phone: +62 822 8969 1770</p>
     </div>
   </div>
-  <!-- Copyright -->
   <div class="mt-12 text-center text-gray-400 text-sm relative z-10">
-    &copy; 2024 YourBrand. All rights reserved.
+    &copy; 2026 Tixly. All rights reserved.
   </div>
 </footer>
 

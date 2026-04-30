@@ -8,7 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\dashboard_pengunjung;
-use App\Http\Controllers\ProductController;// Pindahkan ke sini
+
 
 // --- Public Routes ---
 Route::get('/login', function () {
@@ -17,8 +17,8 @@ Route::get('/login', function () {
 Route::get('/dashboard', function () {
     return view('user_dashboard');
 });
-Route::get('/list_product', function () {
-    return view('list_product');
+Route::get('/transactionhistory', function () {
+    return view('transaction_history');
 });
 Route::get('/app', function () {
     return view('app');

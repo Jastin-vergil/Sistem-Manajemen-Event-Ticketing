@@ -19,15 +19,15 @@
         </div>
 
         <div class="menu w-full hidden lg:flex lg:items-center lg:w-auto flex-grow lg:justify-end">
-            <div class="text-md font-bold text-indigo-300 lg:flex lg:flex-row space-x-2" style="font-family: 'Montserrat', sans-serif;">
-                <a href="#responsive-header" class="block lg:inline-block mt-4 lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-indigo-700/50 transition-all">
-                    Menu 1
+            <div class="text-md font-bold text-indigo-500 lg:flex lg:flex-row space-x-2" style="font-family: 'Montserrat', sans-serif;">
+                <a href="transactionhistory" class="block lg:inline-block mt-4 lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-indigo-700/50 transition-all">
+                    History
                 </a>
-                <a href="#responsive-header" class="block lg:inline-block mt-4 lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-indigo-700/50 transition-all">
-                    Menu 2
+                <a href="landingpage" class="block lg:inline-block mt-4 lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-indigo-700/50 transition-all">
+                    Home
                 </a>
-                <a href="#responsive-header" class="block lg:inline-block mt-4 lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-indigo-700/50 transition-all">
-                    Menu 3
+                <a href="login" class="block lg:inline-block mt-4 lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-indigo-700/50 transition-all">
+                    Login
                 </a>
             </div>
         </div>
