@@ -8,12 +8,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\dashboard_pengunjung;
-<<<<<<< HEAD
 use App\Http\Controllers\informasipembayaranController;
 use App\Http\Controllers\ProductController;// Pindahkan ke sini
-=======
-
->>>>>>> 5aad598e97817db0286a0c40dbfd1822a1ed15eb
 
 // --- Public Routes ---
 Route::get('/login', function () {
@@ -34,7 +30,6 @@ Route::get('/landingpage', function () {
 Route::get('/admindashboard', function () {
     return view('admin_dashboard');
 });
-
 Route::get('/informasipembayaran', function () {
     return view('informasi_pembayaran');
 });
@@ -59,6 +54,5 @@ Route::get('footer', function () {
 Route::get('/movingtext', function() {
     return view('movingtext');
 });
-
 
 Route::get('/list_product', [ProductController::class, 'index']);
