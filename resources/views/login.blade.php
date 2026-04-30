@@ -24,12 +24,12 @@
     <div class="grid gap-8">
       <div
         id="back-div"
-        class="bg-gradient-to-r from-blue-500 to-purple-500 rounded-[26px] m-4 "
+        class="bg-indigo-700 rounded-[26px] m-4 "
       >
         <div
           class="border-[20px] border-transparent rounded-[20px] dark:bg-gray-900 bg-white shadow-lg xl:p-10 2xl:p-10 lg:p-10 md:p-10 sm:p-2 m-2"
         >
-          <h1 class="pt-8 pb-6 font-bold text-5xl bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text text-center cursor-default" style="font-family: 'Lobster Two', cursive;">
+          <h1 class="pt-8 pb-6 font-bold text-5xl bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text text-center cursor-default" style="font-family: 'Montserrat', sans-serif;">
             LOGIN
           </h1>
           <form action="#" method="post" class="space-y-4">
@@ -55,7 +55,7 @@
             </div>
             <button
               class="bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg mt-6 p-2 text-white rounded-lg w-full hover:scale-105 hover:from-purple-500 hover:to-blue-500 transition duration-300 ease-in-out"
-              type="submit" style="font-family: 'monserrat', cursive;"
+              type="submit" style="font-family: 'Montserrat', sans-serif;"
             ><b>
               LOGIN</b>
             </button>

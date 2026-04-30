@@ -50,6 +50,8 @@ Route::get('footer', function () {
 Route::get('/movingtext', function() {
     return view('movingtext');
 });
-
+Route::get('/dashboard', function () {
+    return view('user_dashboard'); // Mengarahkan ke file resources/views/pages/about.blade.php
+})->name('dashboard');
 
 Route::get('/list_product', [ProductController::class, 'index']);

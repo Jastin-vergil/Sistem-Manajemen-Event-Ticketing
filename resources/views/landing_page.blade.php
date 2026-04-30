@@ -117,7 +117,7 @@
                         reliable.
                     </p>
 
-                    <a href="#"
+                    <a href="dashboard"
                         class="group relative px-10 py-4 mt-10 font-mitr text-white uppercase tracking-widest overflow-hidden rounded-full bg-indigo-600 transition-all duration-300 hover:bg-indigo-500 shadow-[0_0_20px_rgba(79,70,229,0.4)]">
                         <span class="relative z-10">Find Event</span>
                         <div class="absolute inset-0 w-0 bg-red-400 transition-all duration-300 group-hover:w-full">
