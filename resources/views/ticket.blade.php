@@ -18,12 +18,7 @@
 
     <!-- Navbar -->
     <div class="flex justify-between items-center px-10 py-5">
-        <div class="text-xl font-bold text-purple-400">Tixly</div>
-        <div class="space-x-8 text-gray-300">
-            <a href="#" class="hover:text-white">Menu 1</a>
-            <a href="#" class="hover:text-white">Menu 2</a>
-            <a href="#" class="hover:text-white">Menu 3</a>
-        </div>
+        @include('components.header')
     </div>
 
     <!-- Form -->

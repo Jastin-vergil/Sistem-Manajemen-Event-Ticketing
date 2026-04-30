@@ -183,7 +183,7 @@
             if (e.target === modal) closeModal();
         });
 
-        // DRAG
+        // DRAG KIRI KANAN
         let isDown = false, startX, scrollLeft;
 
         const startDrag = (e) => {
@@ -212,14 +212,12 @@
         wrapper.addEventListener('mousemove', moveDrag);
         wrapper.addEventListener('touchmove', moveDrag);
 
-        // FILTER
         filter.addEventListener('change', (e) => {
             wrapper.style.scrollBehavior = 'smooth';
             wrapper.scrollLeft = 0;
             renderEvents(e.target.value);
         });
 
-        // INIT
         renderEvents();
     </script>
 </body>
