@@ -18,7 +18,7 @@
 
     <!-- Navbar -->
     <div class="flex justify-between items-center px-10 py-5">
-        @include('components.header')
+        @include('components.navbar')
     </div>
 
     <!-- Form -->

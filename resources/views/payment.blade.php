@@ -10,7 +10,7 @@
     <!-- Navbar -->
     <div>
         <header>
-            @include('components.header')
+            @include('components.navbar')
         </header>
     </div>
 
