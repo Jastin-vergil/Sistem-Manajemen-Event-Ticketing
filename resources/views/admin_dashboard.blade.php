@@ -44,8 +44,8 @@
         </div>
 
         <ul class="text-sm">
-          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
-          <li><a href="login" class="block px-4 py-2 hover:bg-gray-100">Logout</a></li>
+          <li><a href="/landingpage" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
+          <li><a href="/login" class="block px-4 py-2 hover:bg-gray-100">Logout</a></li>
         </ul>
 
       </div>
@@ -478,7 +478,7 @@ class="hidden fixed top-0 left-0 right-0 z-50 flex justify-center items-center w
 
             <!-- HEADER -->
             <div class="flex justify-between items-center border-b border-gray-600 pb-2">
-                <h3 class="text-lg font-semibold">Detail Peserta</h3>
+                <h3 class="text-lg font-semibold">Participants Details</h3>
                 <button data-modal-hide="participant-modal" class="text-gray-400 hover:text-white">✕</button>
             </div>
 
@@ -489,13 +489,13 @@ class="hidden fixed top-0 left-0 right-0 z-50 flex justify-center items-center w
 
             <!-- EVENT INFO -->
             <div class="text-center mt-3">
-                <p class="font-medium">Judul Event</p>
-                <p class="text-sm text-gray-400">Total Peserta: 50</p>
+                <p class="font-medium">Festival Seni</p>
+                <p class="text-sm text-gray-400">Total Participants: 50</p>
             </div>
 
             <!-- SEARCH -->
             <div class="mt-4 relative">
-                <input type="text" placeholder="Search Peserta"
+                <input type="text" placeholder="Search Participants"
                     class="w-full bg-gray-700 text-white rounded-full px-4 py-2 pr-10 outline-none">
                 <span class="absolute right-3 top-2.5">🔍</span>
             </div>
@@ -568,7 +568,7 @@ class="hidden fixed top-0 left-0 right-0 z-50 flex justify-center items-center w
 
             <!-- HEADER -->
             <div class="flex justify-between items-center border-b border-gray-600 pb-2">
-                <h3 class="text-lg font-semibold">Informasi Tiket</h3>
+                <h3 class="text-lg font-semibold">Ticket Information</h3>
                 <button data-modal-hide="ticket-modal" class="text-gray-400 hover:text-white text-lg">✕</button>
             </div>
 
@@ -579,7 +579,7 @@ class="hidden fixed top-0 left-0 right-0 z-50 flex justify-center items-center w
 
             <!-- EVENT TITLE -->
             <div class="text-center mt-3">
-                <p class="font-medium">Judul Event</p>
+                <p class="font-medium">Festival Seni</p>
             </div>
 
             <!-- TICKET INFO -->

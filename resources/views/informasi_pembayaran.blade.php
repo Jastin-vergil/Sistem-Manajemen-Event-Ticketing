@@ -44,8 +44,8 @@
         </div>
 
         <ul class="text-sm">
-          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
-          <li><a href="login" class="block px-4 py-2 hover:bg-gray-100">Logout</a></li>
+          <li><a href="/landingpage" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
+          <li><a href="/login" class="block px-4 py-2 hover:bg-gray-100">Logout</a></li>
         </ul>
 
       </div>
@@ -140,7 +140,9 @@
 
         <thead class="bg-[#1a1f4a] text-gray-300">
             <tr>
+                <th class="px-6 py-3">Transaction ID</th>
                 <th class="px-6 py-3">Name</th>
+                <th class="px-6 py-3">Ticket</th>
                 <th class="px-6 py-3">Email</th>
                 <th class="px-6 py-3">Event Name</th>
                 <th class="px-6 py-3">Status</th>
@@ -151,8 +153,9 @@
 
         <tbody>
             <tr class="border-b border-gray-700 hover:bg-[#1a1f4a]">
-                
-                <td class="px-6 py-4 font-medium">Anisya</td>
+                <td class="px-6 py-4 font-medium">TXN-2024-001</td>
+                <td class="px-6 py-4">Anisya</td>
+                <td class="px-6 py-4">VIP</td>
                 <td class="px-6 py-4">anisya@gmail.com</td>
                 <td class="px-6 py-4">Festival Seni</td>
                 <td class="px-6 py-4">Paid</td>

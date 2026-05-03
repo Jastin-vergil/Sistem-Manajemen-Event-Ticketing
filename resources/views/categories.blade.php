@@ -44,8 +44,8 @@
         </div>
 
         <ul class="text-sm">
-          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
-          <li><a href="login" class="block px-4 py-2 hover:bg-gray-100">Logout</a></li>
+          <li><a href="/landingpage" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
+          <li><a href="/login" class="block px-4 py-2 hover:bg-gray-100">Logout</a></li>
         </ul>
 
       </div>
@@ -189,21 +189,6 @@
                 <td class="px-6 py-4">
                 <span class="px-3 py-1 text-xs font-medium rounded-full bg-pink-500/20 text-pink-400">Art & Design </span></td>
                 <td class="px-6 py-4">
-                
-                    <div class="flex gap-2">
-                        <!-- EDIT -->
-                        <button 
-                        class="flex items-center gap-1 bg-green-500 px-3 py-1 rounded hover:bg-green-600 text-white"
-                        data-modal-target="edit-modal"
-                        data-modal-toggle="edit-modal"
-                        data-title="Festival Seni"
-                        data-category="Art & Design">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M11 5h2m-1-1v2m6.707 2.293a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-4 1a1 1 0 01-1.213-1.213l1-4a1 1 0 01.242-.39l9-9a1 1 0 011.414 0z"/>
-                            </svg>
-                            Edit
-                        </button>
 
                         <!-- DELETE -->
                         <button 
@@ -227,21 +212,6 @@
                 <td class="px-6 py-4">
                 <span class="px-3 py-1 text-xs rounded-full bg-blue-500/20 text-blue-400">Technology</span></td>
                 <td class="px-6 py-4">
-                
-                    <div class="flex gap-2">
-                        <!-- EDIT -->
-                        <button 
-                            class="flex items-center gap-1 bg-green-500 px-3 py-1 rounded hover:bg-green-600 text-white"
-                            data-modal-target="edit-modal"
-                            data-modal-toggle="edit-modal"
-                            data-title="Tech Conference 2025"
-                            data-category="Technology">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M11 5h2m-1-1v2m6.707 2.293a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-4 1a1 1 0 01-1.213-1.213l1-4a1 1 0 01.242-.39l9-9a1 1 0 011.414 0z"/>
-                            </svg>
-                            Edit
-                        </button>
 
                         <!-- DELETE -->
                         <button 
@@ -265,21 +235,6 @@
                 <td class="px-6 py-4">
                 <span class="px-3 py-1 text-xs rounded-full bg-purple-500/20 text-purple-400">Music</span></td>
                 <td class="px-6 py-4">
-                
-                    <div class="flex gap-2">
-                        <!-- EDIT -->
-                       <button 
-                            class="flex items-center gap-1 bg-green-500 px-3 py-1 rounded hover:bg-green-600 text-white"
-                            data-modal-target="edit-modal"
-                            data-modal-toggle="edit-modal"
-                            data-title="Music Festival Night"
-                            data-category="Music">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M11 5h2m-1-1v2m6.707 2.293a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-4 1a1 1 0 01-1.213-1.213l1-4a1 1 0 01.242-.39l9-9a1 1 0 011.414 0z"/>
-                            </svg>
-                            Edit
-                        </button>
 
                         <!-- DELETE -->
                         <button 
@@ -304,20 +259,6 @@
                 <span class="px-3 py-1 text-xs rounded-full bg-blue-500/20 text-blue-400">Technology</span></td>
                 <td class="px-6 py-4">
                 
-                    <div class="flex gap-2">
-                        <!-- EDIT -->
-                        <button 
-                        class="flex items-center gap-1 bg-green-500 px-3 py-1 rounded hover:bg-green-600 text-white"
-                        data-modal-target="edit-modal"
-                        data-modal-toggle="edit-modal"
-                        data-title="AI Workshop"
-                        data-category="Technology">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M11 5h2m-1-1v2m6.707 2.293a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-4 1a1 1 0 01-1.213-1.213l1-4a1 1 0 01.242-.39l9-9a1 1 0 011.414 0z"/>
-                            </svg>
-                            Edit
-                        </button>
 
                         <!-- DELETE -->
                         <button 
@@ -360,31 +301,6 @@ class="hidden fixed inset-0 z-50 flex justify-center items-center bg-black/60 ba
                     class="px-3 py-1 border rounded">Cancel</button>
                 <button type="submit"
                     class="px-3 py-1 bg-blue-600 rounded">Submit</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-
-<!--MODAL EDIT -->
-<div id="edit-modal" tabindex="-1"
-class="hidden fixed inset-0 z-50 flex justify-center items-center bg-black/60 backdrop-blur-md">
-
-    <div class="bg-[#0f1335] text-white rounded p-6 w-96 border border-gray-700">
-
-        <h3 class="text-lg font-semibold mb-3">Edit Category</h3>
-
-        <form class="space-y-3">
-            <input id="edit-title" type="text"
-                class="w-full p-2 rounded bg-gray-800 text-white">
-            <input id="edit-category" type="text"
-                class="w-full p-2 rounded bg-gray-800 text-white">
-
-            <div class="flex justify-end gap-2 mt-4">
-                <button type="button" data-modal-hide="edit-modal"
-                    class="px-3 py-1 border rounded">Cancel</button>
-                <button type="submit"
-                    class="px-3 py-1 bg-green-600 rounded">Update</button>
             </div>
         </form>
     </div>
