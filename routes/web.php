@@ -13,34 +13,29 @@ use App\Http\Controllers\ProductController;// Pindahkan ke sini
 
 // --- Public Routes ---
 Route::get('/login', function () {
-    return view('login');
+    return view('Pages.login');
 });
 Route::get('/transactionhistory', function () {
-    return view('transaction_history');
+    return view('Pages.transaction_history');
 });
 Route::get('/userdashboard', function () {
-    return view('landing_page');
+    return view('Pages.landing_page');
 });
 Route::get('/admindashboard', function () {
-    return view('admin_dashboard');
+    return view('Pages.admin_dashboard');
 });
 Route::get('/informasipembayaran', function () {
-    return view('informasi_pembayaran');
+    return view('Pages.informasi_pembayaran');
 });
 Route::get('/categories', function () {
-    return view('categories');
+    return view('Pages.categories');
 });
 Route::get('/ticket', function () {
-    return view('ticket');
+    return view('Pages.ticket');
 })->name('ticket');
 Route::get('/payment', function () {
-    return view('payment');
+    return view('Pages.payment');
 })->name('payment');
 Route::post('/payment/confirm', function () {
     return "Payment Success (dummy)";
 })->name('payment.confirm');
-
-
-
-
-Route::get('/list_product', [ProductController::class, 'index']);

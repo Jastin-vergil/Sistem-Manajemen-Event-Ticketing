@@ -206,7 +206,7 @@
             <section class="relative z-[50] w-full bg-[#0b0e29] min-h-[500px]">
     <div class="container mx-auto">
         <div class="dashboard-box">
-            @include('user_dashboard')
+            @include('Pages.user_dashboard')
         </div>
     </div>
 </section>
