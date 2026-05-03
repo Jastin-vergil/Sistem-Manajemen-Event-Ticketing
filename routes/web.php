@@ -45,14 +45,8 @@ Route::get('/payment', function () {
 Route::post('/payment/confirm', function () {
     return "Payment Success (dummy)";
 })->name('payment.confirm');
-Route::get('header', function () {
-    return view('components.header');
-})->name('header');
-Route::get('footer', function () {
-    return view('components.footer');
-})->name('footer');
-Route::get('/movingtext', function() {
-    return view('movingtext');
-});
+
+
+
 
 Route::get('/list_product', [ProductController::class, 'index']);
