@@ -21,9 +21,6 @@ Route::get('/dashboard', function () {
 Route::get('/transactionhistory', function () {
     return view('transaction_history');
 });
-Route::get('/app', function () {
-    return view('app');
-});
 Route::get('/landingpage', function () {
     return view('landing_page');
 });
