@@ -63,7 +63,7 @@
 
     <div>
         <header>
-            @include('components.header')
+            @include('components.navbar')
         </header>
 
         <div class="relative overflow-hidden min-h-screen bg-[#0a0a2e] flex flex-col justify-center">
