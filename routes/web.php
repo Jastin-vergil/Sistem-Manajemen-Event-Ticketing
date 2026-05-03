@@ -15,13 +15,10 @@ use App\Http\Controllers\ProductController;// Pindahkan ke sini
 Route::get('/login', function () {
     return view('login');
 });
-Route::get('/dashboard', function () {
-    return view('user_dashboard');
-});
 Route::get('/transactionhistory', function () {
     return view('transaction_history');
 });
-Route::get('/landingpage', function () {
+Route::get('/userdashboard', function () {
     return view('landing_page');
 });
 Route::get('/admindashboard', function () {
