@@ -41,6 +41,4 @@ Route::post('/payment/confirm', function () {
 })->name('payment.confirm');
 
 
-
-
 Route::get('/list_product', [ProductController::class, 'index']);

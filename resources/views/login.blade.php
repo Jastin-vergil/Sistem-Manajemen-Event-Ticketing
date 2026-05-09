@@ -32,7 +32,7 @@
           <h1 class="pt-8 pb-6 font-bold text-5xl bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text text-center cursor-default" style="font-family: 'Montserrat', sans-serif;">
             LOGIN
           </h1>
-          <form action="#" method="post" class="space-y-4">
+          <form onsubmit="login(event)" class="space-y-4">
             <div>
               <label for="email" class="mb-2 dark:text-gray-400 text-lg">Email</label>
               <input
@@ -66,5 +66,13 @@
         </div>
       </div>
     </div>
+
+    <script>
+      function login(event) {
+        event.preventDefault();
+        // Add your login logic here
+        window.location.href = "/admindashboard";
+      }
+    </script>
   </body>
 </html>

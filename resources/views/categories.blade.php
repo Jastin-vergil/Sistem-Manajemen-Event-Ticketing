@@ -44,8 +44,8 @@
         </div>
 
         <ul class="text-sm">
-          <li><a href="/landingpage" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
-          <li><a href="/login" class="block px-4 py-2 hover:bg-gray-100">Logout</a></li>
+          <li><a href="/userdashboard" class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">Dashboard</a></li>
+          <li><a href="/login" class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">Logout</a></li>
         </ul>
 
       </div>
@@ -60,7 +60,7 @@
     <div class="h-full px-3 py-4 overflow-y-auto">
         <ul class="space-y-2 font-medium">
             <a href="{{ url('/admindashboard') }}" 
-            class="flex items-center px-3 py-2 hover:bg-gray-200 rounded">
+            class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">
              <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 2L2 8h2v8h4v-5h4v5h4V8h2L10 2z"/>
             </svg>
@@ -68,7 +68,7 @@
             </a>
 
             <a href="{{ url('/informasipembayaran') }}" 
-            class="flex items-center px-3 py-2 hover:bg-gray-200 rounded">
+            class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">
             <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v2H2V5zm0 4h16v6a2 2 0 01-2 2H4a2 2 0 01-2-2V9zm3 3h4v2H5v-2z"/>
             </svg>
@@ -76,7 +76,7 @@
             </a>
 
             <a href="{{ url('/categories') }}" 
-            class="flex items-center px-3 py-2 hover:bg-gray-200 rounded">
+            class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">
             <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M3 3h6v6H3V3zm8 0h6v6h-6V3zM3 11h6v6H3v-6zm8 0h6v6h-6v-6z"/>
             </svg>
@@ -131,7 +131,12 @@
 
 <!-- HEADER TABLE -->
    <div class="flex flex-col gap-3 p-4 border-b">
-        <h2 class="text-lg font-semibold text-center">Categories</h2>
+        <h2 class="text-lg font-semibold flex items-center justify-center gap-2">
+            <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M3 3h6v6H3V3zm8 0h6v6h-6V3zM3 11h6v6H3v-6zm8 0h6v6h-6v-6z"/>
+            </svg>
+            <span>Categories</span>
+        </h2>
 
     <div class="flex justify-end">
         <button 
@@ -151,133 +156,84 @@
         </button>
     </div>
 
-    <!-- CATEGORY -->
-    <div class="flex gap-3 flex-wrap">
-        <button onclick="filterCategory('Technology')" 
-            class="px-4 py-1 rounded-full bg-blue-500/20 text-blue-400">
-            Technology
-        </button>
+    <div class="flex flex-wrap gap-3 mb-4 items-center">
+        <div class="flex items-center gap-2 px-4 py-1 rounded-full bg-blue-500/20 text-blue-400">
+            <button onclick="filterCategory('Technology')">
+                Technology
+            </button>
+            <button 
+                data-modal-target="popup-modal" 
+                data-modal-toggle="popup-modal"
+                class="hover:text-red-400 transition">
+                ✕
+            </button>
+        </div>
 
-        <button onclick="filterCategory('Art & Design')" 
-            class="px-4 py-1 rounded-full bg-pink-500/20 text-pink-400">
-            Art & Design
-        </button>
+        <div class="flex items-center gap-2 px-4 py-1 rounded-full bg-pink-500/20 text-pink-400">
+            <button onclick="filterCategory('Art & Design')">
+                Art & Design
+            </button>
+            <button 
+                data-modal-target="popup-modal" 
+                data-modal-toggle="popup-modal"
+                class="hover:text-red-400 transition">
+                ✕
+            </button>
+        </div>
 
-        <button onclick="filterCategory('Music')" 
-            class="px-4 py-1 rounded-full bg-purple-500/20 text-purple-400">
-            Music
-        </button>
+        <div class="flex items-center gap-2 px-4 py-1 rounded-full bg-purple-500/20 text-purple-400">
+            <button onclick="filterCategory('Music')">
+                Music
+            </button>
+            <button 
+                data-modal-target="popup-modal" 
+                data-modal-toggle="popup-modal"
+                class="hover:text-red-400 transition">
+                ✕
+            </button>
+        </div>
     </div>
-</div>
-</div>
+
  <!-- TABLE -->
 <div class="bg-[#0f1335] border border-gray-700 rounded mb-6 overflow-x-auto">
     <table class="w-full text-sm text-left">
-
         <thead class="bg-[#1a1f4a] text-gray-300">
             <tr>
                 <th class="px-6 py-3">No</th>
                 <th class="px-6 py-3">Event Title</th>
                 <th class="px-6 py-3">Category Name</th>
-                <th class="px-6 py-3">Actions</th>
             </tr>
         </thead>
+
         <tbody>
             <tr data-category="Art & Design" class="border-b border-gray-700 hover:bg-[#1a1f4a]">
                 <td class="px-6 py-4 font-medium text-gray-200">1</td>
                 <td class="px-6 py-4 font-medium text-gray-200">Festival Seni</td>
                 <td class="px-6 py-4">
                 <span class="px-3 py-1 text-xs font-medium rounded-full bg-pink-500/20 text-pink-400">Art & Design </span></td>
-                <td class="px-6 py-4">
-
-                        <!-- DELETE -->
-                        <button 
-                            class="flex items-center gap-1 bg-red-500 px-3 py-1 rounded hover:bg-red-600 text-white"
-                            data-modal-target="popup-modal" 
-                            data-modal-toggle="popup-modal">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 7h12M9 7v12m6-12v12M10 4h4a1 1 0 011 1v2H9V5a1 1 0 011-1z"/>
-                            </svg>
-                            Delete
-                        </button>
-
-                    </div>
-                </td>
-
             </tr>
+
             <tr data-category="Technology" class="border-b border-gray-700 hover:bg-[#1a1f4a]">
                 <td class="px-6 py-4">2</td>
                 <td class="px-6 py-4">Tech Conference 2025</td>
                 <td class="px-6 py-4">
                 <span class="px-3 py-1 text-xs rounded-full bg-blue-500/20 text-blue-400">Technology</span></td>
-                <td class="px-6 py-4">
-
-                        <!-- DELETE -->
-                        <button 
-                            class="flex items-center gap-1 bg-red-500 px-3 py-1 rounded hover:bg-red-600 text-white"
-                            data-modal-target="popup-modal" 
-                            data-modal-toggle="popup-modal">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 7h12M9 7v12m6-12v12M10 4h4a1 1 0 011 1v2H9V5a1 1 0 011-1z"/>
-                            </svg>
-                            Delete
-                        </button>
-
-                    </div>
-                </td>
-
             </tr>
+
             <tr data-category="Music" class="border-b border-gray-700 hover:bg-[#1a1f4a]">
                 <td class="px-6 py-4">3</td>
                 <td class="px-6 py-4">Music Festival Night</td>
                 <td class="px-6 py-4">
                 <span class="px-3 py-1 text-xs rounded-full bg-purple-500/20 text-purple-400">Music</span></td>
-                <td class="px-6 py-4">
-
-                        <!-- DELETE -->
-                        <button 
-                            class="flex items-center gap-1 bg-red-500 px-3 py-1 rounded hover:bg-red-600 text-white"
-                            data-modal-target="popup-modal" 
-                            data-modal-toggle="popup-modal">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 7h12M9 7v12m6-12v12M10 4h4a1 1 0 011 1v2H9V5a1 1 0 011-1z"/>
-                            </svg>
-                            Delete
-                        </button>
-
-                    </div>
-                </td>
-
             </tr>
+
             <tr data-category="Technology" class="border-b border-gray-700 hover:bg-[#1a1f4a]">
                 <td class="px-6 py-4">4</td>
                 <td class="px-6 py-4">AI Workshop</td>
                 <td class="px-6 py-4">
                 <span class="px-3 py-1 text-xs rounded-full bg-blue-500/20 text-blue-400">Technology</span></td>
-                <td class="px-6 py-4">
-                
-
-                        <!-- DELETE -->
-                        <button 
-                            class="flex items-center gap-1 bg-red-500 px-3 py-1 rounded hover:bg-red-600 text-white"
-                            data-modal-target="popup-modal" 
-                            data-modal-toggle="popup-modal">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 7h12M9 7v12m6-12v12M10 4h4a1 1 0 011 1v2H9V5a1 1 0 011-1z"/>
-                            </svg>
-                            Delete
-                        </button>
-
-                    </div>
-                </td>
-
             </tr>
         </tbody>
-
     </table>
 </div>
 
@@ -291,8 +247,6 @@ class="hidden fixed inset-0 z-50 flex justify-center items-center bg-black/60 ba
         <h3 class="text-lg font-semibold mb-3">Add Category</h3>
 
         <form class="space-y-3">
-            <input type="text" placeholder="Event Title"
-                class="w-full p-2 rounded bg-gray-800 text-white">
             <input type="text" placeholder="Category Name"
                 class="w-full p-2 rounded bg-gray-800 text-white">
 

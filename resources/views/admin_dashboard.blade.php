@@ -44,8 +44,8 @@
         </div>
 
         <ul class="text-sm">
-          <li><a href="/landingpage" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
-          <li><a href="/login" class="block px-4 py-2 hover:bg-gray-100">Logout</a></li>
+          <li><a href="/userdashboard" class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">Dashboard</a></li>
+          <li><a href="/login" class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">Logout</a></li>
         </ul>
 
       </div>
@@ -60,15 +60,15 @@
     <div class="h-full px-3 py-4 overflow-y-auto">
         <ul class="space-y-2 font-medium">
             <a href="{{ url('/admindashboard') }}" 
-            class="flex items-center px-3 py-2 hover:bg-gray-200 rounded">
-             <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">
+            <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 2L2 8h2v8h4v-5h4v5h4V8h2L10 2z"/>
             </svg>
             <span>Event List</span>
             </a>
 
             <a href="{{ url('/informasipembayaran') }}" 
-            class="flex items-center px-3 py-2 hover:bg-gray-200 rounded">
+            class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">
             <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v2H2V5zm0 4h16v6a2 2 0 01-2 2H4a2 2 0 01-2-2V9zm3 3h4v2H5v-2z"/>
             </svg>
@@ -76,7 +76,7 @@
             </a>
 
             <a href="{{ url('/categories') }}" 
-            class="flex items-center px-3 py-2 hover:bg-gray-200 rounded">
+            class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">
             <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M3 3h6v6H3V3zm8 0h6v6h-6V3zM3 11h6v6H3v-6zm8 0h6v6h-6v-6z"/>
             </svg>
@@ -131,7 +131,12 @@
 
 <!-- HEADER TABLE -->
    <div class="flex flex-col gap-3 p-4 border-b">
-        <h2 class="text-lg font-semibold text-center">Event List</h2>
+        <h2 class="text-lg font-semibold flex items-center justify-center gap-2">
+        <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2L2 8h2v8h4v-5h4v5h4V8h2L10 2z"/>
+            </svg>
+            <span>Event List</span>
+        </h2>
 
     <div class="flex justify-end">
         <button 

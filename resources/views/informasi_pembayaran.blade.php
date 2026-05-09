@@ -44,8 +44,8 @@
         </div>
 
         <ul class="text-sm">
-          <li><a href="/landingpage" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
-          <li><a href="/login" class="block px-4 py-2 hover:bg-gray-100">Logout</a></li>
+          <li><a href="/userdashboard" class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">Dashboard</a></li>
+          <li><a href="/login" class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">Logout</a></li>
         </ul>
 
       </div>
@@ -59,7 +59,7 @@
     <div class="h-full px-3 py-4 overflow-y-auto">
         <ul class="space-y-2 font-medium">
             <a href="{{ url('/admindashboard') }}" 
-            class="flex items-center px-3 py-2 hover:bg-gray-200 rounded">
+            class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">
              <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 2L2 8h2v8h4v-5h4v5h4V8h2L10 2z"/>
             </svg>
@@ -67,7 +67,7 @@
             </a>
 
             <a href="{{ url('/informasipembayaran') }}" 
-            class="flex items-center px-3 py-2 hover:bg-gray-200 rounded">
+            class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">
             <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v2H2V5zm0 4h16v6a2 2 0 01-2 2H4a2 2 0 01-2-2V9zm3 3h4v2H5v-2z"/>
             </svg>
@@ -75,7 +75,7 @@
             </a>
 
             <a href="{{ url('/categories') }}" 
-            class="flex items-center px-3 py-2 hover:bg-gray-200 rounded">
+            class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">
             <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M3 3h6v6H3V3zm8 0h6v6h-6V3zM3 11h6v6H3v-6zm8 0h6v6h-6v-6z"/>
             </svg>
@@ -129,8 +129,11 @@
 
 <!-- HEADER TABLE -->
 <div class="flex flex-col gap-3 p-4 border-b">
-    <h2 class="text-lg font-semibold text-center m-4">
-        Payment Information
+     <h2 class="text-lg font-semibold m-4 flex items-center justify-center gap-2">
+        <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v2H2V5zm0 4h16v6a2 2 0 01-2 2H4a2 2 0 01-2-2V9zm3 3h4v2H5v-2z"/>
+        </svg>
+        <span>Payment Information</span>
     </h2>
 </div>
 
@@ -165,28 +168,70 @@
                         class="w-24 h-16 object-cover rounded cursor-pointer hover:scale-105 transition"></td>
                 <td class="px-6 py-4">
                     <div class="flex gap-2">
-                        <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">
+                        <button 
+                            onclick="approvePayment()"
+                            class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">
                             Approved
                         </button>
-                        <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">
+    
+                        <button 
+                            onclick="openRejectModal()"
+                            class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600">
                             Rejected
                         </button>
                     </div>
                 </td>
-
             </tr>
         </tbody>
-
     </table>
 </div>
 
 <!--Modal for Image-->
 <div id="imageModal" 
-     class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+     class="hidden fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-50">
 
     <img id="modalImage" class="max-w-lg rounded-lg">
 
 </div>
+
+<!-- REJECT MODAL -->
+<div id="rejectModal"
+    class="hidden fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-50">
+
+    <div class="bg-[#0f1335] p-6 rounded-xl w-[400px] border border-gray-700">
+        
+        <h2 class="text-xl font-bold mb-4">
+            Reject Payment
+        </h2>
+
+        <label class="block mb-2 text-sm text-gray-300">
+            Reason for rejection
+        </label>
+
+        <textarea 
+            id="rejectReason"
+            class="w-full p-3 rounded bg-[#1a1f4a] text-white border border-gray-600 focus:outline-none"
+            rows="4"
+            placeholder="Input reason here..."></textarea>
+
+        <div class="flex justify-end gap-2 mt-4">
+            
+            <button 
+                onclick="closeRejectModal()"
+                class="px-4 py-2 rounded bg-gray-600 hover:bg-gray-700">
+                Cancel
+            </button>
+
+            <button 
+                onclick="submitReject()"
+                class="px-4 py-2 rounded bg-red-500 hover:bg-red-600">
+                Submit
+            </button>
+
+        </div>
+    </div>
+</div>
+
 
 <script>
 function showImage(src) {
@@ -196,6 +241,27 @@ function showImage(src) {
 
 document.getElementById('imageModal').onclick = function() {
     this.classList.add('hidden');
+}
+function approvePayment() {
+    alert("Payment has been approved!");
+}
+function openRejectModal() {
+    document.getElementById('rejectModal').classList.remove('hidden');
+}
+
+function closeRejectModal() {
+    document.getElementById('rejectModal').classList.add('hidden');
+}
+
+function submitReject() {
+    let reason = document.getElementById('rejectReason').value;
+    if(reason.trim() === '') {
+        alert("Please input rejection reason!");
+        return;
+    }
+    alert("Payment rejected!\nReason: " + reason);
+    closeRejectModal();
+    document.getElementById('rejectReason').value = '';
 }
 </script>       
 </body>
