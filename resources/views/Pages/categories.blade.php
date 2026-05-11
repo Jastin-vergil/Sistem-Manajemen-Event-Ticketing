@@ -8,8 +8,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
 </head>
+<style>
+    html, body {
+        background-color: #05071a;
+    }
+</style>
 
-<body class="bg-gradient-to-b from-[#0b0f2a] to-[#05071a] text-white">
+<body class="bg-[#05071a] bg-gradient-to-b from-[#0b0f2a] to-[#05071a] text-white min-h-screen">
 
 <!-- NAVBAR -->
 <nav class="bg-[#0b0f2a]/80 backdrop-blur-md fixed top-0 left-0 w-full z-50 h-16 border-b border-gray-700">
@@ -30,8 +35,8 @@
         data-dropdown-toggle="user-dropdown">
 
         <img class="w-8 h-8 rounded-full"
-          src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-          alt="user">
+        src="{{ asset('images/admin.jpg') }}"
+        alt="user">
       </button>
 
       <!-- DROPDOWN -->
