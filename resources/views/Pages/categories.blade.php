@@ -156,23 +156,47 @@
         </button>
     </div>
 
-    <div class="flex flex-wrap gap-3 mb-4 items-center">
+    <div id="category-list" class="flex flex-wrap gap-3 mb-4 items-center">
         <div class="flex items-center gap-2 px-4 py-1 rounded-full bg-blue-500/20 text-blue-400">
             <button onclick="filterCategory('Technology')">
                 Technology
             </button>
-            <button 
-                data-modal-target="popup-modal" 
-                data-modal-toggle="popup-modal"
-                class="hover:text-red-400 transition">
-                ✕
-            </button>
+                <!-- Edit -->
+                <button 
+                    data-modal-target="edit-modal"
+                    data-modal-toggle="edit-modal"
+                    data-category="Technology"
+                    class="hover:text-yellow-300 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 5h2m-1-1v2m6.707 2.293a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-4 1a1 1 0 01-1.213-1.213l1-4a1 1 0 01.242-.39l9-9a1 1 0 011.414 0z"/>
+                    </svg>
+                </button>
+                <!-- Delete -->
+                <button 
+                    data-modal-target="popup-modal" 
+                    data-modal-toggle="popup-modal"
+                    class="hover:text-red-400 transition">
+                    ✕
+                </button>
         </div>
 
-        <div class="flex items-center gap-2 px-4 py-1 rounded-full bg-pink-500/20 text-pink-400">
+        <div id="category-list" class="flex items-center gap-2 px-4 py-1 rounded-full bg-pink-500/20 text-pink-400">
             <button onclick="filterCategory('Art & Design')">
                 Art & Design
             </button>
+                <!-- Edit -->
+                <button 
+                    data-modal-target="edit-modal"
+                    data-modal-toggle="edit-modal"
+                    data-category="Art & Design"
+                    class="hover:text-yellow-300 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11 5h2m-1-1v2m6.707 2.293a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-4 1a1 1 0 01-1.213-1.213l1-4a1 1 0 01.242-.39l9-9a1 1 0 011.414 0z"/>
+                    </svg>
+                </button>
+                <!-- Delete -->
             <button 
                 data-modal-target="popup-modal" 
                 data-modal-toggle="popup-modal"
@@ -181,16 +205,28 @@
             </button>
         </div>
 
-        <div class="flex items-center gap-2 px-4 py-1 rounded-full bg-purple-500/20 text-purple-400">
+        <div id="category-list" class="flex items-center gap-2 px-4 py-1 rounded-full bg-purple-500/20 text-purple-400">
             <button onclick="filterCategory('Music')">
                 Music
             </button>
-            <button 
-                data-modal-target="popup-modal" 
-                data-modal-toggle="popup-modal"
-                class="hover:text-red-400 transition">
-                ✕
-            </button>
+                <!-- Edit -->
+                <button 
+                    data-modal-target="edit-modal"
+                    data-modal-toggle="edit-modal"
+                    data-category="Music"
+                    class="hover:text-yellow-300 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11 5h2m-1-1v2m6.707 2.293a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-4 1a1 1 0 01-1.213-1.213l1-4a1 1 0 01.242-.39l9-9a1 1 0 011.414 0z"/>
+                    </svg>
+                </button>
+                <!-- Delete -->
+                <button 
+                    data-modal-target="popup-modal" 
+                    data-modal-toggle="popup-modal"
+                    class="hover:text-red-400 transition">
+                    ✕
+                </button>
         </div>
     </div>
 
@@ -237,29 +273,64 @@
     </table>
 </div>
 
-
 <!-- MODAL CREATE -->
 <div id="crud-modal" tabindex="-1"
 class="hidden fixed inset-0 z-50 flex justify-center items-center bg-black/60 backdrop-blur-md">
-
     <div class="bg-[#0f1335] text-white rounded p-6 w-96 border border-gray-700">
-
         <h3 class="text-lg font-semibold mb-3">Add Category</h3>
-
-        <form class="space-y-3">
-            <input type="text" placeholder="Category Name"
+        <form id="categoryForm" class="space-y-3">
+            <input 
+                id="categoryInput"
+                type="text" 
+                placeholder="Category Name"
                 class="w-full p-2 rounded bg-gray-800 text-white">
 
             <div class="flex justify-end gap-2 mt-4">
-                <button type="button" data-modal-hide="crud-modal"
-                    class="px-3 py-1 border rounded">Cancel</button>
-                <button type="submit"
-                    class="px-3 py-1 bg-blue-600 rounded">Submit</button>
+                <button 
+                    type="button" 
+                    data-modal-hide="crud-modal"
+                    class="px-3 py-1 border rounded">
+                    Cancel
+                </button>
+
+                <button 
+                    type="submit"
+                    class="px-3 py-1 bg-blue-600 rounded">
+                    Submit
+                </button>
             </div>
         </form>
     </div>
 </div>
 
+<!-- MODAL EDIT CATEGORY -->
+<div id="edit-modal" tabindex="-1"
+class="hidden fixed inset-0 z-50 flex justify-center items-center bg-black/60 backdrop-blur-md">
+    <div class="bg-[#0f1335] text-white rounded p-6 w-96 border border-gray-700">
+        <h3 class="text-lg font-semibold mb-3">Edit Category</h3>
+        <form id="editCategoryForm" class="space-y-3">
+            <input 
+                id="editCategoryInput"
+                type="text"
+                class="w-full p-2 rounded bg-gray-800 text-white">
+
+            <div class="flex justify-end gap-2 mt-4">
+                <button 
+                    type="button"
+                    data-modal-hide="edit-modal"
+                    class="px-3 py-1 border rounded">
+                    Cancel
+                </button>
+
+                <button 
+                    type="submit"
+                    class="px-3 py-1 bg-green-600 rounded">
+                    Update
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 
 <!-- modal delete -->
 <div id="popup-modal" tabindex="-1" class="hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full bg-black/40 backdrop-blur-md">
@@ -312,6 +383,93 @@ function filterCategory(category) {
         }
     });
 }
+
+document.getElementById('categoryForm').addEventListener('submit', function(e){
+
+    e.preventDefault();
+
+    const categoryName = document.getElementById('categoryInput').value;
+
+    if(categoryName.trim() === '') return;
+
+    // warna acak untuk kategori baru
+    const colors = [
+        'emerald',
+        'orange',
+        'cyan',
+        'red',
+        'lime'
+        ];
+
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+    // buat category baru
+    const categoryHTML = `
+        <div class="flex items-center gap-2 px-4 py-1 rounded-full bg-${randomColor}-500/20 text-${randomColor}-400">
+
+            <button onclick="filterCategory('${categoryName}')">
+                ${categoryName}
+            </button>
+
+            <button 
+                onclick="this.parentElement.remove()"
+                class="hover:text-red-400 transition">
+                ✕
+            </button>
+
+        </div>
+    `;
+
+    // masuk ke list
+    document.getElementById('category-list')
+        .insertAdjacentHTML('beforeend', categoryHTML);
+
+    // tutup modal
+    document.getElementById('crud-modal')
+        .classList.add('hidden');
+
+    // reset input
+    document.getElementById('categoryForm').reset();
+});
+
+let currentCategoryButton = null;
+
+document.addEventListener('click', function(e){
+
+    const editBtn = e.target.closest('[data-modal-target="edit-modal"]');
+
+    if(!editBtn) return;
+
+    currentCategoryButton = editBtn
+        .parentElement
+        .querySelector('button');
+
+    const categoryName = editBtn.getAttribute('data-category');
+
+    document.getElementById('editCategoryInput').value = categoryName;
+});
+
+document.getElementById('editCategoryForm')
+.addEventListener('submit', function(e){
+
+    e.preventDefault();
+
+    const newCategory = document
+        .getElementById('editCategoryInput')
+        .value;
+
+    if(currentCategoryButton){
+        currentCategoryButton.innerText = newCategory;
+
+        currentCategoryButton.setAttribute(
+            'onclick',
+            `filterCategory('${newCategory}')`
+        );
+    }
+
+document.getElementById('edit-modal')
+    .classList.add('hidden');
+});
 </script>
 </body>
 </html>

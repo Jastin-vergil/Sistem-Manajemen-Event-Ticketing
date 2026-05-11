@@ -189,9 +189,23 @@
 <!--Modal for Image-->
 <div id="imageModal" 
      class="hidden fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-50">
+    <div class="bg-[#0f1335] p-4 rounded-2xl border border-gray-700 relative">
+        <!-- CLOSE BUTTON -->
+        <button 
+            onclick="closeImageModal()"
+            class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl">
+            &times;
+        </button>
 
-    <img id="modalImage" class="max-w-lg rounded-lg">
+        <!-- TITLE -->
+        <h2 class="text-lg font-semibold mb-4 text-white">
+            Proof of Payment
+        </h2>
 
+        <!-- IMAGE -->
+        <img id="modalImage" 
+             class="max-w-lg max-h-[80vh] rounded-lg object-contain">
+    </div>
 </div>
 
 <!-- REJECT MODAL -->
@@ -239,8 +253,8 @@ function showImage(src) {
     document.getElementById('imageModal').classList.remove('hidden');
 }
 
-document.getElementById('imageModal').onclick = function() {
-    this.classList.add('hidden');
+function closeImageModal() {
+    document.getElementById('imageModal').classList.add('hidden');
 }
 function approvePayment() {
     alert("Payment has been approved!");

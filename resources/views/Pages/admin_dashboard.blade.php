@@ -130,7 +130,7 @@
 </div>
 
 <!-- HEADER TABLE -->
-   <div class="flex flex-col gap-3 p-4 border-b">
+    <div class="flex flex-col gap-3 p-4 border-b">
         <h2 class="text-lg font-semibold flex items-center justify-center gap-2">
         <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 2L2 8h2v8h4v-5h4v5h4V8h2L10 2z"/>
@@ -146,7 +146,7 @@
             + Create New Event
         </button>
     </div>
-</div>
+    </div>
 
     <!-- TABLE -->
     <div class="bg-[#0f1335] border border-gray-700 rounded mb-6 overflow-x-auto">
@@ -163,12 +163,12 @@
                     <th class="px-6 py-3">Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="event-table-body">
                 <tr class="border-b border-gray-700 hover:bg-[#1a1f4a]">
                     <td class="px-6 py-4 font-medium text-gray-200">Festival Seni</td>
                     <td class="px-6 py-4 text-gray-200">Mari ramaikan festival seni, tempat berbagai karya mahasiswa Politeknik Negeri Batam </td>
-                    <td class="px-6 py-4 text-gray-200">10-10-2026</td>
-                    <td class="px-6 py-4 text-gray-200">18.30 WIB</td>
+                    <td class="px-6 py-4 text-gray-200">2026-10-10</td>
+                    <td class="px-6 py-4 text-gray-200">18:30</td>
                     <td class="px-6 py-4 text-gray-200">Lapangan Politeknik Negeri Batam</td>
                     <td class="px-6 py-4 text-gray-200">Art & Design</td>
                     <td class="px-6 py-4 text-gray-200"><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" alt="Event Image" class="w-16 h-16 object-cover rounded-lg border border-gray-600"></td>
@@ -187,19 +187,16 @@
                             data-lokasi="Lapangan Polibatam"
                             data-kategori="Art & Design"
                             data-foto="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg">
-
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M11 5h2m-1-1v2m6.707 2.293a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-4 1a1 1 0 01-1.213-1.213l1-4a1 1 0 01.242-.39l9-9a1 1 0 011.414 0z"/>
                             </svg>
-
                             Edit
                         </button>
                         <button 
                             data-modal-target="popup-modal" 
                             data-modal-toggle="popup-modal"
                             class="flex items-center gap-1 bg-red-500 px-3 py-1 rounded hover:bg-red-600 text-white">
-
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M6 7h12M9 7v12m6-12v12M10 4h4a1 1 0 011 1v2H9V5a1 1 0 011-1z"/>
@@ -221,7 +218,6 @@
                         </button>
                     </div>
                     </td>
-                    </div>
                 </tr>
             </tbody>
         </table>
@@ -232,7 +228,7 @@
 class="hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full bg-black/60 backdrop-blur-md">
 
     <div class="relative p-4 w-full max-w-md max-h-full">
-
+        
         <!-- Modal content -->
         <div class="bg-[#0f1335] text-white rounded shadow-lg p-6 border border-gray-700">
 
@@ -264,7 +260,7 @@ class="hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w
                     <option>Technology</option>
                     <option>Art & Design</option>
                 </select>
-                <input type="file" placeholder="Photo"
+                <input id="foto" type="file" placeholder="Photo"
                     class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
 
                 <!-- Footer -->
@@ -489,7 +485,10 @@ class="hidden fixed top-0 left-0 right-0 z-50 flex justify-center items-center w
 
             <!-- IMAGE -->
             <div class="flex justify-center mt-4">
-                <div class="w-40 h-24 bg-gray-700 rounded-lg"></div>
+                <img 
+                    src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"
+                    alt="Event Image"
+                    class="w-40 h-24 object-cover rounded-lg border border-gray-600">
             </div>
 
             <!-- EVENT INFO -->
@@ -500,7 +499,10 @@ class="hidden fixed top-0 left-0 right-0 z-50 flex justify-center items-center w
 
             <!-- SEARCH -->
             <div class="mt-4 relative">
-                <input type="text" placeholder="Search Participants"
+                <input 
+                    type="text"
+                    id="searchParticipant"
+                    placeholder="Search Participants"
                     class="w-full bg-gray-700 text-white rounded-full px-4 py-2 pr-10 outline-none">
                 <span class="absolute right-3 top-2.5">🔍</span>
             </div>
@@ -516,7 +518,7 @@ class="hidden fixed top-0 left-0 right-0 z-50 flex justify-center items-center w
                             <th class="px-3 py-2">Ticket</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-200">
+                    <tbody id="participant-table" class="text-gray-200">
 
                         <tr class="border-b border-gray-600">
                             <td class="px-3 py-2">1</td>
@@ -579,7 +581,11 @@ class="hidden fixed top-0 left-0 right-0 z-50 flex justify-center items-center w
 
             <!-- IMAGE -->
             <div class="flex justify-center mt-4">
-                <div class="w-40 h-24 bg-gray-700 rounded-lg"></div>
+                <img 
+                    id="ticket-image"
+                    src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"
+                    alt="Event Image"
+                    class="w-40 h-24 object-cover rounded-lg border border-gray-600">
             </div>
 
             <!-- EVENT TITLE -->
@@ -597,18 +603,18 @@ class="hidden fixed top-0 left-0 right-0 z-50 flex justify-center items-center w
                     <p class="text-sm">Harga: Rp 50.000</p>
                 </div>
 
-                <!-- VIP -->
-                <div class="bg-gray-800 rounded-lg p-3">
-                    <p class="text-sm text-gray-400">VIP</p>
-                    <p class="text-sm">Kuota: 20</p>
-                    <p class="text-sm">Harga: Rp 150.000</p>
-                </div>
-
                 <!-- Regular -->
                 <div class="bg-gray-800 rounded-lg p-3">
                     <p class="text-sm text-gray-400">Regular</p>
                     <p class="text-sm">Kuota: 100</p>
-                    <p class="text-sm">Harga: Rp 75.000</p>
+                    <p class="text-sm">Harga: Rp 100.000</p>
+                </div>
+
+                 <!-- VIP -->
+                <div class="bg-gray-800 rounded-lg p-3">
+                    <p class="text-sm text-gray-400">VIP</p>
+                    <p class="text-sm">Kuota: 20</p>
+                    <p class="text-sm">Harga: Rp 200.000</p>
                 </div>
 
             </div>
@@ -626,33 +632,183 @@ class="hidden fixed top-0 left-0 right-0 z-50 flex justify-center items-center w
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+document.getElementById('form-tiket').addEventListener('submit', function(e){
 
-    const editButtons = document.querySelectorAll('[data-modal-target="edit-modal"]');
+    e.preventDefault();
 
-    editButtons.forEach(button => {
-        button.addEventListener('click', function () {
+    // ambil data modal pertama
+    const judul = document.getElementById('judul').value;
+    const deskripsi = document.getElementById('deskripsi').value;
+    const tanggal = document.getElementById('tanggal').value;
+    const waktu = document.getElementById('waktu').value;
+    const lokasi = document.getElementById('lokasi').value;
+    const kategori = document.getElementById('kategori').value;
 
-            // ambil data dari button
-            const judul = this.getAttribute('data-judul');
-            const deskripsi = this.getAttribute('data-deskripsi');
-            const tanggal = this.getAttribute('data-tanggal');
-            const waktu = this.getAttribute('data-waktu');
-            const lokasi = this.getAttribute('data-lokasi');
-            const kategori = this.getAttribute('data-kategori');
-            const foto = this.getAttribute('data-foto');
+    // foto
+    const fotoInput = document.getElementById('foto');
+    const foto = fotoInput.files[0];
 
-            // isi ke form modal
-            document.getElementById('edit-title').value = judul;
-            document.getElementById('edit-description').value = deskripsi;
-            document.getElementById('edit-date').value = tanggal;
-            document.getElementById('edit-time').value = waktu;
-            document.getElementById('edit-location').value = lokasi;
-            document.getElementById('edit-category').value = kategori;
+    let fotoURL = '';
 
-            // preview foto
-            document.getElementById('preview-foto').src = foto;
-        });
+    if (foto) {
+        fotoURL = URL.createObjectURL(foto);
+    }
+
+    // row baru
+    const row = `
+        <tr class="border-b border-gray-700 hover:bg-[#1a1f4a]">
+
+            <td class="px-6 py-4 font-medium text-gray-200">
+                ${judul}
+            </td>
+
+            <td class="px-6 py-4 text-gray-200">
+                ${deskripsi}
+            </td>
+
+            <td class="px-6 py-4 text-gray-200">
+                ${tanggal}
+            </td>
+
+            <td class="px-6 py-4 text-gray-200">
+                ${waktu}
+            </td>
+
+            <td class="px-6 py-4 text-gray-200">
+                ${lokasi}
+            </td>
+
+            <td class="px-6 py-4 text-gray-200">
+                ${kategori}
+            </td>
+
+            <td class="px-6 py-4">
+                <img src="${fotoURL}" 
+                    class="w-16 h-16 object-cover rounded-lg border border-gray-600">
+            </td>
+
+            <td class="px-6 py-4 text-gray-200">
+            <div class="flex flex-col gap-2">
+
+                <div class="flex gap-2">
+
+                    <!-- EDIT -->
+                    <button 
+                        type="button"
+                        class="flex items-center gap-1 bg-green-500 px-3 py-1 rounded hover:bg-green-600 text-white"
+                        data-modal-target="edit-modal"
+                        data-modal-toggle="edit-modal"
+
+                        data-judul="${judul}"
+                        data-deskripsi="${deskripsi}"
+                        data-tanggal="${tanggal}"
+                        data-waktu="${waktu}"
+                        data-lokasi="${lokasi}"
+                        data-kategori="${kategori}"
+                        data-foto="${fotoURL}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 5h2m-1-1v2m6.707 2.293a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-4 1a1 1 0 01-1.213-1.213l1-4a1 1 0 01.242-.39l9-9a1 1 0 011.414 0z"/>
+                        </svg>
+
+                        Edit
+                    </button>
+
+                    <!-- DELETE -->
+                    <button 
+                        type="button"
+                        data-modal-target="popup-modal" 
+                        data-modal-toggle="popup-modal"
+                        class="flex items-center gap-1 bg-red-500 px-3 py-1 rounded hover:bg-red-600 text-white">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 7h12M9 7v12m6-12v12M10 4h4a1 1 0 011 1v2H9V5a1 1 0 011-1z"/>
+                        </svg>
+                        Delete
+                    </button>
+
+                </div>
+
+                <!-- PARTICIPANT -->
+                <button 
+                    type="button"
+                    data-modal-target="participant-modal" 
+                    data-modal-toggle="participant-modal"
+                    class="bg-blue-500 px-3 py-1 rounded hover:bg-blue-600 text-white text-sm">
+
+                    Participant Details
+                </button>
+
+                <!-- TICKET -->
+                <button 
+                    type="button"
+                    data-modal-target="ticket-modal" 
+                    data-modal-toggle="ticket-modal"
+                    class="bg-yellow-400 px-3 py-1 rounded hover:bg-yellow-500 text-white text-sm">
+
+                    Ticket Information
+                </button>
+
+            </div>
+        </td>
+        </tr>
+    `;
+
+    // masuk tabel
+    document.getElementById('event-table-body')
+        .insertAdjacentHTML('beforeend', row);
+
+    initFlowbite();
+
+    // reset form
+    document.getElementById('form-event').reset();
+    document.getElementById('form-tiket').reset();
+
+    // tutup modal
+    document.getElementById('crud-modal').classList.add('hidden');
+    document.getElementById('crud-modal-2').classList.add('hidden');
+});
+
+document.addEventListener('click', function(e){
+
+    const button = e.target.closest('[data-modal-target="edit-modal"]');
+
+    if(!button) return;
+
+    const judul = button.getAttribute('data-judul');
+    const deskripsi = button.getAttribute('data-deskripsi');
+    const tanggal = button.getAttribute('data-tanggal');
+    const waktu = button.getAttribute('data-waktu');
+    const lokasi = button.getAttribute('data-lokasi');
+    const kategori = button.getAttribute('data-kategori');
+    const foto = button.getAttribute('data-foto');
+
+    document.getElementById('edit-title').value = judul;
+    document.getElementById('edit-description').value = deskripsi;
+    document.getElementById('edit-date').value = tanggal;
+    document.getElementById('edit-time').value = waktu;
+    document.getElementById('edit-location').value = lokasi;
+    document.getElementById('edit-category').value = kategori;
+    document.getElementById('preview-foto').src = foto;
+});
+
+document.getElementById('searchParticipant')
+.addEventListener('keyup', function() {
+
+    let keyword = this.value.toLowerCase();
+
+    let rows = document.querySelectorAll('#participant-table tr');
+
+    rows.forEach(row => {
+
+        let text = row.innerText.toLowerCase();
+
+        if(text.includes(keyword)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+
     });
 
 });
