@@ -5,7 +5,7 @@
     <title>Ticket Payment</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-r from-[#0f172a] to-[#020617] text-white min-h-screen overflow-hidden">
+<body class="bg-gradient-to-r from-[#0f172a] to-[#020617] text-white min-h-screen overflow-y-auto">
 
     <!-- Navbar -->
     <div>

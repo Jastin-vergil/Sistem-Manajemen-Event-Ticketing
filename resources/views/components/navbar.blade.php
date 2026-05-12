@@ -27,7 +27,7 @@
                       class="block lg:inline-block mt-4 lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-indigo-700/50 transition-all">
                       History
                   </a>
-                  <a href="landingpage"
+                  <a href="userdashboard"
                       class="block lg:inline-block mt-4 lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-indigo-700/50 transition-all">
                       Home
                   </a>

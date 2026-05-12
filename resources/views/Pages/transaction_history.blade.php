@@ -260,7 +260,7 @@
 <body class="hero-bg min-h-screen text-slate-200">
 
   <!-- HEADER -->
-  @include('components.header')
+  @include('components.navbar')
 
   <!-- HERO / SEARCH -->
   <section class="max-w-6xl mx-auto px-6 pt-20 pb-10 text-center">
