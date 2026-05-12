@@ -265,7 +265,7 @@ class="hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w
                     <option>Technology</option>
                     <option>Art & Design</option>
                 </select>
-                <input id="foto" type="file" placeholder="Photo"
+                <input id="foto" type="file" placeholder="Photo" required
                     class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
 
                 <!-- Footer -->
@@ -303,22 +303,30 @@ class="hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w
 
             <!-- FORM -->
             <form id="form-tiket" class="space-y-3">
+                <input type="text" placeholder="Ticket Types" required
+                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
 
-                <input type="number" placeholder="Early Bird (Kuota)" min="0" required
+                <input type="number" placeholder="(Kuota)" min="0" required
                     class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
 
                 <input type="text" placeholder="Rp 0"
                 oninput="formatRupiah(this)"
                     class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
 
-                <input type="number" placeholder="Reguler (Kuota)" min="0" required
+                <input type="text" placeholder="Ticket Types" required
+                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
+
+                <input type="number" placeholder="(Kuota)" min="0" required
                     class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
 
                 <input type="text" placeholder="Rp 0"
                 oninput="formatRupiah(this)"
                     class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
 
-                <input type="number" placeholder="VIP (Kuota)" min="0" required
+                <input type="text" placeholder="Ticket Types" required
+                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
+
+                <input type="number" placeholder="(Kuota)" min="0" required
                     class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
 
                 <input type="text" placeholder="Rp 0"
