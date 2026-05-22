@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardAdminController;
 
 // --- Public Routes ---
 Route::get('/login', function () {
@@ -53,3 +54,19 @@ Route::get('/admin_dashboard', function () {
     if (!session('is_logged_in')) return redirect('/login');
     return view('Pages.admin_dashboard');
 })->name('admin_dashboard');
+
+
+Route::get('/admindashboard',
+    [DashboardAdminController::class, 'index']);
+
+Route::post('/events/store',
+    [DashboardAdminController::class, 'store'])
+    ->name('events.store');
+
+Route::put('/events/update/{id}',
+    [DashboardAdminController::class, 'update'])
+    ->name('events.update');
+
+Route::delete('/events/delete/{id}',
+    [DashboardAdminController::class, 'destroy'])
+    ->name('events.destroy');
