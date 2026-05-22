@@ -1,31 +1,33 @@
 <?php
+
+namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
-// Halaman Login
-Route::get('/login', function () {
-return view('Pages.login');
-})->name('login');
+class LoginController extends Controller
+{
+    public function authenticate(Request $request)
+    {
+        //Validasi input login
+        validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
-// Proses Login (Tanpa Database)
-Route::post('/login', function (Request $request) {
-if ($request->email == 'jastin@gmail.com' && $request->password == 'admin123') {
-session(['is_logged_in' => true]);
-return redirect('/admin_dashboard');
+        $credentials['is_admin'] = true;
+
+        // eksekusi login
+        if (Auth::attempt($credentials, $request->remember)) {
+            $request->session()->regenerate();
+
+            // redirect ke halaman admin dashboard
+            return redirect()->intended('admindashboard');
+        }
+
+        // kalau gagal login, kembalikan ke halaman login dengan pesan error
+        return back()->withErrors([
+            'email' => 'Akses ditolak. Email atau password salah, atau akun kamu bukan Admin.',
+        ])->onlyInput('email');
+    }
 }
-return back()->with('error', 'Email/Password Salah!');
-});
-
-// Halaman Dashboard
-Route::get('/admin_dashboard', function () {
-if (!session('is_logged_in')) {
-return redirect('/login');
-}
-return view('Pages.admin_dashboard');
-})->name('admin_dashboard');
-
-// Logout
-Route::post('/logout', function () {
-session()->forget('is_logged_in');
-return redirect('/login');
-});
