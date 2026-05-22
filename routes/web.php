@@ -36,7 +36,6 @@ Route::post('/payment/confirm', function () {
 })->name('payment.confirm');
 
 
-Route::get('/list_product', [ProductController::class, 'index']);
 // untuk login admin dan akun dummy
 Route::get('/login', function () {
     return view('Pages.login');
@@ -55,18 +54,10 @@ Route::get('/admin_dashboard', function () {
     return view('Pages.admin_dashboard');
 })->name('admin_dashboard');
 
+Route::get('/admindashboard', [DashboardAdminController::class, 'index']);
 
-Route::get('/admindashboard',
-    [DashboardAdminController::class, 'index']);
+Route::post('/events', [DashboardAdminController::class, 'store']);
 
-Route::post('/events/store',
-    [DashboardAdminController::class, 'store'])
-    ->name('events.store');
+Route::put('/events/{id}', [DashboardAdminController::class, 'update']);
 
-Route::put('/events/update/{id}',
-    [DashboardAdminController::class, 'update'])
-    ->name('events.update');
-
-Route::delete('/events/delete/{id}',
-    [DashboardAdminController::class, 'destroy'])
-    ->name('events.destroy');
+Route::delete('/events/{id}', [DashboardAdminController::class, 'destroy']);

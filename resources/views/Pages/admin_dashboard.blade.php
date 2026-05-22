@@ -8,831 +8,221 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
 </head>
-<style>
-    html, body {
-        background-color: #05071a;
-    }
-</style>
-
-<body class="bg-[#05071a] bg-gradient-to-b from-[#0b0f2a] to-[#05071a] text-white min-h-screen">
+<body class="bg-[#05071a] text-white min-h-screen">
 
 <!-- NAVBAR -->
-<nav class="bg-[#0b0f2a]/80 backdrop-blur-md fixed top-0 left-0 w-full z-50 h-16 border-b border-gray-700">
-  <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
+<nav class="bg-[#0b0f2a] p-4 border-b border-gray-700">
 
-    <!-- LOGO -->
-    <a href="#" class="flex items-center space-x-3">
-      <img src="https://www.polibatam.ac.id/wp-content/uploads/2021/09/logo.png" class="h-7" alt="logo" />
-      <span class="text-xl font-bold bg-gradient-to-r from-indigo-400 via-purple-500 to-blue-500 bg-clip-text text-transparent">Admin Dashboard
-</span>
-    </a>
+    <div class="flex justify-between items-center">
 
-    <!-- USER -->
-    <div class="flex items-center">
-      <button type="button"
-        class="flex text-sm rounded-full focus:ring-4 focus:ring-gray-300"
-        id="user-menu-button"
-        data-dropdown-toggle="user-dropdown">
+        <h1 class="text-2xl font-bold">
+            Admin Dashboard
+        </h1>
 
-        <img class="w-8 h-8 rounded-full"
-        src="{{ asset('images/admin.jpg') }}"
-        alt="user">
-      </button>
+        <a href="/login"
+        class="bg-red-500 px-4 py-2 rounded">
+            Logout
+        </a>
 
-      <!-- DROPDOWN -->
-      <div class="hidden bg-[#0f1335] border border-gray-700 rounded-xl shadow w-44 mt-2"
-        id="user-dropdown">
-
-        <div class="px-4 py-3 text-sm border-b">
-          <p class="font-medium">Admin</p>
-          <p class="text-gray-500 text-xs">anisya17@email.com</p>
-        </div>
-
-        <ul class="text-sm">
-          <li><a href="/userdashboard" class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">Dashboard</a></li>
-          <li><a href="/login" class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">Logout</a></li>
-        </ul>
-
-      </div>
     </div>
 
-  </div>
 </nav>
 
-
-<!-- SIDEBAR -->
-<aside class="fixed top-16 left-0 z-40 w-64 h-[calc(100vh-4rem)] bg-[#0f1335] border-r border-gray-700">
-    <div class="h-full px-3 py-4 overflow-y-auto">
-        <ul class="space-y-2 font-medium">
-            <a href="{{ url('/admindashboard') }}" 
-            class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">
-            <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 2L2 8h2v8h4v-5h4v5h4V8h2L10 2z"/>
-            </svg>
-            <span>Event List</span>
-            </a>
-
-            <a href="{{ url('/informasipembayaran') }}" 
-            class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">
-            <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v2H2V5zm0 4h16v6a2 2 0 01-2 2H4a2 2 0 01-2-2V9zm3 3h4v2H5v-2z"/>
-            </svg>
-            <span>Payment Information</span>
-            </a>
-
-            <a href="{{ url('/categories') }}" 
-            class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">
-            <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M3 3h6v6H3V3zm8 0h6v6h-6V3zM3 11h6v6H3v-6zm8 0h6v6h-6v-6z"/>
-            </svg>
-            <span>Categories</span>
-            </a>
-    </div>
-</aside>
-
-
 <!-- CONTENT -->
-<div class="ml-64 mt-16 p-6 text-white">
-    <!-- Welcome Card -->
-<div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 mb-6 border border-white/10">
-    <h1 class="text-2xl font-bold text-white">
-        Welcome, Admin!
-    </h1>
-    <p class="text-sm text-gray-300">
-        Manage events and monitor orders easily through this dashboard. 
-    </p>
-    <p class="text-sm text-gray-300">
-        Add new events, edit information, and track ticket orders efficiently.
-    </p>
-</div>
+<div class="p-6">
 
-<!-- card event active and orders -->
-    <div class="flex gap-6">
-    <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 w-full">
-        <h2 class="text-lg font-semibold text-gray-300">
-            Event Active
-        </h2>
-        <p class="text-3xl font-bold text-blue-600 mt-2">
-            {{ $eventActive ?? 4 }}
-        </p>
-        <p class="text-sm text-gray-400">
-            Total events currently running
-        </p>
+    <!-- CARD -->
+    <div class="grid grid-cols-2 gap-6 mb-6">
+
+        <div class="bg-[#0f1335] p-6 rounded-xl border border-gray-700">
+            <h2 class="text-lg text-gray-300">
+                Event Active
+            </h2>
+
+            <p class="text-3xl font-bold text-blue-500 mt-2">
+                {{ $eventActive }}
+            </p>
+        </div>
+
+        <div class="bg-[#0f1335] p-6 rounded-xl border border-gray-700">
+            <h2 class="text-lg text-gray-300">
+                Orders
+            </h2>
+
+            <p class="text-3xl font-bold text-green-500 mt-2">
+                {{ $orders }}
+            </p>
+        </div>
+
     </div>
 
-    <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 w-full">
-        <h2 class="text-lg font-semibold text-gray-300">
-            Orders
-        </h2>
-        <p class="text-3xl font-bold text-green-600 mt-2">
-            {{ $orders ?? 3 }}
-        </p>
-        <p class="text-sm text-gray-400">
-            Total ticket orders
-        </p>
-    </div>
+    <!-- BUTTON -->
+    <div class="flex justify-end mb-4">
 
-</div>
+        <button
+            onclick="document.getElementById('modal').classList.remove('hidden')"
+            class="bg-blue-500 px-4 py-2 rounded hover:bg-blue-600">
 
-<!-- HEADER TABLE -->
-    <div class="flex flex-col gap-3 p-4 border-b">
-        <h2 class="text-lg font-semibold flex items-center justify-center gap-2">
-        <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 2L2 8h2v8h4v-5h4v5h4V8h2L10 2z"/>
-            </svg>
-            <span>Event List</span>
-        </h2>
+            + Create Event
 
-    <div class="flex justify-end">
-        <button 
-            data-modal-target="crud-modal" 
-            data-modal-toggle="crud-modal"
-            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-            + Create New Event
         </button>
-    </div>
+
     </div>
 
     <!-- TABLE -->
-    <div class="bg-[#0f1335] border border-gray-700 rounded mb-6 overflow-x-auto">
+    <div class="bg-[#0f1335] rounded-xl border border-gray-700 overflow-x-auto">
+
         <table class="w-full text-sm text-left">
-           <thead class="bg-[#1a1f4a] text-gray-300">
+
+            <thead class="bg-[#1a1f4a]">
+
                 <tr>
-                    <th class="px-6 py-3">Event Title</th>
+
+                    <th class="px-6 py-3">Title</th>
                     <th class="px-6 py-3">Description</th>
                     <th class="px-6 py-3">Date</th>
                     <th class="px-6 py-3">Time</th>
                     <th class="px-6 py-3">Location</th>
                     <th class="px-6 py-3">Category</th>
                     <th class="px-6 py-3">Photo</th>
-                    <th class="px-6 py-3">Actions</th>
-                </tr>
-            </thead>
-            <tbody id="event-table-body">
-                <tr class="border-b border-gray-700 hover:bg-[#1a1f4a]">
-                    <td class="px-6 py-4 font-medium text-gray-200">Festival Seni</td>
-                    <td class="px-6 py-4 text-gray-200">Mari ramaikan festival seni, tempat berbagai karya mahasiswa Politeknik Negeri Batam </td>
-                    <td class="px-6 py-4 text-gray-200">2026-10-10</td>
-                    <td class="px-6 py-4 text-gray-200">18:30</td>
-                    <td class="px-6 py-4 text-gray-200">Lapangan Politeknik Negeri Batam</td>
-                    <td class="px-6 py-4 text-gray-200">Art & Design</td>
-                    <td class="px-6 py-4 text-gray-200"><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" alt="Event Image" class="w-16 h-16 object-cover rounded-lg border border-gray-600"></td>
-                    <td class="px-6 py-4 text-gray-200">
-                        <div class="flex flex-col gap-2">
-                        <div class="flex gap-2">
-                        <button 
-                            class="flex items-center gap-1 bg-green-500 px-3 py-1 rounded hover:bg-green-600 text-white"
-                            data-modal-target="edit-modal"
-                            data-modal-toggle="edit-modal"
 
-                            data-judul="Festival Seni"
-                            data-deskripsi="Mari ramaikan festival seni..."
-                            data-tanggal="2026-10-10"
-                            data-waktu="18:30"
-                            data-lokasi="Lapangan Polibatam"
-                            data-kategori="Art & Design"
-                            data-foto="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M11 5h2m-1-1v2m6.707 2.293a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-4 1a1 1 0 01-1.213-1.213l1-4a1 1 0 01.242-.39l9-9a1 1 0 011.414 0z"/>
-                            </svg>
-                            Edit
-                        </button>
-                        <button 
-                            data-modal-target="popup-modal" 
-                            data-modal-toggle="popup-modal"
-                            class="flex items-center gap-1 bg-red-500 px-3 py-1 rounded hover:bg-red-600 text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 7h12M9 7v12m6-12v12M10 4h4a1 1 0 011 1v2H9V5a1 1 0 011-1z"/>
-                            </svg>
-                            Delete
-                        </button>
-                    </div>
-                        <button 
-                            data-modal-target="participant-modal" 
-                            data-modal-toggle="participant-modal"
-                            class="bg-blue-500 px-3 py-1 rounded hover:bg-blue-600 text-white text-sm">
-                            Participant Details
-                        </button>
-                        <button 
-                            data-modal-target="ticket-modal" 
-                            data-modal-toggle="ticket-modal"
-                            class="bg-yellow-400 px-3 py-1 rounded hover:bg-yellow-500 text-white text-sm">
-                            Ticket Information
-                        </button>
-                    </div>
-                    </td>
                 </tr>
+
+            </thead>
+
+            <tbody>
+
+                @foreach($events as $event)
+
+                <tr class="border-b border-gray-700">
+
+                    <td class="px-6 py-4">
+                        {{ $event->title }}
+                    </td>
+
+                    <td class="px-6 py-4">
+                        {{ $event->description }}
+                    </td>
+
+                    <td class="px-6 py-4">
+                        {{ $event->date }}
+                    </td>
+
+                    <td class="px-6 py-4">
+                        {{ $event->time }}
+                    </td>
+
+                    <td class="px-6 py-4">
+                        {{ $event->location }}
+                    </td>
+
+                    <td class="px-6 py-4">
+                        {{ $event->category }}
+                    </td>
+
+                    <td class="px-6 py-4">
+
+                        <img
+                            src="{{ asset('images/'.$event->photo) }}"
+                            class="w-20 h-20 rounded-lg object-cover">
+
+                    </td>
+
+                </tr>
+
+                @endforeach
+
             </tbody>
+
         </table>
+
     </div>
+
+</div>
 
 <!-- MODAL -->
-<div id="crud-modal" tabindex="-1" aria-hidden="true"
-class="hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full bg-black/60 backdrop-blur-md">
+<div
+id="modal"
+class="hidden fixed inset-0 bg-black/70 flex justify-center items-center">
 
-    <div class="relative p-4 w-full max-w-md max-h-full">
-        
-        <!-- Modal content -->
-        <div class="bg-[#0f1335] text-white rounded shadow-lg p-6 border border-gray-700">
+    <div class="bg-[#0f1335] p-6 rounded-xl w-[500px] border border-gray-700">
 
-            <!-- Header -->
-            <div class="flex justify-between items-center border-b border-gray-700 pb-3">
-                <h3 class="text-lg font-semibold text-white">
-                    Add Event
-                </h3>
-                <button data-modal-hide="crud-modal" class="text-gray-500 hover:text-white">
-                </button>
-            </div>
+        <div class="flex justify-between items-center mb-4">
 
-            <!-- Body -->
-            <form id="form-event" class="mt-4 space-y-3">
-                <input id="judul" type="text" placeholder="Event Title"
-                     class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-                <textarea id="deskripsi" placeholder="Description"
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded"></textarea>
-                <input id="tanggal" type="date" placeholder="Date"
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-                <input id="waktu" type="time" placeholder="Time"
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-                <input id="lokasi" type="text" placeholder="Location"
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-                <select id="kategori" 
-                class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-                    <option>Select Category</option>
-                    <option>Music</option>
-                    <option>Technology</option>
-                    <option>Art & Design</option>
-                </select>
-                <input id="foto" type="file" placeholder="Photo" required
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
+            <h2 class="text-xl font-bold">
+                Add Event
+            </h2>
 
-                <!-- Footer -->
-                <div class="flex justify-end gap-2 pt-3">
-                    <button type="button"
-                        data-modal-hide="crud-modal"
-                        class="px-4 py-2 border border-gray-600 rounded text-gray-300 hover:bg-gray-700">
-                        Cancel
-                    </button>
+            <button
+            onclick="document.getElementById('modal').classList.add('hidden')">
+                ✕
+            </button>
 
-                    <button type="button"
-                        data-modal-hide="crud-modal"
-                        data-modal-target="crud-modal-2"
-                        data-modal-toggle="crud-modal-2"
-                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                        Next
-                    </button>
-                </div>
-            </form>
         </div>
-    </div>
-</div>
-      
-<!-- MODAL 2 -->
-<div id="crud-modal-2" tabindex="-1" aria-hidden="true"
-class="hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full bg-black/60 backdrop-blur-md">
 
-    <div class="relative p-4 w-full max-w-md">
-        <div class="bg-[#0f1335] text-white rounded shadow-lg p-6 border border-gray-700">
+        <form
+            action="{{ url('/events') }}"
+            method="POST"
+            enctype="multipart/form-data"
+            class="space-y-4">
 
-            <!-- HEADER -->
-            <h3 class="text-lg font-semibold mb-3 text-white">
-                Add Ticket
-            </h3>
+            @csrf
 
-            <!-- FORM -->
-            <form id="form-tiket" class="space-y-3">
-                <input type="text" placeholder="Ticket Types" required
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
+            <input
+                type="text"
+                name="title"
+                placeholder="Event Title"
+                class="w-full p-2 rounded bg-[#05071a] border border-gray-600">
 
-                <input type="number" placeholder="(Kuota)" min="0" required
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
+            <textarea
+                name="description"
+                placeholder="Description"
+                class="w-full p-2 rounded bg-[#05071a] border border-gray-600"></textarea>
 
-                <input type="text" placeholder="Rp 0"
-                oninput="formatRupiah(this)"
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
+            <input
+                type="date"
+                name="date"
+                class="w-full p-2 rounded bg-[#05071a] border border-gray-600">
 
-                <input type="text" placeholder="Ticket Types" required
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
+            <input
+                type="time"
+                name="time"
+                class="w-full p-2 rounded bg-[#05071a] border border-gray-600">
 
-                <input type="number" placeholder="Kuota" min="0" required
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
+            <input
+                type="text"
+                name="location"
+                placeholder="Location"
+                class="w-full p-2 rounded bg-[#05071a] border border-gray-600">
 
-                <input type="text" placeholder="Rp 0"
-                oninput="formatRupiah(this)"
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
+            <select
+                name="category"
+                class="w-full p-2 rounded bg-[#05071a] border border-gray-600">
 
-                <input type="text" placeholder="Ticket Types" required
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-
-                <input type="number" placeholder="Kuota" min="0" required
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-
-                <input type="text" placeholder="Rp 0"
-                oninput="formatRupiah(this)"
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-
-                <!-- FOOTER -->
-                <div class="flex justify-end gap-2 pt-3">
-
-                    <button type="button"
-                        data-modal-hide="crud-modal-2"
-                        data-modal-target="crud-modal"
-                        data-modal-toggle="crud-modal"
-                        class="px-4 py-2 border border-gray-600 rounded text-gray-300 hover:bg-gray-700">
-                        Back
-                    </button>
-
-                    <button type="submit"
-                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                        Submit
-                    </button>
-
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- modal edit -->
-<div id="edit-modal" tabindex="-1"
-   class="hidden fixed top-0 left-0 right-0 z-50 flex justify-center items-start overflow-y-auto w-full h-full bg-black/40 backdrop-blur-md">
-
-  <div class="relative p-4 w-full max-w-md my-8">
-
-   <div class="relative p-4 w-full max-w-md">
-       <div class="bg-[#0f1335] text-white rounded shadow-lg p-6 border border-gray-700">
-            <h3 class="text-lg font-semibold mb-3">Edit Ticket</h3>
-
-            <form class="mt-4 space-y-3">
-                <input id="edit-title" type="text" class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-                <textarea id="edit-description" class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded"></textarea>
-                <input id="edit-date" type="date" class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-                <input id="edit-time" type="time" class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-                <input id="edit-location" type="text" class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-                <select id="edit-category" class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
                 <option>Music</option>
                 <option>Technology</option>
                 <option>Art & Design</option>
-                </select>
 
-                <!-- Foto Lama -->
-                <img id="preview-foto" src="" class="w-32 h-32 object-cover rounded mb-2">
+            </select>
 
-                <!-- Upload Foto Baru -->
-                <input id="edit-foto" type="file" class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
+            <input
+                type="file"
+                name="photo"
+                class="w-full p-2 rounded bg-[#05071a] border border-gray-600">
 
-                <!-- Footer -->
-                <div class="flex justify-end gap-2 pt-3">
-                    <button type="button"
-                        data-modal-hide="edit-modal"
-                        class="px-4 py-2 border rounded">
-                        Cancel
-                    </button>
+            <button
+                type="submit"
+                class="w-full bg-blue-500 py-2 rounded hover:bg-blue-600">
 
-                   <button type="button"
-                        data-modal-hide="edit-modal"
-                        data-modal-target="edit-ticket-modal"
-                        data-modal-toggle="edit-ticket-modal"
-                        class="bg-blue-500 text-white px-4 py-2 rounded">
-                        Next
-                    </button>
-                </div>
-            </form>
-        </div>
+                Save Event
+
+            </button>
+
+        </form>
+
     </div>
-    </div>
-</div>
-      
-<!-- MODAL EDIT TIKET -->
-<div id="edit-ticket-modal" tabindex="-1"
-class="hidden fixed top-0 left-0 right-0 z-50 flex justify-center items-center w-full h-full bg-black/40 backdrop-blur-md">
 
-    <div class="relative p-4 w-full max-w-md">
-        <div class="bg-[#0f1335] text-white rounded shadow-lg p-6 border border-gray-700">
-            <!-- HEADER -->
-            <h3 class="text-lg font-semibold mb-3">Edit Ticket</h3>
-
-            <!-- FORM -->
-            <form class="space-y-3">
-                <input type="text" placeholder="Ticket Types" required
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-
-               <input type="number" placeholder="Kuota" min="0" required 
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-
-                <input type="text" placeholder="Rp 0" 
-                oninput="formatRupiah(this)"
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-
-                <input type="text" placeholder="Ticket Types" required
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-
-                <input type="number" placeholder="Kuota" min="0" required
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-
-                <input type="text" placeholder="Rp 0" 
-                oninput="formatRupiah(this)"
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-
-                <input type="text" placeholder="Ticket Types" required
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-
-                <input type="number" placeholder="Kuota" min="0" required
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-
-                <input type="text" placeholder="Rp 0" 
-                oninput="formatRupiah(this)"
-                    class="w-full border border-gray-600 bg-[#0b0f2a] text-white p-2 rounded">
-
-                <!-- FOOTER -->
-                <div class="flex justify-end gap-2 pt-3">
-                    <button type="button"
-                        data-modal-hide="edit-ticket-modal"
-                        class="px-4 py-2 border border-gray-600 bg-[#0b0f2a] text-white rounded">
-                        Cancel
-                    </button>
-
-                    <button type="submit"
-                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                        Update
-                    </button>
-                </div>
-
-            </form>
-
-        </div>
-    </div>
 </div>
 
-<!-- modal delete -->
-<div id="popup-modal" tabindex="-1" class="hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full bg-black/40 backdrop-blur-md">
-    <div class="relative p-4 w-full max-w-md max-h-full">
-        <div class="relative bg-[#0f1335] border border-gray-700 rounded shadow p-4 md:p-6 text-white">
-                <button type="button" class="absolute top-3 end-2.5 text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center" data-modal-hide="popup-modal">
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
-            <div class="p-4 md:p-5 text-center">
-                <svg class="mx-auto mb-4 text-fg-disabled w-12 h-12" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
-                <h3 class="mb-6 text-body">Are you sure you want to delete this event from your website?</h3>
-                <div class="flex items-center space-x-4 justify-center">
-                    <button data-modal-hide="popup-modal" type="button" 
-                        class="text-white bg-blue-500 box-border border border-transparent hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
-                        Yes, I'm sure
-                    </button>
-                    <button data-modal-hide="popup-modal" type="button" 
-                        class="text-white bg-red-500 box-border border border-transparent hover:bg-red-600 focus:ring-4 focus:ring-red-300 shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
-                        No, cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="participant-modal" tabindex="-1" aria-hidden="true"
-class="hidden fixed top-0 left-0 right-0 z-50 flex justify-center items-center w-full h-full bg-black/50 backdrop-blur-sm">
-
-    <div class="relative w-full max-w-md p-4">
-
-        <div class="bg-[#0f1335] text-white rounded-2xl shadow-lg border border-gray-700 p-4">
-
-            <!-- HEADER -->
-            <div class="flex justify-between items-center border-b border-gray-600 pb-2">
-                <h3 class="text-lg font-semibold">Participants Details</h3>
-                <button data-modal-hide="participant-modal" class="text-gray-400 hover:text-white">✕</button>
-            </div>
-
-            <!-- IMAGE -->
-            <div class="flex justify-center mt-4">
-                <img 
-                    src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"
-                    alt="Event Image"
-                    class="w-40 h-24 object-cover rounded-lg border border-gray-600">
-            </div>
-
-            <!-- EVENT INFO -->
-            <div class="text-center mt-3">
-                <p class="font-medium">Festival Seni</p>
-                <p class="text-sm text-gray-400">Total Participants: 50</p>
-            </div>
-
-            <!-- SEARCH -->
-            <div class="mt-4 relative">
-                <input 
-                    type="text"
-                    id="searchParticipant"
-                    placeholder="Search Participants"
-                    class="w-full bg-gray-700 text-white rounded-full px-4 py-2 pr-10 outline-none">
-                <span class="absolute right-3 top-2.5">🔍</span>
-            </div>
-
-            <!-- TABLE -->
-            <div class="mt-4 max-h-48 overflow-y-auto rounded-lg border border-gray-600">
-                <table class="w-full text-sm text-left">
-                    <thead class="bg-gray-700 text-gray-300">
-                        <tr>
-                            <th class="px-3 py-2">No</th>
-                            <th class="px-3 py-2">Name</th>
-                            <th class="px-3 py-2">Email</th>
-                            <th class="px-3 py-2">Ticket</th>
-                        </tr>
-                    </thead>
-                    <tbody id="participant-table" class="text-gray-200">
-
-                        <tr class="border-b border-gray-600">
-                            <td class="px-3 py-2">1</td>
-                            <td class="px-3 py-2">Anisya</td>
-                            <td class="px-3 py-2">anisya@email.com</td>
-                            <td class="px-3 py-2">VIP</td>
-                        </tr>
-
-                        <tr class="border-b border-gray-600">
-                            <td class="px-3 py-2">2</td>
-                            <td class="px-3 py-2">Reja</td>
-                            <td class="px-3 py-2">reja@email.com</td>
-                            <td class="px-3 py-2">Regular</td>
-                        </tr>
-
-                        <tr class="border-b border-gray-600">
-                            <td class="px-3 py-2">3</td>
-                            <td class="px-3 py-2">Ibnu</td>
-                            <td class="px-3 py-2">ibnu@email.com</td>
-                            <td class="px-3 py-2">Early Bird</td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- PAGINATION -->
-            <div class="flex flex-col items-center">
-                <span class="text-sm text-body">
-                    Showing <span class="font-semibold text-heading">1</span> to <span class="font-semibold text-heading">10</span> of <span class="font-semibold text-heading">100</span> Entries
-                </span>
-                <!-- Buttons -->
-                <div class="inline-flex mt-4 -space-x-px">
-                    <button type="button" class="inline-flex items-center text-body bg-neutral-secondary-medium border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading shadow-xs font-medium leading-5 rounded-s-base text-sm px-4 py-2.5 focus:outline-none">
-                    <svg class="w-4 h-4 me-1.5 -ms-0.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/></svg>
-                    Previous
-                    </button>
-                    <button type="button" class="inline-flex items-center text-body bg-neutral-secondary-medium border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading shadow-xs font-medium leading-5 rounded-e-base text-sm px-4 py-2.5 focus:outline-none">
-                    Next
-                    <svg class="w-4 h-4 ms-1.5 -me-0.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4"/></svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="ticket-modal" tabindex="-1" aria-hidden="true"
-class="hidden fixed top-0 left-0 right-0 z-50 flex justify-center items-center w-full h-full bg-black/50 backdrop-blur-sm">
-
-    <div class="relative w-full max-w-md p-4">
-
-        <div class="bg-[#0f1335] text-white rounded-2xl shadow-lg border border-gray-700 p-5">
-
-            <!-- HEADER -->
-            <div class="flex justify-between items-center border-b border-gray-600 pb-2">
-                <h3 class="text-lg font-semibold">Ticket Information</h3>
-                <button data-modal-hide="ticket-modal" class="text-gray-400 hover:text-white text-lg">✕</button>
-            </div>
-
-            <!-- IMAGE -->
-            <div class="flex justify-center mt-4">
-                <img 
-                    id="ticket-image"
-                    src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"
-                    alt="Event Image"
-                    class="w-40 h-24 object-cover rounded-lg border border-gray-600">
-            </div>
-
-            <!-- EVENT TITLE -->
-            <div class="text-center mt-3">
-                <p class="font-medium">Festival Seni</p>
-            </div>
-
-            <!-- TICKET INFO -->
-            <div class="mt-5 space-y-4">
-
-                <!-- Early Bird -->
-                <div class="bg-gray-800 rounded-lg p-3">
-                    <p class="text-sm text-gray-400">Early Bird</p>
-                    <p class="text-sm">Kuota: 50</p>
-                    <p class="text-sm">Harga: Rp 50.000</p>
-                </div>
-
-                <!-- Regular -->
-                <div class="bg-gray-800 rounded-lg p-3">
-                    <p class="text-sm text-gray-400">Regular</p>
-                    <p class="text-sm">Kuota: 100</p>
-                    <p class="text-sm">Harga: Rp 100.000</p>
-                </div>
-
-                 <!-- VIP -->
-                <div class="bg-gray-800 rounded-lg p-3">
-                    <p class="text-sm text-gray-400">VIP</p>
-                    <p class="text-sm">Kuota: 20</p>
-                    <p class="text-sm">Harga: Rp 200.000</p>
-                </div>
-
-            </div>
-
-            <!-- FOOTER -->
-            <div class="flex justify-end mt-4">
-                <button data-modal-hide="ticket-modal"
-                    class="bg-blue-500 px-4 py-2 rounded hover:bg-blue-600">
-                    Close
-                </button>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<script>
-document.getElementById('form-tiket').addEventListener('submit', function(e){
-
-    e.preventDefault();
-
-    // ambil data modal pertama
-    const judul = document.getElementById('judul').value;
-    const deskripsi = document.getElementById('deskripsi').value;
-    const tanggal = document.getElementById('tanggal').value;
-    const waktu = document.getElementById('waktu').value;
-    const lokasi = document.getElementById('lokasi').value;
-    const kategori = document.getElementById('kategori').value;
-
-    // foto
-    const fotoInput = document.getElementById('foto');
-    const foto = fotoInput.files[0];
-
-    let fotoURL = '';
-
-    if (foto) {
-        fotoURL = URL.createObjectURL(foto);
-    }
-
-    // row baru
-    const row = `
-        <tr class="border-b border-gray-700 hover:bg-[#1a1f4a]">
-
-            <td class="px-6 py-4 font-medium text-gray-200">
-                ${judul}
-            </td>
-
-            <td class="px-6 py-4 text-gray-200">
-                ${deskripsi}
-            </td>
-
-            <td class="px-6 py-4 text-gray-200">
-                ${tanggal}
-            </td>
-
-            <td class="px-6 py-4 text-gray-200">
-                ${waktu}
-            </td>
-
-            <td class="px-6 py-4 text-gray-200">
-                ${lokasi}
-            </td>
-
-            <td class="px-6 py-4 text-gray-200">
-                ${kategori}
-            </td>
-
-            <td class="px-6 py-4">
-                <img src="${fotoURL}" 
-                    class="w-16 h-16 object-cover rounded-lg border border-gray-600">
-            </td>
-
-            <td class="px-6 py-4 text-gray-200">
-            <div class="flex flex-col gap-2">
-
-                <div class="flex gap-2">
-
-                    <!-- EDIT -->
-                    <button 
-                        type="button"
-                        class="flex items-center gap-1 bg-green-500 px-3 py-1 rounded hover:bg-green-600 text-white"
-                        data-modal-target="edit-modal"
-                        data-modal-toggle="edit-modal"
-
-                        data-judul="${judul}"
-                        data-deskripsi="${deskripsi}"
-                        data-tanggal="${tanggal}"
-                        data-waktu="${waktu}"
-                        data-lokasi="${lokasi}"
-                        data-kategori="${kategori}"
-                        data-foto="${fotoURL}">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M11 5h2m-1-1v2m6.707 2.293a1 1 0 010 1.414l-9 9a1 1 0 01-.39.242l-4 1a1 1 0 01-1.213-1.213l1-4a1 1 0 01.242-.39l9-9a1 1 0 011.414 0z"/>
-                        </svg>
-
-                        Edit
-                    </button>
-
-                    <!-- DELETE -->
-                    <button 
-                        type="button"
-                        data-modal-target="popup-modal" 
-                        data-modal-toggle="popup-modal"
-                        class="flex items-center gap-1 bg-red-500 px-3 py-1 rounded hover:bg-red-600 text-white">
-                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 7h12M9 7v12m6-12v12M10 4h4a1 1 0 011 1v2H9V5a1 1 0 011-1z"/>
-                        </svg>
-                        Delete
-                    </button>
-
-                </div>
-
-                <!-- PARTICIPANT -->
-                <button 
-                    type="button"
-                    data-modal-target="participant-modal" 
-                    data-modal-toggle="participant-modal"
-                    class="bg-blue-500 px-3 py-1 rounded hover:bg-blue-600 text-white text-sm">
-
-                    Participant Details
-                </button>
-
-                <!-- TICKET -->
-                <button 
-                    type="button"
-                    data-modal-target="ticket-modal" 
-                    data-modal-toggle="ticket-modal"
-                    class="bg-yellow-400 px-3 py-1 rounded hover:bg-yellow-500 text-white text-sm">
-
-                    Ticket Information
-                </button>
-
-            </div>
-        </td>
-        </tr>
-    `;
-
-    // masuk tabel
-    document.getElementById('event-table-body')
-        .insertAdjacentHTML('beforeend', row);
-
-    initFlowbite();
-
-    // reset form
-    document.getElementById('form-event').reset();
-    document.getElementById('form-tiket').reset();
-
-    // tutup modal
-    document.getElementById('crud-modal').classList.add('hidden');
-    document.getElementById('crud-modal-2').classList.add('hidden');
-});
-
-document.addEventListener('click', function(e){
-
-    const button = e.target.closest('[data-modal-target="edit-modal"]');
-
-    if(!button) return;
-
-    const judul = button.getAttribute('data-judul');
-    const deskripsi = button.getAttribute('data-deskripsi');
-    const tanggal = button.getAttribute('data-tanggal');
-    const waktu = button.getAttribute('data-waktu');
-    const lokasi = button.getAttribute('data-lokasi');
-    const kategori = button.getAttribute('data-kategori');
-    const foto = button.getAttribute('data-foto');
-
-    document.getElementById('edit-title').value = judul;
-    document.getElementById('edit-description').value = deskripsi;
-    document.getElementById('edit-date').value = tanggal;
-    document.getElementById('edit-time').value = waktu;
-    document.getElementById('edit-location').value = lokasi;
-    document.getElementById('edit-category').value = kategori;
-    document.getElementById('preview-foto').src = foto;
-});
-
-document.getElementById('searchParticipant')
-.addEventListener('keyup', function() {
-
-    let keyword = this.value.toLowerCase();
-
-    let rows = document.querySelectorAll('#participant-table tr');
-
-    rows.forEach(row => {
-
-        let text = row.innerText.toLowerCase();
-
-        if(text.includes(keyword)) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
-
-    });
-
-});
-</script>
 </body>
 </html>
