@@ -49,7 +49,9 @@
                     </button>
                 </form>
                 @if (session('error'))
-                    <p style="color:red">{{ session('error') }}</p>
+                    <div class="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm text-center font-medium">
+                        {{ session('error') }}
+                    </div>
                 @endif
 
             </div>

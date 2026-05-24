@@ -64,7 +64,7 @@
 <aside class="fixed top-16 left-0 z-40 w-64 h-[calc(100vh-4rem)] bg-[#0f1335] border-r border-gray-700">
     <div class="h-full px-3 py-4 overflow-y-auto">
         <ul class="space-y-2 font-medium">
-            <a href="{{ url('/admindashboard') }}" 
+            <a href="{{ url('/admindashboard') }}"
             class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">
              <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 2L2 8h2v8h4v-5h4v5h4V8h2L10 2z"/>
@@ -72,7 +72,7 @@
             <span>Event List</span>
             </a>
 
-            <a href="{{ url('/informasipembayaran') }}" 
+            <a href="{{ url('/informasipembayaran') }}"
             class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">
             <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v2H2V5zm0 4h16v6a2 2 0 01-2 2H4a2 2 0 01-2-2V9zm3 3h4v2H5v-2z"/>
@@ -80,7 +80,7 @@
             <span>Payment Information</span>
             </a>
 
-            <a href="{{ url('/categories') }}" 
+            <a href="{{ url('/categories') }}"
             class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-500/20 hover:text-indigo-300 transition-all duration-200">
             <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M3 3h6v6H3V3zm8 0h6v6h-6V3zM3 11h6v6H3v-6zm8 0h6v6h-6v-6z"/>
@@ -99,7 +99,7 @@
         Welcome, Admin!
     </h1>
     <p class="text-sm text-gray-300">
-        Manage events and monitor orders easily through this dashboard. 
+        Manage events and monitor orders easily through this dashboard.
     </p>
     <p class="text-sm text-gray-300">
         Add new events, edit information, and track ticket orders efficiently.
@@ -144,8 +144,8 @@
         </h2>
 
     <div class="flex justify-end">
-        <button 
-            data-modal-target="crud-modal" 
+        <button
+            data-modal-target="crud-modal"
             data-modal-toggle="crud-modal"
             class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
             + Create New Category
@@ -155,7 +155,7 @@
 
     <!-- ALL -->
     <div>
-        <button onclick="filterCategory('all')" 
+        <button onclick="filterCategory('all')"
             class="px-5 py-2 bg-blue-600 text-white rounded-full">
             All Categories
         </button>
@@ -167,7 +167,7 @@
                 Technology
             </button>
                 <!-- Edit -->
-                <button 
+                <button
                     data-modal-target="edit-modal"
                     data-modal-toggle="edit-modal"
                     data-category="Technology"
@@ -178,8 +178,8 @@
                     </svg>
                 </button>
                 <!-- Delete -->
-                <button 
-                    data-modal-target="popup-modal" 
+                <button
+                    data-modal-target="popup-modal"
                     data-modal-toggle="popup-modal"
                     class="hover:text-red-400 transition">
                     ✕
@@ -191,7 +191,7 @@
                 Art & Design
             </button>
                 <!-- Edit -->
-                <button 
+                <button
                     data-modal-target="edit-modal"
                     data-modal-toggle="edit-modal"
                     data-category="Art & Design"
@@ -202,8 +202,8 @@
                     </svg>
                 </button>
                 <!-- Delete -->
-            <button 
-                data-modal-target="popup-modal" 
+            <button
+                data-modal-target="popup-modal"
                 data-modal-toggle="popup-modal"
                 class="hover:text-red-400 transition">
                 ✕
@@ -215,7 +215,7 @@
                 Music
             </button>
                 <!-- Edit -->
-                <button 
+                <button
                     data-modal-target="edit-modal"
                     data-modal-toggle="edit-modal"
                     data-category="Music"
@@ -226,8 +226,8 @@
                     </svg>
                 </button>
                 <!-- Delete -->
-                <button 
-                    data-modal-target="popup-modal" 
+                <button
+                    data-modal-target="popup-modal"
                     data-modal-toggle="popup-modal"
                     class="hover:text-red-400 transition">
                     ✕
@@ -284,21 +284,21 @@ class="hidden fixed inset-0 z-50 flex justify-center items-center bg-black/60 ba
     <div class="bg-[#0f1335] text-white rounded p-6 w-96 border border-gray-700">
         <h3 class="text-lg font-semibold mb-3">Add Category</h3>
         <form id="categoryForm" class="space-y-3">
-            <input 
+            <input
                 id="categoryInput"
-                type="text" 
+                type="text"
                 placeholder="Category Name"
                 class="w-full p-2 rounded bg-gray-800 text-white">
 
             <div class="flex justify-end gap-2 mt-4">
-                <button 
-                    type="button" 
+                <button
+                    type="button"
                     data-modal-hide="crud-modal"
                     class="px-3 py-1 border rounded">
                     Cancel
                 </button>
 
-                <button 
+                <button
                     type="submit"
                     class="px-3 py-1 bg-blue-600 rounded">
                     Submit
@@ -314,20 +314,20 @@ class="hidden fixed inset-0 z-50 flex justify-center items-center bg-black/60 ba
     <div class="bg-[#0f1335] text-white rounded p-6 w-96 border border-gray-700">
         <h3 class="text-lg font-semibold mb-3">Edit Category</h3>
         <form id="editCategoryForm" class="space-y-3">
-            <input 
+            <input
                 id="editCategoryInput"
                 type="text"
                 class="w-full p-2 rounded bg-gray-800 text-white">
 
             <div class="flex justify-end gap-2 mt-4">
-                <button 
+                <button
                     type="button"
                     data-modal-hide="edit-modal"
                     class="px-3 py-1 border rounded">
                     Cancel
                 </button>
 
-                <button 
+                <button
                     type="submit"
                     class="px-3 py-1 bg-green-600 rounded">
                     Update
@@ -349,11 +349,11 @@ class="hidden fixed inset-0 z-50 flex justify-center items-center bg-black/60 ba
                 <svg class="mx-auto mb-4 text-fg-disabled w-12 h-12" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
                 <h3 class="mb-6 text-body">Are you sure you want to delete this category from your website?</h3>
                 <div class="flex items-center space-x-4 justify-center">
-                    <button data-modal-hide="popup-modal" type="button" 
+                    <button data-modal-hide="popup-modal" type="button"
                         class="text-white bg-blue-500 box-border border border-transparent hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
                         Yes, I'm sure
                     </button>
-                    <button data-modal-hide="popup-modal" type="button" 
+                    <button data-modal-hide="popup-modal" type="button"
                         class="text-white bg-red-500 box-border border border-transparent hover:bg-red-600 focus:ring-4 focus:ring-red-300 shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
                         No, cancel</button>
                 </div>
@@ -416,7 +416,7 @@ document.getElementById('categoryForm').addEventListener('submit', function(e){
                 ${categoryName}
             </button>
 
-            <button 
+            <button
                 onclick="this.parentElement.remove()"
                 class="hover:text-red-400 transition">
                 ✕

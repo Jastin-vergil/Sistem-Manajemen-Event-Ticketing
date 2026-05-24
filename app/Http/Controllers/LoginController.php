@@ -7,27 +7,49 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    /**
+     * Tampilkan halaman login
+     */
+    public function index()
+    {
+        return view('login'); // Sesuai nama file login.blade.php kamu
+    }
+
+    /**
+     * Logika autentikasi masuk
+     */
     public function authenticate(Request $request)
     {
-        //Validasi input login
-        validate([
+        $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
-        $credentials['is_admin'] = true;
+        if (Auth::attempt($credentials)) {
+            if (Auth::user()->is_admin) {
+                $request->session()->regenerate();
+                return redirect()->route('admin.admin_dashboard');
+            }
 
-        // eksekusi login
-        if (Auth::attempt($credentials, $request->remember)) {
-            $request->session()->regenerate();
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
 
-            // redirect ke halaman admin dashboard
-            return redirect()->intended('admindashboard');
+            return back()->with('error', 'Akses ditolak! Akun kamu bukan akun Admin.')->withInput();
         }
 
-        // kalau gagal login, kembalikan ke halaman login dengan pesan error
-        return back()->withErrors([
-            'email' => 'Akses ditolak. Email atau password salah, atau akun kamu bukan Admin.',
-        ])->onlyInput('email');
+        return back()->with('error', 'Email atau password salah.')->withInput();
+    }
+
+    /**
+     * Logika logout
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
     }
 }

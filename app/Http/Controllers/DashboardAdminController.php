@@ -11,7 +11,7 @@ class DashboardAdminController extends Controller
     {
         $events = Event::all();
 
-        return view('admindashboard', compact('events'));
+        return view('admin.admin_dashboard', compact('events'));
     }
 
     public function store(Request $request)

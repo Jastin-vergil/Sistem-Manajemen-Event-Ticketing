@@ -71,7 +71,7 @@
       function login(event) {
         event.preventDefault();
         // Add your login logic here
-        window.location.href = "/admindashboard";
+        window.location.href = "/admin.admin_dashboard"; // Redirect to admin dashboard after successful login
       }
     </script>
   </body>
