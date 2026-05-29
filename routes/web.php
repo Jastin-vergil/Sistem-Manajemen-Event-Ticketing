@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardAdminController;
+use App\Http\Controllers\PaymentController;
 
 // --- Public Routes ---
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -54,3 +55,6 @@ Route::get('/pages/admin_dashboard', function () {
 
     return view('admin.admin_dashboard');
 })->name('admin.admin_dashboard');
+
+Route::post('/payment/store', [PaymentController::class, 'store'])
+    ->name('payment.store');
