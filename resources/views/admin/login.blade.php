@@ -28,7 +28,7 @@
                     style="font-family: 'Montserrat', sans-serif;">
                     LOGIN
                 </h1>
-                <form action="/login" method="post" class="space-y-4">
+                <form action="{{ route('admin.login.submit') }}" method="post" class="space-y-4">
                     @csrf
                     <div>
                         <label for="email" class="mb-2 dark:text-gray-400 text-lg">Email</label>

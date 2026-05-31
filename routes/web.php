@@ -4,11 +4,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\PaymentController;
+// Halaman utama langsung lempar ke login
+Route::get('/', function () {
+    return redirect()->route('login');
+});
 
-// --- Public Routes ---
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+// ==========================================
+// RUTE AUTENTIKASI (Pake URL /login standar)
+// ==========================================
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('admin.login.submit');
+Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout');
 Route::get('/transactionhistory', function () {
     return view('Pages.transaction_history');
 });
@@ -42,19 +48,7 @@ Route::put('/events/{id}', [DashboardAdminController::class, 'update']);
 
 Route::delete('/events/{id}', [DashboardAdminController::class, 'destroy']);
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Route untuk Halaman Dashboard Admin
-Route::get('/pages/admin_dashboard', function () {
-    // Cek manual: Jika belum login ATAU bukan admin, tendang balik ke halaman login
-    if (!Auth::check() || !Auth::user()->is_admin) {
-        return redirect('/login')->withErrors(['email' => 'Silahkan login sebagai admin terlebih dahulu.']);
-    }
-
-    return view('admin.admin_dashboard');
-})->name('admin.admin_dashboard');
 
 Route::post('/payment/store', [PaymentController::class, 'store'])
     ->name('payment.store');
