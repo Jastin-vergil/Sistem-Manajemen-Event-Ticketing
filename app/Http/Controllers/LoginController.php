@@ -32,7 +32,7 @@ class LoginController extends Controller
             Auth::loginUsingId($admin->id);
             $request->session()->regenerate();
 
-            return redirect()->route('admin.ticket.index');
+            return redirect()->route('admin.ticket.interface');
         }
 
         return back()->with('error', 'Email atDau password salah.');
