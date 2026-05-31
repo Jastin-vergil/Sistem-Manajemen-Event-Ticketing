@@ -8,48 +8,41 @@ use App\Models\User;
 
 class LoginController extends Controller
 {
-    // Menampilkan halaman login
+    // Tampilkan Form Login (Form akan TETAP muncul meskipun admin sudah login)
     public function showLoginForm()
     {
-        // Jika admin sudah login sebelumnya, langsung lempar ke dashboard
-        if (Auth::check()) {
-            return redirect()->intended('/admindashboard');
-        }
-
+        // Bagian Auth::check() yang melempar otomatis sudah dibuang total!
         return view('admin.login');
     }
 
-    // Memproses data input login tanpa Bcrypt (Teks Biasa)
+    // Memproses data input login tanpa Bcrypt
     public function login(Request $request)
     {
-        // 1. Validasi input form
         $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
-        // 2. Cari data admin di tabel admin_event berdasarkan email dan password teks biasa
+        // Cari data admin menggunakan plain text password
         $admin = User::where('email', $request->email)
                      ->where('password', $request->password)
                      ->first();
 
-        // 3. Jika data ditemukan, buat session login secara manual
         if ($admin) {
-            Auth::login($admin);
+            Auth::loginUsingId($admin->id);
             $request->session()->regenerate();
 
-            // Berhasil login, masuk ke dashboard admin
-            return redirect()->intended('/admindashboard');
+            return redirect()->route('admin.ticket.index');
         }
 
-        // 4. Jika tidak cocok, kembali ke halaman login dengan pesan kesalahan
-        return back()->with('error', 'Email atau password salah.');
+        return back()->with('error', 'Email atDau password salah.');
     }
 
-    // Mengakhiri session login (Logout)
+    // Proses Log Out Hancurkan Session
     public function logout(Request $request)
     {
         Auth::logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

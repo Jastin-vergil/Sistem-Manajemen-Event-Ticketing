@@ -9,61 +9,65 @@ class DashboardAdminController extends Controller
 {
     public function index()
     {
-        $events = Event::all();
+        $events = Event::orderBy('id', 'desc')->get();
+        $eventActive = Event::count();
+        $orders = 0;
 
-        return view('admin.admin_dashboard', compact('events'));
+        return view('admin.admin_dashboard', compact('events', 'eventActive', 'orders'));
     }
 
+    // MEMPROSES SAVE EVENT & DIRECT KE FORM TIKET
     public function store(Request $request)
     {
-        $photoPath = null;
-
-        if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('events', 'public');
-        }
-
-        Event::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'date' => $request->date,
-            'time' => $request->time,
-            'location' => $request->location,
-            'category' => $request->category,
-            'photo' => $photoPath,
+        $request->validate([
+            'title'       => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'date'        => 'required|date',
+            'time'        => 'required',
+            'location'    => 'required|string',
+            'category'    => 'required|string',
+            'photo'       => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
-        return redirect()->back();
-    }
-
-    public function update(Request $request, $id)
-    {
-        $event = Event::findOrFail($id);
-
-        $photoPath = $event->photo;
+        $input = $request->all();
 
         if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('events', 'public');
+            $image = $request->file('photo');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            $input['photo'] = $imageName;
         }
 
-        $event->update([
-            'title' => $request->title,
-            'description' => $request->description,
-            'date' => $request->date,
-            'time' => $request->time,
-            'location' => $request->location,
-            'category' => $request->category,
-            'photo' => $photoPath,
-        ]);
+        // 1. Simpan event dan masukkan ke variabel $event
+        $event = Event::create($input);
 
-        return redirect()->back();
+        // 2. Alihkan langsung ke halaman form tiket membawa ID event yang baru dibuat
+        return redirect()->route('admin.tickets.create', ['event_id' => $event->id]);
     }
 
-    public function destroy($id)
+    // MENAMPILKAN HALAMAN FORM TIKET BARU
+    public function createTicket(Request $request)
     {
-        $event = Event::findOrFail($id);
+        // Ambil data event berdasarkan ID yang dikirim lewat URL
+        $event = Event::findOrFail($request->event_id);
 
-        $event->delete();
+        return view('admin.create_ticket', compact('event'));
+    }
 
-        return redirect()->back();
+    // MEMPROSES PENYIMPANAN DATA TIKET
+    public function storeTicket(Request $request)
+    {
+        $request->validate([
+            'event_id'   => 'required|exists:events,id',
+            'ticket_name'=> 'required|string|max:255',
+            'price'      => 'required|numeric',
+            'stock'      => 'required|integer',
+        ]);
+
+        // SINI: Proses simpan ke tabel tiketmu (misal Model Ticket)
+        // \App\Models\Ticket::create($request->all());
+
+        // Jika sudah selesai isi tiket, baru balikkan ke dashboard utama
+        return redirect()->route('admin.dashboard')->with('success', 'Event dan Tiket berhasil dibuat!');
     }
 }

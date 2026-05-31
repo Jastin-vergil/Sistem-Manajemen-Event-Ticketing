@@ -2,53 +2,54 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\DashboardAdminController;
-use App\Http\Controllers\PaymentController;
-// Halaman utama langsung lempar ke login
-Route::get('/', function () {
-    return redirect()->route('login');
-});
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\TiketController;
 
-// ==========================================
-// RUTE AUTENTIKASI (Pake URL /login standar)
-// ==========================================
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('admin.login.submit');
-Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout');
-Route::get('/transactionhistory', function () {
-    return view('Pages.transaction_history');
-});
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/userdashboard', function () {
     return view('Pages.landing_page');
 });
-Route::get('/admindashboard', [DashboardAdminController::class, 'index'])->name('admin.admin_dashboard');
-Route::get('/informasipembayaran', function () {
-    return view('admin.informasi_pembayaran');
+
+Route::get('/', function () {
+    return redirect()->route('admin.ticket.index');
 });
-Route::get('/categories', function () {
-    return view('admin.categories');
-});
-Route::get('/ticket', function () {
-    return view('Pages.ticket');
-})->name('ticket');
 
-Route::get('/payment', function () {
-    return view('Pages.payment');
-})->name('payment');
+Route::resource('tiket', TiketController::class)
+    ->except(['show'])
+    ->names([
+        'index'   => 'admin.ticket.index',
+        'create'  => 'admin.ticket.create',
+        'store'   => 'admin.ticket.store',
+        'edit'    => 'admin.ticket.edit',
+        'update'  => 'admin.ticket.update',
+        'destroy' => 'admin.ticket.destroy',
+    ]);
 
-Route::post('/payment/confirm', function () {
-    return "Payment Success (dummy)";
-})->name('payment.confirm');
+Route::resource('events', EventController::class)
+    ->except(['show'])
+    ->names([
+        'index'   => 'admin.event.index',
+        'create'  => 'admin.event.create',
+        'store'   => 'admin.event.store',
+        'edit'    => 'admin.event.edit',
+        'update'  => 'admin.event.update',
+        'destroy' => 'admin.event.destroy',
+    ]);
 
-Route::get('/admindashboard', [DashboardAdminController::class, 'index']);
+    use App\Http\Controllers\KategoriController;
 
-Route::post('/events', [DashboardAdminController::class, 'store']);
-
-Route::put('/events/{id}', [DashboardAdminController::class, 'update']);
-
-Route::delete('/events/{id}', [DashboardAdminController::class, 'destroy']);
-
-
-
-Route::post('/payment/store', [PaymentController::class, 'store'])
-    ->name('payment.store');
+Route::resource('kategori', KategoriController::class)
+    ->except(['show', 'create', 'edit'])
+    ->names([
+        'index'   => 'admin.kategori.index',
+        'store'   => 'admin.kategori.store',
+        'update'  => 'admin.kategori.update',
+        'destroy' => 'admin.kategori.destroy',
+    ]);
+Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('admin.pembayaran.index');
+Route::get('/pembayaran/{pembayaran}', [PembayaranController::class, 'show'])->name('admin.pembayaran.show');
+Route::post('/pembayaran/{pembayaran}/approve', [PembayaranController::class, 'approve'])->name('admin.pembayaran.approve');
+Route::post('/pembayaran/{pembayaran}/reject', [PembayaranController::class, 'reject'])->name('admin.pembayaran.reject');
+Route::delete('/pembayaran/{pembayaran}', [PembayaranController::class, 'destroy'])->name('admin.pembayaran.destroy');
