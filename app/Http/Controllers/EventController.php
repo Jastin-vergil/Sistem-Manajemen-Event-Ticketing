@@ -12,14 +12,14 @@ class EventController extends Controller
     {
         $events = Event::withCount('tiket')->orderBy('tanggal')->get();
 
-        return view('admin.event.index', compact('events'));
+        return view('admin.event.interface', compact('events'));
     }
 
     public function create()
-    {
-        return view('admin.event.create');
-    }
-
+{
+    $kategori = \App\Models\Kategori::orderBy('nama')->get();
+    return view('admin.event.create_event', compact('kategori'));
+}
     public function store(Request $request)
     {
         $request->validate([
@@ -44,7 +44,7 @@ class EventController extends Controller
     public function edit(Event $event)
 {
     $kategori = Kategori::orderBy('nama')->get();
-    return view('admin.event.edit', compact('event', 'kategori'));
+    return view('admin.event.edit_event', compact('event', 'kategori'));
 }
 
     public function update(Request $request, Event $event)

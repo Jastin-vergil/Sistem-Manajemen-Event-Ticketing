@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('admin.layout.sidebar')
 @section('title', 'Payment Detail')
 @section('heading', 'Payment Detail')
 

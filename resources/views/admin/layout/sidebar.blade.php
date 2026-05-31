@@ -11,8 +11,6 @@
 <body style="background:#0f1117;font-family:sans-serif;font-size:14px;color:#cbd5e1;min-height:100vh">
 
     <div style="display:flex;min-height:100vh">
-
-        <!-- SIDEBAR -->
         <aside
             style="width:210px;background:#1a1d2e;border-right:1px solid #2a2d3e;position:fixed;top:0;left:0;height:100%;display:flex;flex-direction:column;z-index:20">
             <div style="padding:20px;border-bottom:1px solid #2a2d3e">
@@ -23,7 +21,7 @@
                 <p
                     style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#374151;padding:16px 20px 4px">
                     Menu</p>
-                <a href="{{ route('admin.ticket.index') }}"
+                <a href="{{ route('admin.ticket.interface') }}"
                     style="display:flex;align-items:center;gap:10px;padding:10px 20px;border-left:2px solid {{ request()->routeIs('admin.ticket.*') ? '#7c6ff7' : 'transparent' }};background:{{ request()->routeIs('admin.ticket.*') ? 'rgba(124,111,247,0.1)' : 'transparent' }};color:{{ request()->routeIs('admin.ticket.*') ? '#a78bfa' : '#6b7280' }};text-decoration:none;transition:all .15s">
                     🎟️ Tickets
                 </a>

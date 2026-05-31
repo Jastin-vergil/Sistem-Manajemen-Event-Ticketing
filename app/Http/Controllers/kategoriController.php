@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 class KategoriController extends Controller
 {
     public function index()
-    {
-        $kategori = Kategori::withCount('events')->orderBy('nama')->get();
-        return view('admin.kategori.index', compact('kategori'));
-    }
+{
+    $kategori = Kategori::withCount('events')->orderBy('nama')->get();
+    return view('admin.kategori.interface', compact('kategori'));
+}
 
     public function store(Request $request)
     {

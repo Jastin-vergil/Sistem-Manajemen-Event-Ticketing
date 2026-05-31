@@ -32,13 +32,13 @@ class PembayaranController extends Controller
             'rejected' => Pembayaran::where('status', 'Rejected')->count(),
         ];
 
-        return view('admin.pembayaran.index', compact('pembayaran', 'stats'));
+        return view('admin.pembayaran.interface', compact('pembayaran', 'stats'));
     }
 
     public function show(Pembayaran $pembayaran)
     {
         $pembayaran->load('tiket.event');
-        return view('admin.pembayaran.show', compact('pembayaran'));
+        return view('admin.pembayaran.show_form', compact('pembayaran'));
     }
 
     public function approve(Pembayaran $pembayaran)

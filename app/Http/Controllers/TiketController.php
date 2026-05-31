@@ -20,13 +20,13 @@ class TiketController extends Controller
             'pendapatan' => $tiket->sum(fn($t) => $t->harga * $t->terjual),
         ];
 
-        return view('admin.ticket.index', compact('tiket', 'events', 'stats'));
+        return view('admin.ticket.interface', compact('tiket', 'events', 'stats'));
     }
 
     public function create()
     {
         $events = Event::orderBy('tanggal')->get();
-        return view('admin.ticket.create', compact('events'));
+        return view('admin.ticket.create_ticket', compact('events'));
     }
 
     public function store(Request $request)
@@ -44,13 +44,13 @@ class TiketController extends Controller
 
         Tiket::create($request->all());
 
-        return redirect()->route('admin.ticket.index')->with('success', 'Tiket berhasil ditambahkan.');
+        return redirect()->route('admin.ticket.interface')->with('success', 'Tiket berhasil ditambahkan.');
     }
 
     public function edit(Tiket $tiket)
     {
         $events = Event::orderBy('tanggal')->get();
-        return view('admin.ticket.edit', compact('tiket', 'events'));
+        return view('admin.ticket.edit_ticket', compact('tiket', 'events'));
     }
 
     public function update(Request $request, Tiket $tiket)
@@ -68,12 +68,12 @@ class TiketController extends Controller
 
         $tiket->update($request->all());
 
-        return redirect()->route('admin.ticket.index')->with('success', 'Tiket berhasil diperbarui.');
+        return redirect()->route('admin.ticket.interface')->with('success', 'Tiket berhasil diperbarui.');
     }
 
     public function destroy(Tiket $tiket)
     {
         $tiket->delete();
-        return redirect()->route('admin.ticket.index')->with('success', 'Tiket berhasil dihapus.');
+        return redirect()->route('admin.ticket.interface')->with('success', 'Tiket berhasil dihapus.');
     }
 }

@@ -13,16 +13,16 @@ Route::get('/userdashboard', function () {
 });
 
 Route::get('/', function () {
-    return redirect()->route('admin.ticket.index');
+    return redirect()->route('admin.ticket.interface');
 });
 
 Route::resource('tiket', TiketController::class)
     ->except(['show'])
     ->names([
-        'index'   => 'admin.ticket.index',
-        'create'  => 'admin.ticket.create',
+        'index'   => 'admin.ticket.interface',
+        'create'  => 'admin.ticket.create_ticket',
         'store'   => 'admin.ticket.store',
-        'edit'    => 'admin.ticket.edit',
+        'edit'    => 'admin.ticket.edit_ticket',
         'update'  => 'admin.ticket.update',
         'destroy' => 'admin.ticket.destroy',
     ]);

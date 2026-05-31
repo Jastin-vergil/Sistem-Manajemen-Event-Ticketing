@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('admin.layout.sidebar')
 @section('title', 'Add Event')
 @section('heading', 'Add New Event')
 
@@ -33,7 +33,7 @@
                         <option value="">Select category...</option>
                         @foreach ($kategori as $kat)
                             <option value="{{ $kat->id }}"
-                                {{ old('kategori_id', $event->kategori_id ?? '') == $kat->id ? 'selected' : '' }}>
+                                {{ old('kategori_id') == $kat->id ? 'selected' : '' }}>
                                 {{ $kat->nama }}</option>
                         @endforeach
                     </select>

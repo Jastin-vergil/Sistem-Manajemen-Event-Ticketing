@@ -1,9 +1,9 @@
-@extends('admin.layout.app')
+@extends('admin.layout.sidebar')
 @section('title', 'Tickets')
 @section('heading', 'Event Ticket Management')
 
 @section('topbar-actions')
-  <a href="{{ route('admin.ticket.create') }}"
+  <a href="{{ route('admin.ticket.create_ticket') }}"
     style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;border-radius:8px;text-decoration:none;font-size:13px;font-weight:500;border:none">
     + Add Ticket
   </a>
@@ -64,7 +64,7 @@
             </td>
             <td style="padding:12px 16px;text-align:center">
               <div style="display:flex;justify-content:center;gap:8px">
-                <a href="{{ route('admin.ticket.edit', $t) }}"
+                <a href="{{ route('admin.ticket.edit_ticket', $t) }}"
                   style="padding:5px 12px;border:1px solid #2a2d3e;border-radius:8px;color:#a78bfa;font-size:12px;text-decoration:none;background:transparent"
                   onmouseover="this.style.background='rgba(124,111,247,0.1)'" onmouseout="this.style.background='transparent'">Edit</a>
                 <form action="{{ route('admin.ticket.destroy', $t) }}" method="POST" onsubmit="return confirm('Delete this ticket?')" style="margin:0">
