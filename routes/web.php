@@ -6,12 +6,18 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\TiketController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\KategoriController;
+use App\Models\Event;
+use App\Models\Kategori;
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('admin.login.submit');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
 Route::get('/userdashboard', function () {
-    return view('Pages.landing_page');
+    $events = Event::with('kategori')->get();
+    $kategori = Kategori::all();
+    return view('Pages.landing_page', compact('events', 'kategori'));
 });
 
 Route::get('/', function () {

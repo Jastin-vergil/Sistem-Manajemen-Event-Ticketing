@@ -34,11 +34,14 @@
                 <h2 class="text-3xl font-bold">Latest Events</h2>
                 <p class="text-indigo-400 italic">Click and drag to explore events</p>
             </div>
-            <select id="filter" class="w-full md:w-64 bg-indigo-950 border border-indigo-800 text-white rounded-xl p-3 outline-none focus:ring-2 focus:ring-indigo-500">
+            <select id="filter"
+                class="w-full md:w-64 bg-indigo-950 border border-indigo-800 text-white rounded-xl p-3 outline-none">
                 <option value="all">All Categories</option>
-                <option value="music">Music</option>
-                <option value="tech">Technology</option>
-                <option value="art">Art & Design</option>
+                @foreach($kategori as $kat)
+                    <option value="{{ $kat->nama }}">
+                        {{ $kat->nama }}
+                    </option>
+                @endforeach
             </select>
         </div>
 
@@ -77,54 +80,8 @@
     </div>
 
     <script>
-        // DATA EVENT
-        const eventData = [
-            {
-                title: "Batam Retro Night",
-                cat: "music",
-                img: "1470225620780-dba8ba36b745",
-                loc: "Polibatam Plaza",
-                date: "10 Mei 2026",
-                time: "19:00 WIB",
-                desc: "Nikmati malam penuh musik retro dengan DJ terbaik di Batam."
-            },
-            {
-                title: "Laravel Workshop",
-                cat: "tech",
-                img: "1591453089816-0fbb971b454c",
-                loc: "Tower Building, 3rd Floor",
-                date: "12 Mei 2026",
-                time: "09:00 WIB",
-                desc: "Belajar Laravel dari dasar hingga membuat aplikasi nyata."
-            },
-            {
-                title: "Creative Expo",
-                cat: "art",
-                img: "1547826039-bfc35e0f1ea8",
-                loc: "Main Auditorium",
-                date: "15 Mei 2026",
-                time: "10:00 WIB",
-                desc: "Pameran karya seni dan desain dari mahasiswa kreatif."
-            },
-            {
-                title: "Cyber Security Talk",
-                cat: "tech",
-                img: "1550751827-4bd374c3f58b",
-                loc: "Computer Lab",
-                date: "18 Mei 2026",
-                time: "13:00 WIB",
-                desc: "Diskusi keamanan digital dan tren cyber security terbaru."
-            },
-            {
-                title: "Midnight Jazz",
-                cat: "music",
-                img: "1511671782779-c97d3d27a1d4",
-                loc: "Campus Hall",
-                date: "20 Mei 2026",
-                time: "20:00 WIB",
-                desc: "Pertunjukan jazz malam hari dengan suasana santai dan elegan."
-            }
-        ];
+        const eventData = @json($events);
+        console.log(eventData);
 
         const wrapper = document.getElementById('scroll-wrapper');
         const filter = document.getElementById('filter');
@@ -132,16 +89,32 @@
 
         // RENDER
         const renderEvents = (category = 'all') => {
-            const filteredData = eventData.filter(ev => category === 'all' || ev.cat === category);
+            const filteredData = eventData.filter(ev =>
+                category === 'all' ||
+                ev.kategori.nama === category
+            );
 
             wrapper.innerHTML = filteredData.map(ev => `
                 <div class="event-card">
                     <div class="glass overflow-hidden h-full flex flex-col">
-                        <img src="https://images.unsplash.com/photo-${ev.img}?w=400" class="w-full h-52 object-cover pointer-events-none">
+
+                        <img src="/storage/${ev.foto}"
+                            class="w-full h-52 object-cover pointer-events-none">
+
                         <div class="p-6 flex-grow flex flex-col">
-                            <span class="text-[10px] font-bold bg-indigo-600 px-2 py-1 rounded uppercase w-fit">${ev.cat}</span>
-                            <h3 class="text-xl font-bold mt-3">${ev.title}</h3>
-                            <p class="text-slate-400 text-sm mt-2">${ev.loc}</p>
+
+                            <span class="text-[10px] font-bold bg-indigo-600 px-2 py-1 rounded uppercase w-fit">
+                                ${ev.kategori.nama}
+                            </span>
+
+                            <h3 class="text-xl font-bold mt-3">
+                                ${ev.nama}
+                            </h3>
+
+                            <p class="text-slate-400 text-sm mt-2">
+                                ${ev.lokasi}
+                            </p>
+
                             <button onclick='openModal(${JSON.stringify(ev)})'
                                 class="w-full mt-auto bg-white text-indigo-950 font-bold py-2 rounded-xl hover:bg-indigo-500 hover:text-white transition-colors">
                                 View Details
@@ -154,21 +127,26 @@
 
         // MODAL
         const openModal = (ev) => {
-            document.getElementById('modal-title').innerText = ev.title;
-            document.getElementById('modal-date').innerText = ev.date;
-            document.getElementById('modal-time').innerText = ev.time;
-            document.getElementById('modal-loc').innerText = ev.loc;
-            document.getElementById('modal-desc').innerText = ev.desc;
+            document.getElementById('modal-title').innerText = ev.nama;
+            const tanggal = new Date(ev.tanggal);
+            document.getElementById('modal-date').innerText =
+                tanggal.toLocaleDateString('id-ID', {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric'
+                });
+            document.getElementById('modal-time').innerText = ev.waktu;
+            document.getElementById('modal-loc').innerText = ev.lokasi;
+            document.getElementById('modal-desc').innerText = ev.deskripsi;
 
             document.getElementById('modal-img').src =
-                `https://images.unsplash.com/photo-${ev.img}?w=600`;
+                `/storage/${ev.foto}`;
 
             window.selectedEvent = ev;
 
             modal.classList.remove('hidden');
             modal.classList.add('flex');
         };
-
         const closeModal = () => {
             modal.classList.add('hidden');
             modal.classList.remove('flex');
