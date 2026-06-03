@@ -173,10 +173,9 @@
             modal.classList.add('hidden');
             modal.classList.remove('flex');
         };
-
         const goToTicket = () => {
-            const eventName = encodeURIComponent(window.selectedEvent.title);
-            window.location.href = `{{ route('ticket') }}?event=${eventName}`;
+        const eventName = encodeURIComponent(window.selectedEvent.title);
+        window.location.href = `{{ route('ticket.form') }}?event=${eventName}`;
         };
 
         modal.addEventListener('click', (e) => {
