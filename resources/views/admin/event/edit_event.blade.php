@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('admin.layout.sidebar')
 @section('title', 'Edit Event')
 @section('heading', 'Edit Event: ' . $event->nama)
 
