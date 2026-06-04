@@ -8,6 +8,7 @@ use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\KategoriController;
 use App\Models\Event;
 use App\Models\Kategori;
+use App\Http\Controllers\AdminParticipantController;
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('admin.login.submit');
@@ -61,6 +62,7 @@ route::get('/transactionhistory', function () {
 })->name('transaction.history');
 Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('admin.pembayaran.index');
 Route::get('/pembayaran/{pembayaran}', [PembayaranController::class, 'show'])->name('admin.pembayaran.show');
+Route::post('/pembayaran', [PembayaranController::class, 'store'])->name('payment.store');
 Route::post('/pembayaran/{pembayaran}/approve', [PembayaranController::class, 'approve'])->name('admin.pembayaran.approve');
 Route::post('/pembayaran/{pembayaran}/reject', [PembayaranController::class, 'reject'])->name('admin.pembayaran.reject');
 Route::delete('/pembayaran/{pembayaran}', [PembayaranController::class, 'destroy'])->name('admin.pembayaran.destroy');
@@ -75,3 +77,6 @@ Route::get('/payment', function () {
 
 Route::post('/payment.store', [PembayaranController::class, 'store'])
     ->name('payment.store');
+
+Route::get('/admin/participants', [AdminParticipantController::class, 'index'])
+    ->name('admin.participants');

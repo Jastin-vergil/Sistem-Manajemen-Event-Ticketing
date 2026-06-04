@@ -9,31 +9,65 @@ use Illuminate\Support\Facades\Storage;
 
 class PembayaranController extends Controller
 {
-    public function index(Request $request)
-    {
-        $query = Pembayaran::with('tiket.event')->latest();
+  public function index(Request $request)
+{
+    // WAJIB menggunakan with(['tiket.event']) agar relasi berantai dimuat
+    $query = Pembayaran::with(['tiket.event']);
 
-        if ($request->status) {
-            $query->where('status', $request->status);
-        }
-        if ($request->search) {
-            $query->where(function($q) use ($request) {
-                $q->where('nama_peserta', 'like', '%' . $request->search . '%')
-                  ->orWhere('email', 'like', '%' . $request->search . '%');
-            });
-        }
-
-        $pembayaran = $query->get();
-
-        $stats = [
-            'total'    => Pembayaran::count(),
-            'pending'  => Pembayaran::where('status', 'Pending')->count(),
-            'approved' => Pembayaran::where('status', 'Approved')->count(),
-            'rejected' => Pembayaran::where('status', 'Rejected')->count(),
-        ];
-
-        return view('admin.pembayaran.interface', compact('pembayaran', 'stats'));
+    if ($request->has('search')) {
+        $query->where('nama_peserta', 'like', '%' . $request->search . '%')
+              ->orWhere('email', 'like', '%' . $request->search . '%');
     }
+
+    $pembayaran = $query->latest()->get();
+
+    // Pastikan $stats juga dikirim agar tidak memicu error undefined variable kembali
+    $stats = [
+        'total'    => Pembayaran::count(),
+        'pending'  => Pembayaran::where('status', 'Pending')->count(),
+        'approved' => Pembayaran::where('status', 'Approved')->orWhere('status', 'Verified')->count(),
+        'rejected' => Pembayaran::where('status', 'Rejected')->orWhere('status', 'Declined')->count(),
+    ];
+
+    return view('admin.pembayaran.interface', compact('pembayaran', 'stats'));
+}
+
+
+    public function store(Request $request)
+    {
+        // 1. Validasi request dari form
+        $request->validate([
+            'nama_peserta' => 'required|string|max:255',
+            'email'        => 'required|email|max:255',
+            'ticket_type'  => 'required|string',
+            'price'        => 'required|numeric',
+            'proof'        => 'required|image|mimes:jpeg,png,jpg|max:2048', // Batasi gambar maks 2MB
+        ]);
+
+        // 2. Kelola penyimpanan file bukti transfer
+        $fileName = null;
+        if ($request->hasFile('proof')) {
+            $file = $request->file('proof');
+            // Menamai file agar unik: contoh 'bukti_1654300000.png'
+            $fileName = 'bukti_' . time() . '.' . $file->getClientOriginalExtension();
+            // Dipindahkan ke direktori local: public/uploads/proofs/
+            $file->move(public_path('uploads/proofs'), $fileName);
+        }
+
+        // 3. Insert data ke database melalui Eloquent ORM
+        Pembayaran::create([
+            'nama_peserta' => $request->nama_peserta,
+            'email'        => $request->email,
+            'ticket_type'  => $request->ticket_type,
+            'price'        => $request->price,
+            'proof'        => $fileName,  // Menyimpan nama filenya saja ke kolom db
+            'status'       => 'Pending', // Default status sebelum disetujui Admin
+        ]);
+
+        // 4. Redirect kembali dengan flash message sukses
+        return redirect()->back()->with('success', 'Payment proof submitted successfully! Please wait for admin confirmation.');
+    }
+
 
     public function show(Pembayaran $pembayaran)
     {
@@ -42,11 +76,18 @@ class PembayaranController extends Controller
     }
 
     public function approve(Pembayaran $pembayaran)
-    {
-        $pembayaran->update(['status' => 'Approved']);
-        $pembayaran->tiket->increment('terjual', 1);
-        return redirect()->route('admin.pembayaran.index')->with('success', 'Payment successfully approved.');
+{
+    $pembayaran->update(['status' => 'Approved']);
+
+    $tiket = Tiket::where('id', $pembayaran->ticket_type)->first();
+    
+    if ($tiket) {
+        $tiket->increment('terjual', 1);
     }
+
+    return redirect()->route('admin.pembayaran.index')
+        ->with('success', 'Payment successfully approved.');
+}
 
     public function reject(Request $request, Pembayaran $pembayaran)
     {

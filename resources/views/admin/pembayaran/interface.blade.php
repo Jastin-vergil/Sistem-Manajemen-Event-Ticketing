@@ -66,8 +66,13 @@
             <p style="color:#e2e8f0;font-weight:500;margin:0">{{ $p->nama_peserta }}</p>
             <p style="color:#6b7280;font-size:11px;margin:2px 0 0">{{ $p->email }}</p>
           </td>
-          <td style="padding:12px 16px;color:#a78bfa">{{ $p->tiket->nama_tiket }}</td>
-          <td style="padding:12px 16px;color:#6b7280;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ $p->tiket->event->nama }}</td>
+          <td style="padding:12px 16px;color:#a78bfa">
+              {{ $p->tiket?->nama_tiket ?? 'Tiket Tidak Ditemukan' }}
+          </td>
+
+          <td style="padding:12px 16px;color:#6b7280;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">
+              {{ $p->tiket?->event?->nama_event ?? 'Event Tidak Ditemukan' }}
+          </td>
           <td style="padding:12px 16px;text-align:right;color:#e2e8f0;white-space:nowrap">Rp {{ number_format($p->total_bayar, 0, ',', '.') }}</td>
           <td style="padding:12px 16px;text-align:center">
             @if($p->bukti_transfer)

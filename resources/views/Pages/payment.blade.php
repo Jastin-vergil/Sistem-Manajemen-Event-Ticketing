@@ -71,107 +71,112 @@
 
             <!-- FORM -->
             <form
-                id="paymentForm"
-                action="{{ route('payment.store') }}"
-                method="POST"
-                enctype="multipart/form-data"
-                class="space-y-4"
-            >
+    id="paymentForm"
+    action="{{ route('payment.store') }}"
+    method="POST"
+    enctype="multipart/form-data"
+    class="space-y-4"
+>
+    @csrf
 
-                @csrf
+    <div>
+        <label class="text-xs text-gray-400 font-medium pl-1">Participant Name</label>
+        <input
+            type="text"
+            name="nama_peserta"
+            value="{{ request('name') }}"
+            class="w-full h-11 px-4 rounded-lg bg-white/10 border border-gray-600 text-gray-200 mt-1"
+            readonly
+        >
+    </div>
 
-                <!-- User Name -->
-                <input
-                    type="text"
-                    value="Name: {{ request('name') }}"
-                    class="w-full h-11 px-4 rounded-lg bg-white/10 border border-gray-600 text-gray-200"
-                    readonly
-                >
+    <div>
+        <label class="text-xs text-gray-400 font-medium pl-1">Email Address</label>
+        <input
+            type="text"
+            name="email"
+            value="{{ request('email') }}"
+            class="w-full h-11 px-4 rounded-lg bg-white/10 border border-gray-600 text-gray-200 mt-1"
+            readonly
+        >
+    </div>
 
-                <!-- Email -->
-                <input
-                    type="text"
-                    value="Email: {{ request('email') }}"
-                    class="w-full h-11 px-4 rounded-lg bg-white/10 border border-gray-600 text-gray-200"
-                    readonly
-                >
+    <div>
+        <label class="text-xs text-gray-400 font-medium pl-1">Selected Ticket</label>
+        <input
+            type="text"
+            value="{{ ucwords(str_replace('_', ' ', request('ticket_type'))) }}"
+            class="w-full h-11 px-4 rounded-lg bg-white/10 border border-gray-600 text-gray-200 mt-1"
+            readonly
+        >
+    </div>
 
-                <!-- Ticket Type -->
-                <input
-                    type="text"
-                    value="Ticket: {{ ucwords(str_replace('_', ' ', request('ticket_type'))) }}"
-                    class="w-full h-11 px-4 rounded-lg bg-white/10 border border-gray-600 text-gray-200"
-                    readonly
-                >
+    <div>
+        <label class="text-xs text-gray-400 font-medium pl-1">Total Amount</label>
+        <input
+            type="text"
+            value="Rp {{ number_format($price, 0, ',', '.') }}"
+            class="w-full h-11 px-4 rounded-lg bg-white/10 border border-gray-600 text-gray-200 mt-1"
+            readonly
+        >
+    </div>
 
-                <!-- Total Payment -->
-                <input
-                    type="text"
-                    value="Total Payment: Rp {{ number_format($price, 0, ',', '.') }}"
-                    class="w-full h-11 px-4 rounded-lg bg-white/10 border border-gray-600 text-gray-200"
-                    readonly
-                >
+    <div>
+        <label class="text-xs text-gray-400 font-medium pl-1">Transfer Bank</label>
+        <input
+            type="text"
+            value="BCA - 8080123456"
+            class="w-full h-11 px-4 rounded-lg bg-white/10 border border-gray-600 text-gray-200 mt-1"
+            readonly
+        >
+    </div>
 
-                <!-- Payment Method -->
-                <input
-                    type="text"
-                    value="Payment Method: BCA - 8080123456"
-                    class="w-full h-11 px-4 rounded-lg bg-white/10 border border-gray-600 text-gray-200"
-                    readonly
-                >
+    <div class="bg-indigo-900/40 border border-indigo-500/30 p-4 rounded-xl text-sm text-gray-300 text-center">
+        📌 Open your Mobile Banking, add this account to your transfer list,
+        then transfer the exact amount and save the receipt.
+    </div>
 
-                <!-- Information -->
-                <div class="bg-indigo-900/40 border border-indigo-500/30 p-4 rounded-xl text-sm text-gray-300 text-center">
-                    📌 Open your Mobile Banking, add this account to your transfer list,
-                    then transfer the exact amount and save the receipt.
-                </div>
+    <p class="text-center font-semibold text-purple-400">
+        Remaining Time:
+        <span id="countdown">05:00</span>
+    </p>
 
-                <!-- Remaining Time -->
-                <p class="text-center font-semibold text-purple-400">
-                    Remaining Time:
-                    <span id="countdown">05:00</span>
-                </p>
+    <div class="bg-red-900/30 border border-red-500/40 text-red-300 text-xs p-3 rounded-lg text-center">
+        ⚠️ Payment will be automatically cancelled if the time limit is exceeded.
+    </div>
 
-                <!-- Warning -->
-                <div class="bg-red-900/30 border border-red-500/40 text-red-300 text-xs p-3 rounded-lg text-center">
-                    ⚠️ Payment will be automatically cancelled if the time limit is exceeded.
-                </div>
+    <div>
+        <label class="text-sm font-medium text-gray-300">
+            Upload Proof of Payment
+        </label>
 
-                <!-- Upload -->
-                <div>
-                    <label class="text-sm font-medium text-gray-300">
-                        Upload Proof of Payment
-                    </label>
+        <input
+            type="file"
+            name="proof"
+            id="proof"
+            accept="image/*,.pdf"
+            class="w-full mt-1 text-sm border border-gray-600 rounded-lg p-2 bg-white/10 text-gray-300"
+            required
+        >
 
-                    <input
-                        type="file"
-                        name="proof"
-                        id="proof"
-                        accept="image/*,.pdf"
-                        class="w-full mt-1 text-sm border border-gray-600 rounded-lg p-2 bg-white/10 text-gray-300"
-                        required
-                    >
+        @error('proof')
+            <p class="text-red-400 text-xs mt-1">
+                {{ $message }}
+            </p>
+        @enderror
+    </div>
 
-                    @error('proof')
-                        <p class="text-red-400 text-xs mt-1">
-                            {{ $message }}
-                        </p>
-                    @enderror
-                </div>
+    <input type="hidden" name="ticket_type" value="{{ request('ticket_type') }}">
+    <input type="hidden" name="price" value="{{ $price }}">
 
-                <!-- Hidden Inputs -->
-                <input type="hidden" name="ticket_type" value="{{ request('ticket_type') }}">
-                <input type="hidden" name="price" value="{{ $price }}">
+    <button
+        type="submit"
+        class="w-full h-11 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition"
+    >
+        Confirm Payment
+    </button>
 
-                <!-- Button -->
-                <button
-                    type="submit"
-                    class="w-full h-11 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition"
-                >
-                    Confirm Payment
-                </button>
-
-            </form>
+</form>
 
         </div>
 

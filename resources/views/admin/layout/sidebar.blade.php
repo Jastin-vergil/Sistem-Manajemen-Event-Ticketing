@@ -37,6 +37,10 @@
                     style="display:flex;align-items:center;gap:10px;padding:10px 20px;border-left:2px solid {{ request()->routeIs('admin.pembayaran.*') ? '#7c6ff7' : 'transparent' }};background:{{ request()->routeIs('admin.pembayaran.*') ? 'rgba(124,111,247,0.1)' : 'transparent' }};color:{{ request()->routeIs('admin.pembayaran.*') ? '#a78bfa' : '#6b7280' }};text-decoration:none;transition:all .15s">
                     💳 Payments
                 </a>
+                <a href="{{ route('admin.participants') }}"
+                    style="display:flex;align-items:center;gap:10px;padding:10px 20px;border-left:2px solid {{ request()->routeIs('admin.pembayaran.*') ? '#7c6ff7' : 'transparent' }};background:{{ request()->routeIs('admin.participants.*') ? 'rgba(124,111,247,0.1)' : 'transparent' }};color:{{ request()->routeIs('admin.pembayaran.*') ? '#a78bfa' : '#6b7280' }};text-decoration:none;transition:all .15s">
+                    👤 Peserta
+                </a>
             </nav>
             <div style="padding:16px 20px;border-top:1px solid #2a2d3e">
                 <form action="{{ route('logout') }}" method="POST">
