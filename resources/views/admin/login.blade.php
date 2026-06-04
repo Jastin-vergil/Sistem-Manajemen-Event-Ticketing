@@ -47,6 +47,10 @@
                         type="submit" style="font-family: 'Montserrat', sans-serif;"><b>
                             LOGIN</b>
                     </button>
+                    <a href="{{ route('user.dashboard') }}"
+                        class="block text-center mt-4 text-sm text-blue-500 hover:text-gray-200 transition duration-300 ease-in-out">
+                        Back to User Dashboard
+                    </a>
                 </form>
                 @if (session('error'))
                     <div class="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm text-center font-medium">
