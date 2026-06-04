@@ -71,7 +71,7 @@
           </td>
 
           <td style="padding:12px 16px;color:#6b7280;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">
-              {{ $p->tiket?->event?->nama_event ?? 'Event Tidak Ditemukan' }}
+              {{ $p->tiket?->event?->nama ?? 'Event Tidak Ditemukan' }}
           </td>
           <td style="padding:12px 16px;text-align:right;color:#e2e8f0;white-space:nowrap">Rp {{ number_format($p->total_bayar, 0, ',', '.') }}</td>
           <td style="padding:12px 16px;text-align:center">

@@ -81,3 +81,5 @@ Route::post('/payment.store', [PembayaranController::class, 'store'])
 
 Route::get('/admin/participants', [AdminParticipantController::class, 'index'])
     ->name('admin.participants');
+
+Route::get('admin/event/{event}/participants', [EventController::class, 'showParticipants'])->name('admin.event.participants');

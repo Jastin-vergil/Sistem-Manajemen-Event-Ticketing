@@ -4,21 +4,33 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Event extends Model
 {
-    protected $fillable = ['nama', 'kategori_id', 'tanggal', 'lokasi', 'deskripsi', 'foto'];
+    // Pastikan nama tabel kamu sesuai (misal: 'events')
+    protected $table = 'events';
 
-    protected $casts = ['tanggal' => 'date'];
-
-    public function tiket(): HasMany
+    /**
+     * Relasi ke model Tiket (Satu event memiliki banyak tiket)
+     */
+    public function tikets(): HasMany
     {
-        return $this->hasMany(Tiket::class, 'event_id');
+        return $this->hasMany(Tiket::class, 'event_id', 'id');
     }
 
-    public function kategori(): BelongsTo
+    /**
+     * Custom Query untuk mengambil data pembayaran (peserta) pada event ini
+     */
+    public function pembayarans()
     {
-        return $this->belongsTo(Kategori::class, 'kategori_id');
+        // Mencari ke tabel pembayaran berdasarkan string 'ticket_type' yang terdaftar di 'nama_tiket' milik event ini
+        return Pembayaran::whereIn('ticket_type', $this->tikets()->pluck('nama_tiket'));
+    }
+
+    public function tiket()
+    {
+        return $this->hasMany(Tiket::class);
+        // atau jika nama model-nya 'Ticket':
+        // return $this->hasMany(Ticket::class);
     }
 }

@@ -20,9 +20,9 @@ class Pembayaran extends Model
         'status'
     ];
 
-    public function tiket()
-{
-    return $this->belongsTo(Tiket::class, 'tiket_id');
-}
+    public function tiket(): BelongsTo
+    {
+        return $this->belongsTo(Tiket::class, 'tiket_id', 'id');
+    }
 }
 

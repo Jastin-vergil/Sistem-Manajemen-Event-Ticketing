@@ -22,16 +22,16 @@ class Tiket extends Model
     ];
 
     protected $casts = [
-        'tanggal_mulai' => 'date',
-        'tanggal_akhir' => 'date',
+        'tanggal_mulai' => 'datetime',
+        'tanggal_akhir' => 'datetime',
         'harga' => 'integer',
         'kuota' => 'integer',
         'terjual' => 'integer',
     ];
 
-    public function event()
+    public function event(): BelongsTo
     {
-        return $this->belongsTo(Event::class, 'event_id');
+        return $this->belongsTo(Event::class, 'event_id', 'id');
     }
 
     public function getSisaAttribute(): int

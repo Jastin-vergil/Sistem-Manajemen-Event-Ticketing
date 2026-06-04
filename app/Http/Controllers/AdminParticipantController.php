@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers;
 
+// WAJIB: Import model Pembayaran dan Event di sini agar tidak 'not found'
 use App\Models\Pembayaran;
+use App\Models\Event; 
+use Illuminate\Http\Request;
 
 class AdminParticipantController extends Controller
 {
     public function index()
     {
-        // mengganti Payment menjadi Pembayaran, dan gunakan eager loading 'with' agar relasi tiket/event terbaca
+        // Gunakan eager loading 'with' agar relasi tiket dan event terbaca sekaligus
         $participants = Pembayaran::with(['tiket.event'])
-            ->where('status', 'approved')
             ->latest()
             ->get();
 
-        // memastikan view mengarah ke index blade miliki peserta
-        return view('admin.participants.index', compact('participants'));
+        // Ambil data statistics untuk mencegah error Undefined variable $stats
+        $stats = [
+            'total'    => Pembayaran::count(),
+            'pending'  => Pembayaran::where('status', 'Pending')->count(),
+            'approved' => Pembayaran::whereIn('status', ['Approved', 'Verified'])->count(),
+            'rejected' => Pembayaran::where('status', 'Rejected')->count(),
+        ];
+
+        return view('admin.pembayaran.interface', compact('participants', 'stats'));
     }
 }
