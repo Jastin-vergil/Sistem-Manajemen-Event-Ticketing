@@ -35,7 +35,7 @@
       ['Participant', $pembayaran->nama_peserta],
       ['Email',       $pembayaran->email],
       ['Ticket',      $pembayaran->tiket->nama_tiket],
-      ['Event',       $pembayaran->tiket->event->nama],
+      ['Event',       $pembayaran->tiket->event->nama_event],
       ['Total',       'Rp ' . number_format($pembayaran->total_bayar, 0, ',', '.')],
       ['Submitted',   $pembayaran->created_at->format('d M Y, H:i')],
     ] as [$lbl, $val])

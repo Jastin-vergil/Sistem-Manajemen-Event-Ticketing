@@ -12,17 +12,17 @@ class Pembayaran extends Model
 
     // Kolom-kolom yang boleh diisi
     protected $fillable = [
+        'tiket_id',
         'nama_peserta',
         'email',
-        'ticket_type',
-        'price',
-        'proof',
+        'total_bayar',
+        'bukti_transfer',
         'status'
     ];
 
     public function tiket()
 {
-    return $this->belongsTo(Tiket::class, 'ticket_type');
+    return $this->belongsTo(Tiket::class, 'tiket_id');
 }
 }
 

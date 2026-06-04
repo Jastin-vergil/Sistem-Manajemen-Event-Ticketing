@@ -9,25 +9,27 @@ class Tiket extends Model
 {
     protected $table = 'tiket';
 
-        // Beritahu Laravel kalau tabel ini bisa dicari menggunakan string 'nama_tiket'
-    protected $primaryKey = 'nama_tiket'; 
-    public $incrementing = false;
-    protected $keyType = 'string';
-
     protected $fillable = [
-        'event_id','nama_tiket','harga','kuota','terjual',
-        'tanggal_mulai','tanggal_akhir','status','keterangan',
+        'event_id',
+        'nama_tiket',
+        'harga',
+        'kuota',
+        'terjual',
+        'tanggal_mulai',
+        'tanggal_akhir',
+        'status',
+        'keterangan',
     ];
 
     protected $casts = [
         'tanggal_mulai' => 'date',
         'tanggal_akhir' => 'date',
-        'harga'         => 'integer',
-        'kuota'         => 'integer',
-        'terjual'       => 'integer',
+        'harga' => 'integer',
+        'kuota' => 'integer',
+        'terjual' => 'integer',
     ];
 
-    public function event(): BelongsTo
+    public function event()
     {
         return $this->belongsTo(Event::class, 'event_id');
     }
