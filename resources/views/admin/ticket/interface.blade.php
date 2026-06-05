@@ -44,7 +44,7 @@
         <tbody>
           @forelse($tiket as $t)
           <tr style="border-top:1px solid #2a2d3e" onmouseover="this.style.background='rgba(255,255,255,0.02)'" onmouseout="this.style.background='transparent'">
-            <td style="padding:12px 16px;color:#e2e8f0;font-weight:500">{{ $t->event?->nama ?? '—' }}</td>
+           <td style="padding:12px 16px;color:#e2e8f0;font-weight:500">{{ $t->nama_tiket }}</td>
             <td style="padding:12px 16px;color:#6b7280;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ $t->event?->nama ?? '—' }}</td>
             <td style="padding:12px 16px;color:#6b7280;white-space:nowrap">{{ $t->event?->tanggal?->format('d M Y') ?? '—' }}</td>
             <td style="padding:12px 16px;color:#e2e8f0;text-align:right;white-space:nowrap">Rp {{ number_format($t->harga, 0, ',', '.') }}</td>
