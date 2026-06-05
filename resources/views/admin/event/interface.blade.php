@@ -31,6 +31,9 @@
                         Date</th>
                     <th
                         style="text-align:left;padding:10px 16px;font-size:11px;font-weight:500;color:#4b5563;text-transform:uppercase">
+                        Time</th>
+                    <th
+                        style="text-align:left;padding:10px 16px;font-size:11px;font-weight:500;color:#4b5563;text-transform:uppercase">
                         Location</th>
                     <th
                         style="text-align:center;padding:10px 16px;font-size:11px;font-weight:500;color:#4b5563;text-transform:uppercase">
@@ -65,6 +68,10 @@
                         </td>
                         <td style="padding:12px 16px;color:#6b7280;white-space:nowrap">
                             {{ \Carbon\Carbon::parse($ev->tanggal)->format('d M Y') }}</td>
+                        <td style="padding:12px 16px;color:#6b7280;white-space:nowrap">
+                            {{ $ev->jam_mulai ? \Carbon\Carbon::parse($ev->jam_mulai)->format('H:i') : '—' }}
+                            {{ $ev->jam_selesai ? ' - ' . \Carbon\Carbon::parse($ev->jam_selesai)->format('H:i') : '' }}
+                        </td>
                         <td style="padding:12px 16px;color:#6b7280">{{ $ev->lokasi ?: '—' }}</td>
                         <td style="padding:12px 16px;text-align:center">
                             <span

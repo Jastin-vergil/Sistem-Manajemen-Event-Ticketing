@@ -17,6 +17,8 @@ class Event extends Model
             'nama',
             'kategori_id',
             'tanggal',
+            'jam_mulai',
+            'jam_selesai',
             'lokasi',
             'deskripsi',
             'foto',
@@ -26,7 +28,7 @@ class Event extends Model
             'tanggal' => 'datetime',
         ];
 
-    
+
       public function kategori(): BelongsTo
     {
         return $this->belongsTo(Kategori::class, 'kategori_id');
