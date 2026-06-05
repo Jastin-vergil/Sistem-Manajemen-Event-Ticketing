@@ -10,7 +10,7 @@
 
         #scroll-wrapper {
             display: flex; gap: 24px; padding: 20px; cursor: grab;
-            overflow-x: hidden; user-select: none; scroll-behavior: smooth;
+            overflow-x: auto; user-select: none; scroll-behavior: smooth;
         }
         #scroll-wrapper:active { cursor: grabbing; }
 

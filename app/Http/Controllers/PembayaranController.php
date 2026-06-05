@@ -56,18 +56,17 @@ class PembayaranController extends Controller
 
         // 3. Insert data ke database melalui Eloquent ORM
         Pembayaran::create([
-            'nama_peserta' => $request->nama_peserta,
-            'email'        => $request->email,
-            'ticket_type'  => $request->ticket_type,
-            'price'        => $request->price,
-            'proof'        => $fileName,  // Menyimpan nama filenya saja ke kolom db
-            'status'       => 'Pending', // Default status sebelum disetujui Admin
+            'tiket_id'      => $request->tiket_id,
+            'nama_peserta'  => $request->nama_peserta,
+            'email'         => $request->email,
+            'total_bayar'   => $request->price,
+            'bukti_transfer'=> $fileName,
+            'status'        => 'Pending',
         ]);
 
         // 4. Redirect kembali dengan flash message sukses
         return redirect()->back()->with('success', 'Payment proof submitted successfully! Please wait for admin confirmation.');
     }
-
 
     public function show(Pembayaran $pembayaran)
     {

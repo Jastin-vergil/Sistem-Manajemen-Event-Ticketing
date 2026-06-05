@@ -2,13 +2,35 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class Event extends Model
-{
-    // Pastikan nama tabel kamu sesuai (misal: 'events')
-    protected $table = 'events';
+    {
+        // Pastikan nama tabel kamu sesuai (misal: 'events'){
+        protected $table = 'events';
+
+        protected $fillable = [
+            'nama',
+            'kategori_id',
+            'tanggal',
+            'lokasi',
+            'deskripsi',
+            'foto',
+        ];
+
+        protected $casts = [
+            'tanggal' => 'datetime',
+        ];
+
+    
+      public function kategori(): BelongsTo
+    {
+        return $this->belongsTo(Kategori::class, 'kategori_id');
+    }
 
     /**
      * Relasi ke model Tiket (Satu event memiliki banyak tiket)

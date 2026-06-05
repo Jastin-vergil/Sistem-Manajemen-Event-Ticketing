@@ -82,7 +82,21 @@
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0a2e]/50 to-[#0a0a2e] z-0"></div>
 
             <div class="container mx-auto px-6 md:px-12 relative z-10 flex flex-col lg:flex-row items-center py-24 xl:py-40"
-                x-data="{ activeStack: 1, total: 4, init() { setInterval(() => { this.activeStack = this.activeStack < this.total ? this.activeStack + 1 : 1; }, 3000); } }">
+                x-data="{
+    activeStack: 1,
+    events: @js($events),
+    get total() {
+        return this.events.length;
+    },
+    init() {
+        setInterval(() => {
+            this.activeStack =
+                this.activeStack < this.total
+                ? this.activeStack + 1
+                : 1;
+        }, 3000);
+    }
+}">
 
                 <div class="lg:w-3/5 xl:w-2/5 flex flex-col items-start relative z-10 mb-20 lg:mb-0">
                     <span class="font-mitr text-sm uppercase text-indigo-400 font-bold tracking-[0.3em] mb-4">
