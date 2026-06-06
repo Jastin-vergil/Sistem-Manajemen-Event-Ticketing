@@ -56,10 +56,16 @@
                     required
                 >
                     <option value="" class="text-black">Select Ticket Type</option>
-                    <option value="early_bird" class="text-black">Early Bird - Rp 50.000</option>
-                    <option value="regular" class="text-black">Regular - Rp 100.000</option>
-                    <option value="vip" class="text-black">VIP - Rp 200.000</option>
+
+                    @foreach ($tickets as $ticket)
+                        <option value="{{ $ticket->id }}" class="text-black">
+                            {{ $ticket->nama_tiket }} - Rp {{ number_format($ticket->harga, 0, ',', '.') }}
+                        </option>
+                    @endforeach
+
                 </select>
+
+                <input type="hidden" name="event_id" value="{{ request('event') }}">
 
                 <!-- Button -->
                 <button

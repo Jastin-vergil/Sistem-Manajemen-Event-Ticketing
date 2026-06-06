@@ -135,7 +135,7 @@
                     month: 'long',
                     year: 'numeric'
                 });
-            document.getElementById('modal-time').innerText = ev.waktu;
+            document.getElementById('modal-time').innerText = ev.jam_mulai ?? 'Tidak Tersedia';
             document.getElementById('modal-loc').innerText = ev.lokasi;
             document.getElementById('modal-desc').innerText = ev.deskripsi;
 
@@ -152,8 +152,8 @@
             modal.classList.remove('flex');
         };
         const goToTicket = () => {
-        const eventName = encodeURIComponent(window.selectedEvent.title);
-        window.location.href = `{{ route('ticket.form') }}?event=${eventName}`;
+            const eventId = window.selectedEvent.id
+            window.location.href = `{{ route('ticket.form') }}?event=${eventId}`;
         };
 
         modal.addEventListener('click', (e) => {

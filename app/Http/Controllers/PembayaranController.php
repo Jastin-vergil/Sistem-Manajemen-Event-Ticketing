@@ -56,7 +56,7 @@ class PembayaranController extends Controller
 
         // 3. Insert data ke database melalui Eloquent ORM
         Pembayaran::create([
-            'tiket_id'      => $request->tiket_id,
+            'tiket_id'      => $request->ticket_type,
             'nama_peserta'  => $request->nama_peserta,
             'email'         => $request->email,
             'total_bayar'   => $request->price,
@@ -78,7 +78,7 @@ class PembayaranController extends Controller
 {
     $pembayaran->update(['status' => 'Approved']);
 
-    $tiket = Tiket::where('id', $pembayaran->ticket_type)->first();
+    $tiket = Tiket::where('id', $pembayaran->tiket_id)->first();
     
     if ($tiket) {
         $tiket->increment('terjual', 1);

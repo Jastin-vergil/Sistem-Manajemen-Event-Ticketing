@@ -40,17 +40,12 @@
 
     <!-- PRICE LOGIC -->
     @php
+        use App\Models\Tiket;
 
-        $ticketType = request('ticket_type');
-
-        $prices = [
-            'early_bird' => 50000,
-            'regular' => 100000,
-            'vip' => 200000,
-        ];
-
-        $price = $prices[$ticketType] ?? 0;
-
+        $tiketId = request('ticket_type'); // nilai yang dikirim adalah id
+        $tiket = Tiket::find($tiketId);
+        $price = $tiket ? $tiket->harga : 0;
+        $namaTicket = $tiket ? $tiket->nama_tiket : '-';
     @endphp
 
     <!-- Container -->
@@ -103,9 +98,10 @@
 
     <div>
         <label class="text-xs text-gray-400 font-medium pl-1">Selected Ticket</label>
+        <!-- Selected Ticket -->
         <input
             type="text"
-            value="{{ ucwords(str_replace('_', ' ', request('ticket_type'))) }}"
+            value="{{ $namaTicket }}"
             class="w-full h-11 px-4 rounded-lg bg-white/10 border border-gray-600 text-gray-200 mt-1"
             readonly
         >

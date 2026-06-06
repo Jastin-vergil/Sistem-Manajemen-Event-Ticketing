@@ -38,4 +38,10 @@ class Tiket extends Model
     {
         return $this->kuota - $this->terjual;
     }
+
+    // Helper: format harga ke Rupiah
+    public function getFormattedPriceAttribute(): string
+    {
+        return 'Rp ' . number_format($this->price, 0, ',', '.');
+    }
 }
