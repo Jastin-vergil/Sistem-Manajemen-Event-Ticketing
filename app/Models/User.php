@@ -12,7 +12,6 @@ class User extends Authenticatable
     // Menentukan tabel target autentikasi
     protected $table = 'admin_event';
 
-    // Sesuaikan fillable dengan kolom tabel kamu
     protected $fillable = [
         'email',
         'password',

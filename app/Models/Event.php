@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Event extends Model
     {
-        // Pastikan nama tabel kamu sesuai (misal: 'events'){
         protected $table = 'events';
 
         protected $fillable = [
@@ -28,33 +27,13 @@ class Event extends Model
             'tanggal' => 'datetime',
         ];
 
-
       public function kategori(): BelongsTo
     {
         return $this->belongsTo(Kategori::class, 'kategori_id');
     }
 
-    /**
-     * Relasi ke model Tiket (Satu event memiliki banyak tiket)
-     */
-    public function tikets(): HasMany
+    public function tiket(): HasMany
     {
         return $this->hasMany(Tiket::class, 'event_id', 'id');
-    }
-
-    /**
-     * Custom Query untuk mengambil data pembayaran (peserta) pada event ini
-     */
-    public function pembayarans()
-    {
-        // Mencari ke tabel pembayaran berdasarkan string 'ticket_type' yang terdaftar di 'nama_tiket' milik event ini
-        return Pembayaran::whereIn('ticket_type', $this->tikets()->pluck('nama_tiket'));
-    }
-
-    public function tiket()
-    {
-        return $this->hasMany(Tiket::class);
-        // atau jika nama model-nya 'Ticket':
-        // return $this->hasMany(Ticket::class);
     }
 }

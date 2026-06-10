@@ -73,7 +73,7 @@
                             {{ $ev->jam_selesai ? ' - ' . \Carbon\Carbon::parse($ev->jam_selesai)->format('H:i') : '' }}
                         </td>
                         <td style="padding:12px 16px;color:#6b7280">{{ $ev->lokasi ?: '—' }}</td>
-                        <td style="padding:12px 16px;text-align:center">
+                        <td style="padm   ding:12px 16px;text-align:center">
                             <span
                                 style="font-size:11px;font-weight:500;padding:3px 10px;border-radius:99px;background:rgba(124,111,247,.15);color:#a78bfa">{{ $ev->tiket_count }}
                                 tickets</span>
