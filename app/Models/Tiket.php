@@ -44,4 +44,9 @@ class Tiket extends Model
     {
         return 'Rp ' . number_format($this->price, 0, ',', '.');
     }
+
+    public function pembayaran()
+    {
+        return $this->hasMany(Pembayaran::class, 'tiket_id', 'id');
+    }
 }

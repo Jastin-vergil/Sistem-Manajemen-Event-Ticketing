@@ -57,9 +57,10 @@ Route::resource('kategori', KategoriController::class)
         'destroy' => 'admin.kategori.destroy',
     ]);
 
-route::get('/transactionhistory', function () {
+Route::get('/transactionhistory', function () {
     return view('Pages.transaction_history');
 })->name('transaction.history');
+Route::get('/transaction/search', [PembayaranController::class, 'searchByEmail'])->name('transaction.search');
 
 Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('admin.pembayaran.index');
 Route::get('/pembayaran/{pembayaran}', [PembayaranController::class, 'show'])->name('admin.pembayaran.show');

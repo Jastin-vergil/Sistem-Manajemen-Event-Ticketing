@@ -85,24 +85,25 @@ class EventController extends Controller
 	/**
 	 * Menampilkan halaman khusus berisi tabel peserta dari event tertentu
 	 */
-	public function participants(Event $event)
+	public function showParticipants(Event $event)
 	{
-		$participants = Pembayaran::whereHas('tiket', function($q) use ($event) {
-				$q->where('event_id', $event->id);
-			})
-			->where('status', 'Approved') // hanya yang sudah dikonfirmasi
-			->latest()
-			->get();
-
-		return response()->json([
-			'event' => $event->nama,
-			'participants' => $participants->map(fn($p) => [
-				'nama'        => $p->nama_peserta,
-				'email'       => $p->email,
-				'tiket'       => $p->tiket->nama_tiket ?? '-',
-				'total_bayar' => 'Rp ' . number_format($p->total_bayar, 0, ',', '.'),
-				'status'      => $p->status,
-			])
-		]);
+	    $participants = Pembayaran::whereHas('tiket', function($q) use ($event) {
+	            $q->where('event_id', $event->id);
+	        })
+	        ->where('status', 'Approved')
+	        ->with('tiket')
+	        ->latest()
+	        ->get();
+	
+	    return response()->json([
+	        'event' => $event->nama,
+	        'participants' => $participants->map(fn($p) => [
+	            'nama'        => $p->nama_peserta,
+	            'email'       => $p->email,
+	            'tiket'       => $p->tiket->nama_tiket ?? '-',
+	            'total_bayar' => 'Rp ' . number_format($p->total_bayar, 0, ',', '.'),
+	            'status'      => $p->status,
+	        ])
+	    ]);
 	}
 }

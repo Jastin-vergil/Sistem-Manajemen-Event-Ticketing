@@ -106,4 +106,42 @@ class PembayaranController extends Controller
         $pembayaran->delete();
         return redirect()->route('admin.pembayaran.index')->with('success', 'Payment record deleted.');
     }
+    public function searchByEmail(Request $request)
+    {
+        $email = $request->query('email');
+    
+        if (!$email || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return response()->json(['error' => 'Email tidak valid'], 422);
+        }
+    
+        $pembayarans = Pembayaran::with('tiket.event')
+            ->where('email', $email)
+            ->latest()
+            ->get();
+    
+        $data = $pembayarans->map(function ($p) {
+            $tiket = $p->tiket;
+            $event = $tiket?->event;
+    
+            return [
+                'id'            => 'TXN-' . str_pad($p->id, 5, '0', STR_PAD_LEFT),
+                'event'         => $event?->nama ?? '-',
+                'ticket'        => $tiket?->nama_tiket ?? '-',
+                'date'          => $p->created_at->format('d M Y'),
+                'eventDatetime' => $event
+                                    ? \Carbon\Carbon::parse($event->tanggal)->format('d M Y') .
+                                      ($event->jam_mulai ? ', ' . \Carbon\Carbon::parse($event->jam_mulai)->format('H:i') : '')
+                                    : '-',
+                'amount'        => 'Rp ' . number_format($p->total_bayar, 0, ',', '.'),
+                'status'        => match($p->status) {
+                    'Approved' => 'success',
+                    'Pending'  => 'pending',
+                    'Rejected' => 'failed',
+                    default    => 'pending',
+                },
+            ];
+        });
+    
+        return response()->json($data);
+    }
 }

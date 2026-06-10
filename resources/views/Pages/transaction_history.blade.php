@@ -426,29 +426,6 @@
 
   <script>
    
-    const mockData = {
-      'jastinreja@gmail.com': [
-        {
-          id:           'TXN-2024-010',
-          event:        'Tech Talk: AI & Machine Learning',
-          date:         '01 Feb 2024',
-          eventDatetime:'15 April 2026, 19:00',
-          amount:       'Rp 50.000',
-          status:       'success',
-          ticket:       'General'
-        },
-        {
-          id:           'TXN-2024-011',
-          event:        'Networking Night Polibatam',
-          date:         '14 Feb 2024',
-          eventDatetime:'20 Maret 2024, 18:30',
-          amount:       'Rp 25.000',
-          status:       'failed',
-          ticket:       'Regular'
-        },
-      ]
-    };
-
     //status helpers
     const statusClass = {
       success: 'badge-success',
@@ -570,32 +547,63 @@
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-   //mockData
-    function doSearch() {
-      const val    = document.getElementById('email-input').value.trim();
-      const errMsg = document.getElementById('error-msg');
+   function doSearch() {
+    const val    = document.getElementById('email-input').value.trim();
+    const errMsg = document.getElementById('error-msg');
 
-      if (!val || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+    if (!val || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+        errMsg.textContent = 'Please enter a valid email address.';
         errMsg.classList.remove('hidden');
         return;
-      }
-
-      errMsg.classList.add('hidden');
-
-      const data = mockData[val.toLowerCase()];
-      if (data) renderResults(val, data);
-      else renderEmpty(val);
     }
 
+    errMsg.classList.add('hidden');
+
+    const btn = document.getElementById('search-btn');
+    btn.disabled = true;
+    btn.innerHTML = `
+        <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+        </svg>
+        Searching...`;
+
+    fetch(`/transaction/search?email=${encodeURIComponent(val)}`, {
+        headers: { 'Accept': 'application/json' }
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+            renderResults(val, data);
+        } else {
+            renderEmpty(val);
+        }
+    })
+    .catch(() => {
+        errMsg.textContent = 'Gagal mengambil data. Coba lagi.';
+        errMsg.classList.remove('hidden');
+    })
+    .finally(() => {
+        btn.disabled = false;
+        btn.innerHTML = `
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1010.5 18a7.5 7.5 0 006.15-3.35z"/>
+            </svg>
+            Search`;
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('search-btn').addEventListener('click', doSearch);
 
-    document.getElementById('email-input').addEventListener('keydown', e => {
-      if (e.key === 'Enter') doSearch();
+    document.getElementById('email-input').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') doSearch();
     });
 
-    document.getElementById('email-input').addEventListener('input', () => {
-      document.getElementById('error-msg').classList.add('hidden');
+    document.getElementById('email-input').addEventListener('input', function () {
+        document.getElementById('error-msg').classList.add('hidden');
     });
+});
+}
   </script>
 
 </body>

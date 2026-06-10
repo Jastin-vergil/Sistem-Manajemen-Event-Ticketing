@@ -1,3 +1,4 @@
+/* participants */
 @extends('admin.layout.sidebar')
 
 @section('content')
