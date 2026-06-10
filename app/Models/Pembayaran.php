@@ -17,7 +17,8 @@ class Pembayaran extends Model
         'email',
         'total_bayar',
         'bukti_transfer',
-        'status'
+        'status',
+        'catatan'
     ];
 
     public function tiket(): BelongsTo

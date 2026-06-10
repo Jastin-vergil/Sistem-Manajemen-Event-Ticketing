@@ -15,3 +15,4 @@ class DashboardController extends Controller
         return view('Pages.landing_page', compact('events', 'kategori'));
     }
 }
+

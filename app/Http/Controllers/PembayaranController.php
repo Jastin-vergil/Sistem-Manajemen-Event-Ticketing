@@ -75,18 +75,18 @@ class PembayaranController extends Controller
     }
 
     public function approve(Pembayaran $pembayaran)
-{
-    $pembayaran->update(['status' => 'Approved']);
+    {
+        $pembayaran->update(['status' => 'Approved']);
 
-    $tiket = Tiket::where('id', $pembayaran->tiket_id)->first();
-    
-    if ($tiket) {
-        $tiket->increment('terjual', 1);
+        $tiket = Tiket::where('id', $pembayaran->tiket_id)->first();
+        
+        if ($tiket) {
+            $tiket->increment('terjual', 1);
+        }
+
+        return redirect()->route('admin.pembayaran.index')
+            ->with('success', 'Payment successfully approved.');
     }
-
-    return redirect()->route('admin.pembayaran.index')
-        ->with('success', 'Payment successfully approved.');
-}
 
     public function reject(Request $request, Pembayaran $pembayaran)
     {
@@ -95,16 +95,21 @@ class PembayaranController extends Controller
             'status'  => 'Rejected',
             'catatan' => $request->catatan,
         ]);
-        return redirect()->route('admin.pembayaran.index')->with('success', 'Payment rejected.');
+        return redirect()->route('admin.pembayaran.index')
+            ->with('success', 'Payment rejected.');
     }
 
     public function destroy(Pembayaran $pembayaran)
     {
         if ($pembayaran->bukti_transfer) {
-            Storage::disk('public')->delete($pembayaran->bukti_transfer);
+            $filePath = public_path('uploads/proofs/' . $pembayaran->bukti_transfer);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
         }
         $pembayaran->delete();
-        return redirect()->route('admin.pembayaran.index')->with('success', 'Payment record deleted.');
+        return redirect()->route('admin.pembayaran.index')
+            ->with('success', 'Payment record deleted.');
     }
     public function searchByEmail(Request $request)
     {

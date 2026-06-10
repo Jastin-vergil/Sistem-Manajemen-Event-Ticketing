@@ -35,7 +35,7 @@
       ['Participant', $pembayaran->nama_peserta],
       ['Email',       $pembayaran->email],
       ['Ticket',      $pembayaran->tiket->nama_tiket],
-      ['Event',       $pembayaran->tiket->event->nama_event],
+      ['Event',       $pembayaran->tiket?->event?->nama ?? 'Event Tidak Ditemukan'],
       ['Total',       'Rp ' . number_format($pembayaran->total_bayar, 0, ',', '.')],
       ['Submitted',   $pembayaran->created_at->format('d M Y, H:i')],
     ] as [$lbl, $val])
@@ -73,9 +73,9 @@
   <div style="background:#1a1d2e;border:1px solid #2a2d3e;border-radius:12px;padding:24px">
     <h2 style="font-weight:600;color:#fff;font-size:14px;margin-bottom:16px">Transfer Proof</h2>
     @if($pembayaran->bukti_transfer)
-      <img src="{{ asset('storage/' . $pembayaran->bukti_transfer) }}" alt="Transfer Proof"
+      <img src="{{ asset('uploads/proofs/' . $pembayaran->bukti_transfer) }}" alt="Transfer Proof"
         style="width:100%;border-radius:8px;border:1px solid #2a2d3e">
-      <a href="{{ asset('storage/' . $pembayaran->bukti_transfer) }}" target="_blank"
+      <a href="{{ asset('uploads/proofs/' . $pembayaran->bukti_transfer) }}" target="_blank"
         style="display:inline-block;margin-top:12px;padding:8px 16px;border:1px solid #2a2d3e;border-radius:8px;color:#a78bfa;text-decoration:none;font-size:13px">
         Open Full Image
       </a>
