@@ -10,7 +10,6 @@ class LoginController extends Controller
 {
     public function showLoginForm()
     {
-        // Bagian Auth::check() yang melempar otomatis sudah dibuang total!
         return view('admin.login');
     }
 
@@ -21,7 +20,6 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-        // Cari data admin menggunakan plain text password
         $admin = User::where('email', $request->email)
             ->where('password', $request->password)
             ->first();
@@ -33,7 +31,7 @@ class LoginController extends Controller
             return redirect()->route('admin.ticket.interface');
         }
 
-        return back()->with('error', 'Email atDau password salah.');
+        return back()->with('error', 'Email atau password salah.');
     }
 
     // Proses Log Out Hancurkan Session

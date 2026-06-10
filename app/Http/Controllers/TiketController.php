@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Event;
 use App\Models\Tiket;
 use Illuminate\Http\Request;
@@ -81,11 +80,11 @@ class TiketController extends Controller
     public function ticketForm(Request $request)
     {
         $eventId = $request->query('event');
-    
+
         $tickets = Tiket::where('status', 'Aktif')
                         ->where('event_id', $eventId) // ← apakah baris ini sudah ada?
                         ->get();
-    
+
         return view('Pages.ticket', compact('tickets'));
     }
 }

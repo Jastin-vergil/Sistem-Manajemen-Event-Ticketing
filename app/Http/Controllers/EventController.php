@@ -29,8 +29,8 @@ class EventController extends Controller
 			'lokasi' => 'nullable|string|max:255',
 			'deskripsi' => 'nullable|string',
 			'foto' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-			'jam_mulai'   => 'nullable|date_format:H:i',
-			'jam_selesai' => 'nullable|date_format:H:i|after_or_equal:jam_mulai',
+			'jam_mulai'   => 'nullable|string',
+            'jam_selesai' => 'nullable|string',
 		]);
 
 		$data = $request->only('nama', 'kategori_id', 'tanggal', 'jam_mulai', 'jam_selesai', 'lokasi', 'deskripsi');
@@ -58,8 +58,8 @@ class EventController extends Controller
 			'lokasi' => 'nullable|string|max:255',
 			'deskripsi' => 'nullable|string',
 			'foto' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'jam_mulai'   => 'nullable|date_format:H:i',
-            'jam_selesai' => 'nullable|date_format:H:i|after_or_equal:jam_mulai',
+           'jam_mulai'   => 'nullable|string',
+            'jam_selesai' => 'nullable|string',
 		]);
 
 		$data = $request->only('nama', 'kategori_id', 'tanggal', 'jam_mulai', 'jam_selesai', 'lokasi', 'deskripsi');
