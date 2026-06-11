@@ -76,13 +76,12 @@ class TiketController extends Controller
         return redirect()->route('admin.ticket.interface')->with('success', 'Tiket berhasil dihapus.');
     }
 
-    // Tambahkan function baru ini
     public function ticketForm(Request $request)
     {
         $eventId = $request->query('event');
 
         $tickets = Tiket::where('status', 'Aktif')
-                        ->where('event_id', $eventId) // ← apakah baris ini sudah ada?
+                        ->where('event_id', $eventId)
                         ->get();
 
         return view('Pages.ticket', compact('tickets'));

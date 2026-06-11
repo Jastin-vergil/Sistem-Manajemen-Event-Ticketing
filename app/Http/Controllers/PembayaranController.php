@@ -9,33 +9,34 @@ use Illuminate\Support\Facades\Storage;
 
 class PembayaranController extends Controller
 {
-  public function index(Request $request)
-{
-    // WAJIB menggunakan with(['tiket.event']) agar relasi berantai dimuat
-    $query = Pembayaran::with(['tiket.event']);
+  public function index(Request $request) // Fungsi untuk menampilkan data pembayaran.
+    {
+        // WAJIB menggunakan with(['tiket.event']) agar relasi berantai dimuat
+        $query = Pembayaran::with(['tiket.event']);
 
-    if ($request->has('search')) {
-        $query->where('nama_peserta', 'like', '%' . $request->search . '%')
-              ->orWhere('email', 'like', '%' . $request->search . '%');
+            // Mencari nama peserta yang mengandung kata tertentu atau email
+        if ($request->has('search')) {
+            $query->where('nama_peserta', 'like', '%' . $request->search . '%')
+                ->orWhere('email', 'like', '%' . $request->search . '%');
+        }
+
+        $pembayaran = $query->latest()->get(); //Mengambil seluruh data, urut dari yg terakhir atau terbaru
+
+        // Pastikan $stats juga dikirim agar tidak memicu error undefined variable kembali
+        $stats = [
+            'total'    => Pembayaran::count(),
+            'pending'  => Pembayaran::where('status', 'Pending')->count(),
+            'approved' => Pembayaran::where('status', 'Approved')->orWhere('status', 'Verified')->count(),
+            'rejected' => Pembayaran::where('status', 'Rejected')->orWhere('status', 'Declined')->count(),
+        ];
+
+        return view('admin.pembayaran.interface', compact('pembayaran', 'stats'));
     }
-
-    $pembayaran = $query->latest()->get();
-
-    // Pastikan $stats juga dikirim agar tidak memicu error undefined variable kembali
-    $stats = [
-        'total'    => Pembayaran::count(),
-        'pending'  => Pembayaran::where('status', 'Pending')->count(),
-        'approved' => Pembayaran::where('status', 'Approved')->orWhere('status', 'Verified')->count(),
-        'rejected' => Pembayaran::where('status', 'Rejected')->orWhere('status', 'Declined')->count(),
-    ];
-
-    return view('admin.pembayaran.interface', compact('pembayaran', 'stats'));
-}
 
 
     public function store(Request $request)
     {
-        // 1. Validasi request dari form
+        // 1. Menjalankan validasi sebelum data disimpan.
         $request->validate([
             'nama_peserta' => 'required|string|max:255',
             'email'        => 'required|email|max:255',
@@ -45,7 +46,7 @@ class PembayaranController extends Controller
         ]);
 
         // 2. Kelola penyimpanan file bukti transfer
-        $fileName = null;
+        $fileName = null; // Membuat variabel untuk menyimpan nama file.
         if ($request->hasFile('proof')) {
             $file = $request->file('proof');
             // Menamai file agar unik: contoh 'bukti_1654300000.png'
@@ -54,8 +55,9 @@ class PembayaranController extends Controller
             $file->move(public_path('uploads/proofs'), $fileName);
         }
 
-        // 3. Insert data ke database melalui Eloquent ORM
-        Pembayaran::create([
+        // 3. Insert data ke database 
+        // Menambahkan data baru ke tabel pembayaran.
+        Pembayaran::create([ 
             'tiket_id'      => $request->ticket_type,
             'nama_peserta'  => $request->nama_peserta,
             'email'         => $request->email,

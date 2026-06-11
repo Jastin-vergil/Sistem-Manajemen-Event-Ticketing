@@ -343,7 +343,7 @@
           </svg>
         </div>
         <h3 class="font-semibold text-slate-100 mb-1 text-sm">Full Receipt</h3>
-        <p class="text-xs text-slate-400 leading-relaxed">View detailed receipts and download PDF invoices anytime.</p>
+        <p class="text-xs text-slate-400 leading-relaxed">View detailed receipts.</p>
       </div>
 
     </div>
