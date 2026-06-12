@@ -211,21 +211,10 @@
         </div>
     </div>
 
-    <!-- SCRIPT -->
     <script>
-
-        /*
-        |--------------------------------------------------------------------------
-        | Countdown Timer
-        |--------------------------------------------------------------------------
-        */
-
         let time = 300;
-
         const countdown = document.getElementById('countdown');
-
         const timer = setInterval(() => {
-
             let minutes = Math.floor(time / 60);
             let seconds = time % 60;
 
@@ -237,36 +226,23 @@
             time--;
 
             if (time < 0) {
-
                 clearInterval(timer);
-
                 alert('Payment time expired.');
-
                 window.location.href = "/";
             }
-
         }, 1000);
 
-        /*
-        |--------------------------------------------------------------------------
-        | Modal
-        |--------------------------------------------------------------------------
-        */
-
+        //modal
         const form = document.getElementById('paymentForm');
         const modal = document.getElementById('successModal');
 
         form.addEventListener('submit', function(e) {
 
             e.preventDefault();
-
             const proof = document.getElementById('proof').files.length;
-
             if (proof > 0) {
-
                 modal.classList.remove('hidden');
                 modal.classList.add('flex');
-
                 setTimeout(() => {
                     form.submit();
                 }, 1000);
@@ -278,8 +254,6 @@
             modal.classList.add('hidden');
             modal.classList.remove('flex');
         }
-
     </script>
-
 </body>
 </html>

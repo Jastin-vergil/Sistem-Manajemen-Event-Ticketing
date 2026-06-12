@@ -36,12 +36,32 @@
     </div>
     <!-- Contact Info -->
     <div>
-      <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
-      <p class="mb-2">JL.H Ungar. Lr.Mursala, Tanjungpinang, Indonesia</p>
-      <p class="mb-2">Email: jastinreja@gmail.com</p>
-      <p>Phone: +62 822 8969 1770</p>
+      <h3 class="text-xl font-bold mb-4 text-white">Contact Us</h3>
+      
+      <div class="space-y-3">
+        <div class="flex items-start">
+          <span class="mr-3">📍</span>
+          <p>Politeknik Negeri Batam, Jl. Ahmad Yani, Batam Center, Batam, Indonesia</p>
+        </div>
+
+        <div class="flex items-center">
+          <span class="mr-3">📞</span>
+          <p>+62 822 8969 1770</p>
+        </div>
+
+        <div class="flex items-start">
+          <span class="mr-3">✉️</span>
+          <div class="flex flex-col space-y-1">
+            <span class="text-xs font-bold uppercase tracking-wider text-purple-400 mb-0.5">Admin Support:</span>
+            <span>jastinreja@gmail.com</span>
+            <span>anisyamiftahuljannah@gmail.com</span>
+            <span>ibnuaqhillah@gmail.com</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
   <div class="mt-12 text-center text-gray-400 text-sm relative z-10">
     &copy; 2026 Tixly. All rights reserved.
   </div>

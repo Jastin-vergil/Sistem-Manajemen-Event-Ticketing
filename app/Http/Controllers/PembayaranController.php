@@ -14,7 +14,7 @@ class PembayaranController extends Controller
         // WAJIB menggunakan with(['tiket.event']) agar relasi berantai dimuat
         $query = Pembayaran::with(['tiket.event']);
 
-            // Mencari nama peserta yang mengandung kata tertentu atau email
+        // Mencari nama peserta yang mengandung kata tertentu atau email
         if ($request->has('search')) {
             $query->where('nama_peserta', 'like', '%' . $request->search . '%')
                 ->orWhere('email', 'like', '%' . $request->search . '%');

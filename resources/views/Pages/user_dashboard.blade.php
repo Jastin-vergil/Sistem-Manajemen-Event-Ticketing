@@ -135,7 +135,11 @@
                     month: 'long',
                     year: 'numeric'
                 });
-            document.getElementById('modal-time').innerText = ev.jam_mulai ?? 'Tidak Tersedia';
+
+        const start = ev.jam_mulai ? ev.jam_mulai.substring(0, 5) : 'WIB';
+        const end = ev.jam_selesai ? ev.jam_selesai.substring(0, 5) : 'Selesai';
+            document.getElementById('modal-time').innerText = `${start} - ${end} WIB`;
+
             document.getElementById('modal-loc').innerText = ev.lokasi;
             document.getElementById('modal-desc').innerText = ev.deskripsi;
 
@@ -181,6 +185,19 @@
             const walk = (x - startX) * 2;
             wrapper.scrollLeft = scrollLeft - walk;
         };
+
+        wrapper.addEventListener('mousedown', startDrag);
+        wrapper.addEventListener('touchstart', startDrag);
+        window.addEventListener('mouseup', stopDrag);
+        window.addEventListener('touchend', stopDrag);
+        wrapper.addEventListener('mousemove', moveDrag);
+        wrapper.addEventListener('touchmove', moveDrag);
+
+        filter.addEventListener('change', (e) => {
+            wrapper.style.scrollBehavior = 'smooth';
+            wrapper.scrollLeft = 0;
+            renderEvents(e.target.value);
+        });
 
         wrapper.addEventListener('mousedown', startDrag);
         wrapper.addEventListener('touchstart', startDrag);

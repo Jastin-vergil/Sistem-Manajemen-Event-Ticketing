@@ -1,6 +1,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <header class="glass-effect fixed w-full z-[150] top-0 start-0 border-b border-white/10">
+  <header class="fixed w-full z-[150] top-0 start-0 border-b border-white/10 bg-[#0b0e29]/95 backdrop-blur-sm">
       <nav class="flex items-center justify-between py-4 lg:px-12 px-6 shadow-xl">
 
           <div class="flex items-center justify-between lg:w-auto w-full">
