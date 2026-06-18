@@ -6,6 +6,8 @@ use App\Models\Pembayaran;
 use App\Models\Tiket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Mail\TiketMail;
+use Illuminate\Support\Facades\Mail;
 
 class PembayaranController extends Controller
 {
@@ -79,15 +81,27 @@ class PembayaranController extends Controller
     public function approve(Pembayaran $pembayaran)
     {
         $pembayaran->update(['status' => 'Approved']);
-
+    
         $tiket = Tiket::where('id', $pembayaran->tiket_id)->first();
         
         if ($tiket) {
             $tiket->increment('terjual', 1);
         }
-
+    
+        // Load relasi tiket & event sebelum dikirim ke email
+        $pembayaran->load('tiket.event');
+    
+        // Kirim e-ticket ke email peserta
+        try {
+            Mail::to($pembayaran->email)->send(new TiketMail($pembayaran));
+            $message = 'Payment successfully approved and e-ticket sent to ' . $pembayaran->email;
+        } catch (\Exception $e) {
+            \Log::error('Gagal kirim email tiket: ' . $e->getMessage());
+            $message = 'Payment approved, but failed to send e-ticket email.';
+        }
+    
         return redirect()->route('admin.pembayaran.index')
-            ->with('success', 'Payment successfully approved.');
+            ->with('success', $message);
     }
 
     public function reject(Request $request, Pembayaran $pembayaran)
