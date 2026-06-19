@@ -27,7 +27,7 @@
     @endforeach
   </div>
 
-  {{-- Table --}}
+  {{-- Table tiket --}}
   <div style="background:#1a1d2e;border:1px solid #2a2d3e;border-radius:12px;overflow:hidden">
     <div style="padding:14px 20px;border-bottom:1px solid #2a2d3e">
       <h2 style="font-weight:600;color:#fff;font-size:14px">Ticket List ({{ $tiket->count() }})</h2>

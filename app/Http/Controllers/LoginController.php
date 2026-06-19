@@ -31,7 +31,7 @@ class LoginController extends Controller
             return redirect()->route('admin.ticket.interface');
         }
 
-        return back()->with('error', 'Email atau password salah.');
+        return back()->with('error', 'Your Email or Password Is Wrong.');
     }
 
     // Proses Log Out Hancurkan Session
