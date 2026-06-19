@@ -18,23 +18,39 @@
                 <p style="font-size:11px;color:#4b5563;margin-top:2px">Admin Panel</p>
             </div>
             <nav style="flex:1;padding:12px 0">
-                <p
-                    style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#374151;padding:16px 20px 4px">
-                    Menu</p>
+                <p class="text-[10px] uppercase tracking-wider text-gray-600 px-5 pt-4 pb-1">
+                    Menu
+                </p>
+
                 <a href="{{ route('admin.ticket.interface') }}"
-                    style="display:flex;align-items:center;gap:10px;padding:10px 20px;border-left:2px solid {{ request()->routeIs('admin.ticket.*') ? '#7c6ff7' : 'transparent' }};background:{{ request()->routeIs('admin.ticket.*') ? 'rgba(124,111,247,0.1)' : 'transparent' }};color:{{ request()->routeIs('admin.ticket.*') ? '#a78bfa' : '#6b7280' }};text-decoration:none;transition:all .15s">
+                    class="flex items-center gap-2.5 px-5 py-2.5 border-l-2 transition-all duration-150 no-underline
+    {{ request()->routeIs('admin.ticket.*')
+        ? 'border-indigo-500 bg-indigo-500/10 text-indigo-400'
+        : 'border-transparent text-gray-500 hover:text-gray-300' }}">
                     🎟️ Tickets
                 </a>
+
                 <a href="{{ route('admin.event.index') }}"
-                    style="display:flex;align-items:center;gap:10px;padding:10px 20px;border-left:2px solid {{ request()->routeIs('admin.event.*') ? '#7c6ff7' : 'transparent' }};background:{{ request()->routeIs('admin.event.*') ? 'rgba(124,111,247,0.1)' : 'transparent' }};color:{{ request()->routeIs('admin.event.*') ? '#a78bfa' : '#6b7280' }};text-decoration:none;transition:all .15s">
+                    class="flex items-center gap-2.5 px-5 py-2.5 border-l-2 transition-all duration-150 no-underline
+                    {{ request()->routeIs('admin.event.*')
+                    ? 'border-indigo-500 bg-indigo-500/10 text-indigo-400'
+                    : 'border-transparent text-gray-500 hover:text-gray-300' }}">
                     📅 Events
                 </a>
+
                 <a href="{{ route('admin.kategori.index') }}"
-                    style="display:flex;align-items:center;gap:10px;padding:10px 20px;border-left:2px solid {{ request()->routeIs('admin.kategori.*') ? '#7c6ff7' : 'transparent' }};background:{{ request()->routeIs('admin.kategori.*') ? 'rgba(124,111,247,0.1)' : 'transparent' }};color:{{ request()->routeIs('admin.kategori.*') ? '#a78bfa' : '#6b7280' }};text-decoration:none;transition:all .15s">
+                    class="flex items-center gap-2.5 px-5 py-2.5 border-l-2 transition-all duration-150 no-underline
+                    {{ request()->routeIs('admin.kategori.*')
+                    ? 'border-indigo-500 bg-indigo-500/10 text-indigo-400'
+                    : 'border-transparent text-gray-500 hover:text-gray-300' }}">
                     🏷️ Categories
                 </a>
+
                 <a href="{{ route('admin.pembayaran.index') }}"
-                    style="display:flex;align-items:center;gap:10px;padding:10px 20px;border-left:2px solid {{ request()->routeIs('admin.pembayaran.*') ? '#7c6ff7' : 'transparent' }};background:{{ request()->routeIs('admin.pembayaran.*') ? 'rgba(124,111,247,0.1)' : 'transparent' }};color:{{ request()->routeIs('admin.pembayaran.*') ? '#a78bfa' : '#6b7280' }};text-decoration:none;transition:all .15s">
+                    class="flex items-center gap-2.5 px-5 py-2.5 border-l-2 transition-all duration-150 no-underline
+                    {{ request()->routeIs('admin.pembayaran.*')
+                    ? 'border-indigo-500 bg-indigo-500/10 text-indigo-400'
+                    : 'border-transparent text-gray-500 hover:text-gray-300' }}">
                     💳 Payments
                 </a>
             </nav>
