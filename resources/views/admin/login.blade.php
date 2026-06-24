@@ -15,6 +15,16 @@
         rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
         body {
             background: radial-gradient(circle at 20% 20%, #161b33 0%, #0d1024 60%, #080a18 100%);
         }
@@ -41,12 +51,15 @@
                 <div class="flex flex-col md:flex-row">
 
                     <!-- Kiri Branding -->
-                    <div class="brand-panel hidden md:flex md:w-2/5 flex-col items-center justify-center p-8 text-center">
-                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 via-indigo-600 to-blue-800 flex items-center justify-center shadow-lg mb-4">
-                            <span class="text-white text-3xl font-bold" style="font-family: 'Montserrat', sans-serif;">T</span>
+                    <div
+                        class="brand-panel hidden md:flex md:w-2/5 flex-col items-center justify-center p-8 text-center">
+                        <div
+                            class="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 via-indigo-600 to-blue-800 flex items-center justify-center shadow-lg mb-4">
+                            <span class="text-white text-3xl font-bold"
+                                style="font-family: 'Montserrat', sans-serif;">T</span>
                         </div>
-                        <h1 class="font-bold text-2xl bg-gradient-to-r from-indigo-300 to-blue-400 text-transparent bg-clip-text tracking-wide"
-                            style="font-family: 'Montserrat', sans-serif;">
+                        <h1 class="font-bold text-2xl text-transparent bg-clip-text tracking-wide animate-[gradientMove_3s_ease_infinite]"
+                            style="font-family: 'Montserrat', sans-serif; background-image: linear-gradient(90deg, #7e22ce, #4f46e5, #a855f7, #7e22ce); background-size: 200% auto; -webkit-background-clip: text;">
                             TIXLY
                         </h1>
                         <p class="text-gray-400 text-sm mt-2">
@@ -58,8 +71,10 @@
                     <div class="w-full md:w-3/5 p-8 sm:p-10">
 
                         <div class="mb-6 md:hidden flex flex-col items-center">
-                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 via-indigo-600 to-blue-800 flex items-center justify-center shadow-lg mb-3">
-                                <span class="text-white text-2xl font-bold" style="font-family: 'Montserrat', sans-serif;">T</span>
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 via-indigo-600 to-blue-800 flex items-center justify-center shadow-lg mb-3">
+                                <span class="text-white text-2xl font-bold"
+                                    style="font-family: 'Montserrat', sans-serif;">T</span>
                             </div>
                         </div>
 
@@ -68,7 +83,8 @@
                         </h2>
 
                         @if (session('error'))
-                            <div class="mb-5 p-3 bg-red-500/10 border border-red-500/40 text-red-400 rounded-lg text-sm text-center font-medium">
+                            <div
+                                class="mb-5 p-3 bg-red-500/10 border border-red-500/40 text-red-400 rounded-lg text-sm text-center font-medium">
                                 {{ session('error') }}
                             </div>
                         @endif
@@ -87,7 +103,8 @@
                             </div>
 
                             <div>
-                                <label for="password" class="block mb-2 text-gray-300 text-sm font-medium">Password</label>
+                                <label for="password"
+                                    class="block mb-2 text-gray-300 text-sm font-medium">Password</label>
                                 <div class="relative">
                                     <input id="password" name="password"
                                         class="input-glow border @error('password') border-red-500 @else border-indigo-900/40 @enderror bg-[#181c3a] text-gray-200 pr-14 p-3 placeholder:text-gray-500 rounded-lg w-full focus:outline-none focus:border-indigo-500 transition duration-300"
@@ -103,9 +120,12 @@
                             </div>
 
                             <button
-                                class="bg-gradient-to-r from-indigo-600 to-blue-700 shadow-lg mt-2 p-3 text-white font-semibold rounded-lg w-full hover:scale-[1.02] hover:from-blue-700 hover:to-indigo-600 transition duration-300 ease-in-out tracking-wide"
+                                class="relative overflow-hidden mt-2 p-3 text-white font-semibold rounded-lg w-full bg-indigo-600 shadow-[0_0_20px_rgba(79,70,229,0.4)] group"
                                 type="submit" style="font-family: 'Montserrat', sans-serif;">
-                                LOGIN
+                                <span class="relative z-10">LOGIN</span>
+                                <div
+                                    class="absolute inset-0 w-0 bg-red-600 transition-all duration-500 group-hover:w-full rounded-lg">
+                                </div>
                             </button>
 
                             <a href="{{ route('user.dashboard') }}"

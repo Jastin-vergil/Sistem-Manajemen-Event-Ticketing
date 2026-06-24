@@ -57,9 +57,9 @@ class PembayaranController extends Controller
             $file->move(public_path('uploads/proofs'), $fileName);
         }
 
-        // 3. Insert data ke database 
+        // 3. Insert data ke database
         // Menambahkan data baru ke tabel pembayaran.
-        Pembayaran::create([ 
+        Pembayaran::create([
             'tiket_id'      => $request->ticket_type,
             'nama_peserta'  => $request->nama_peserta,
             'email'         => $request->email,
@@ -78,31 +78,31 @@ class PembayaranController extends Controller
         return view('admin.pembayaran.show_form', compact('pembayaran'));
     }
 
-    public function approve(Pembayaran $pembayaran)
-    {
-        $pembayaran->update(['status' => 'Approved']);
-    
-        $tiket = Tiket::where('id', $pembayaran->tiket_id)->first();
-        
-        if ($tiket) {
-            $tiket->increment('terjual', 1);
-        }
-    
-        // Load relasi tiket & event sebelum dikirim ke email
-        $pembayaran->load('tiket.event');
-    
-        // Kirim e-ticket ke email peserta
-        try {
-            Mail::to($pembayaran->email)->send(new TiketMail($pembayaran));
-            $message = 'Payment successfully approved and e-ticket sent to ' . $pembayaran->email;
-        } catch (\Exception $e) {
-            \Log::error('Gagal kirim email tiket: ' . $e->getMessage());
-            $message = 'Payment approved, but failed to send e-ticket email.';
-        }
-    
-        return redirect()->route('admin.pembayaran.index')
-            ->with('success', $message);
+   public function approve(Pembayaran $pembayaran)
+{
+    $tiket = Tiket::where('id', $pembayaran->tiket_id)->first();
+
+    // Ganti jumlah_tiket → kuota
+    if (!$tiket || ($tiket->kuota - $tiket->terjual) <= 0) {
+        return redirect()->back()->withErrors(['error' => 'Stok tiket sudah habis, tidak bisa di-approve.']);
     }
+
+    $pembayaran->update(['status' => 'Approved']);
+    $tiket->increment('terjual', 1);
+
+    $pembayaran->load('tiket.event');
+
+    try {
+        Mail::to($pembayaran->email)->send(new TiketMail($pembayaran));
+        $message = 'Payment successfully approved and e-ticket sent to ' . $pembayaran->email;
+    } catch (\Exception $e) {
+        \Log::error('Gagal kirim email tiket: ' . $e->getMessage());
+        $message = 'Payment approved, but failed to send e-ticket email.';
+    }
+
+    return redirect()->route('admin.pembayaran.index')
+        ->with('success', $message);
+}
 
     public function reject(Request $request, Pembayaran $pembayaran)
     {
@@ -130,20 +130,20 @@ class PembayaranController extends Controller
     public function searchByEmail(Request $request)
     {
         $email = $request->query('email');
-    
+
         if (!$email || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return response()->json(['error' => 'Email tidak valid'], 422);
         }
-    
+
         $pembayarans = Pembayaran::with('tiket.event')
             ->where('email', $email)
             ->latest()
             ->get();
-    
+
         $data = $pembayarans->map(function ($p) {
             $tiket = $p->tiket;
             $event = $tiket?->event;
-    
+
             return [
                 'id'            => 'TXN-' . str_pad($p->id, 5, '0', STR_PAD_LEFT),
                 'event'         => $event?->nama ?? '-',
@@ -162,7 +162,7 @@ class PembayaranController extends Controller
                 },
             ];
         });
-    
+
         return response()->json($data);
     }
 }

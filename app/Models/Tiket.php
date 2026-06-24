@@ -42,11 +42,26 @@ class Tiket extends Model
     // Helper: format harga ke Rupiah
     public function getFormattedPriceAttribute(): string
     {
-        return 'Rp ' . number_format($this->price, 0, ',', '.');
+        return 'Rp '.number_format($this->price, 0, ',', '.');
     }
 
     public function pembayaran()
     {
         return $this->hasMany(Pembayaran::class, 'tiket_id', 'id');
+    }
+    // App\Models\Tiket.php
+
+    public function updateStatus(): void
+    {
+        $sisa = $this->kuota - $this->terjual;
+        $persen = $this->kuota > 0 ? ($sisa / $this->kuota) * 100 : 0;
+
+        $status = match (true) {
+            $sisa <= 0 => 'Habis',
+            $persen <= 10 => 'Hampir Habis',
+            default => 'Aktif',
+        };
+
+        $this->update(['status' => $status]);
     }
 }
