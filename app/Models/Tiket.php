@@ -18,7 +18,6 @@ class Tiket extends Model
         'tanggal_mulai',
         'tanggal_akhir',
         'status',
-        'keterangan',
     ];
 
     protected $casts = [
@@ -28,6 +27,18 @@ class Tiket extends Model
         'kuota' => 'integer',
         'terjual' => 'integer',
     ];
+
+    // TAMBAHKAN INI
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::retrieved(function ($tiket) {
+            if ($tiket->tanggal_akhir && $tiket->tanggal_akhir->isPast()) {
+                $tiket->delete();
+            }
+        });
+    }
 
     public function event(): BelongsTo
     {
@@ -39,29 +50,13 @@ class Tiket extends Model
         return $this->kuota - $this->terjual;
     }
 
-    // Helper: format harga ke Rupiah
     public function getFormattedPriceAttribute(): string
     {
-        return 'Rp '.number_format($this->price, 0, ',', '.');
+        return 'Rp '.number_format($this->harga, 0, ',', '.');
     }
 
     public function pembayaran()
     {
         return $this->hasMany(Pembayaran::class, 'tiket_id', 'id');
-    }
-    // App\Models\Tiket.php
-
-    public function updateStatus(): void
-    {
-        $sisa = $this->kuota - $this->terjual;
-        $persen = $this->kuota > 0 ? ($sisa / $this->kuota) * 100 : 0;
-
-        $status = match (true) {
-            $sisa <= 0 => 'Habis',
-            $persen <= 10 => 'Hampir Habis',
-            default => 'Aktif',
-        };
-
-        $this->update(['status' => $status]);
     }
 }

@@ -96,7 +96,7 @@
                                 <label for="email" class="block mb-2 text-gray-300 text-sm font-medium">Email</label>
                                 <input id="email" name="email" value="{{ old('email') }}"
                                     class="input-glow border @error('email') border-red-500 @else border-indigo-900/40 @enderror bg-[#181c3a] text-gray-200 p-3 placeholder:text-gray-500 rounded-lg w-full focus:outline-none focus:border-indigo-500 transition duration-300"
-                                    type="email" placeholder="admin@tixly.com" required autofocus />
+                                    type="email" placeholder="admin@tixly.com" autofocus />
                                 @error('email')
                                     <p class="mt-1.5 text-red-400 text-xs">{{ $message }}</p>
                                 @enderror
@@ -108,7 +108,7 @@
                                 <div class="relative">
                                     <input id="password" name="password"
                                         class="input-glow border @error('password') border-red-500 @else border-indigo-900/40 @enderror bg-[#181c3a] text-gray-200 pr-14 p-3 placeholder:text-gray-500 rounded-lg w-full focus:outline-none focus:border-indigo-500 transition duration-300"
-                                        type="password" placeholder="••••••••" required />
+                                        type="password" placeholder="••••••••" />
                                     <button type="button" id="togglePassword"
                                         class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 hover:text-indigo-400 text-xs font-semibold transition">
                                         <span id="toggleLabel">Show</span>

@@ -19,7 +19,7 @@
                 <div>
                     <label style="display:block;font-size:12px;font-weight:500;color:#9ca3af;margin-bottom:5px">Event Name
                         <span style="color:#f87171">*</span></label>
-                    <input type="text" name="nama" required value="{{ old('nama', $event->nama) }}"
+                    <input type="text" name="nama" value="{{ old('nama', $event->nama) }}"
                         style="width:100%;background:#13151f;border:1px solid #2a2d3e;border-radius:8px;padding:8px 12px;font-size:13px;color:#e2e8f0;outline:none;box-sizing:border-box">
                     @error('nama')
                         <p style="color:#f87171;font-size:11px;margin-top:4px">{{ $message }}</p>
@@ -43,7 +43,7 @@
                 <div>
                     <label style="display:block;font-size:12px;font-weight:500;color:#9ca3af;margin-bottom:5px">Date <span
                             style="color:#f87171">*</span></label>
-                    <input type="date" name="tanggal" required
+                    <input type="date" name="tanggal"
                         value="{{ old('tanggal', $event->tanggal->format('Y-m-d')) }}"
                         style="width:100%;background:#13151f;border:1px solid #2a2d3e;border-radius:8px;padding:8px 12px;font-size:13px;color:#e2e8f0;outline:none;box-sizing:border-box">
                     @error('tanggal')
@@ -67,7 +67,8 @@
                 </div>
                 <div>
                     <label
-                        style="display:block;font-size:12px;font-weight:500;color:#9ca3af;margin-bottom:5px">Location</label>
+                        style="display:block;font-size:12px;font-weight:500;color:#9ca3af;margin-bottom:5px">Location
+                    <span style="color:#f87171">*</span></label>
                     <input type="text" name="lokasi" value="{{ old('lokasi', $event->lokasi) }}"
                         placeholder="Venue / city..."
                         style="width:100%;background:#13151f;border:1px solid #2a2d3e;border-radius:8px;padding:8px 12px;font-size:13px;color:#e2e8f0;outline:none;box-sizing:border-box">
@@ -82,7 +83,8 @@
 
                 <div>
                     <label style="display:block;font-size:12px;font-weight:500;color:#9ca3af;margin-bottom:5px">Event
-                        Photo</label>
+                        Photo
+                        <span style="color:#f87171">*</span></label>
                     @if ($event->foto)
                         <div style="margin-bottom:8px">
                             <img src="{{ asset('storage/' . $event->foto) }}" alt="Event Photo"

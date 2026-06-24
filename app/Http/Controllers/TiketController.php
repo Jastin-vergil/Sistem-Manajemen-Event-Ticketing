@@ -40,7 +40,6 @@ class TiketController extends Controller
             'tanggal_mulai' => 'nullable|date',
             'tanggal_akhir' => 'nullable|date|after_or_equal:tanggal_mulai',
             'status' => 'required|in:Aktif,Draft,Habis,Hampir Habis',
-            'keterangan' => 'nullable|string',
         ], [
             'event_id.required' => 'Event is required.',
             'event_id.exists' => 'Selected event does not exist.',
@@ -52,7 +51,6 @@ class TiketController extends Controller
             'kuota.integer' => 'Quota must be a whole number.',
             'kuota.min' => 'Quota must be at least 1.',
             'tanggal_akhir.after_or_equal' => 'End date must be after or equal to start date.',
-            'status.required' => 'Status is required.',
         ]);
 
         Tiket::create($request->all());
@@ -77,7 +75,6 @@ class TiketController extends Controller
             'tanggal_mulai' => 'nullable|date',
             'tanggal_akhir' => 'nullable|date|after_or_equal:tanggal_mulai',
             'status' => 'required|in:Aktif,Draft,Habis,Hampir Habis',
-            'keterangan' => 'nullable|string',
         ], [
             'event_id.required' => 'Event is required.',
             'event_id.exists' => 'Selected event does not exist.',
@@ -89,12 +86,9 @@ class TiketController extends Controller
             'kuota.integer' => 'Quota must be a whole number.',
             'kuota.min' => 'Quota must be at least 1.',
             'tanggal_akhir.after_or_equal' => 'End date must be after or equal to start date.',
-            'status.required' => 'Status is required.',
         ]);
 
         $tiket->update($request->all());
-        $tiket->refresh();
-        $tiket->updateStatus();
 
         return redirect()->route('admin.ticket.interface')->with('success', 'Tiket berhasil diperbarui.');
     }
