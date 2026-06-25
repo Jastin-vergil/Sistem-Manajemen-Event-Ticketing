@@ -228,7 +228,7 @@
             if (time < 0) {
                 clearInterval(timer);
                 alert('Payment time expired.');
-                window.location.href = "/";
+                window.location.href = "/userdashboard";
             }
         }, 1000);
 
