@@ -74,9 +74,16 @@
                     },
                     init() {
                         setInterval(() => {
+<<<<<<< HEAD
                             this.activeStack = this.activeStack < this.total
                                 ? this.activeStack + 1
                                 : 1;
+=======
+                            this.activeStack =
+                                this.activeStack < this.total ?
+                                this.activeStack + 1 :
+                                1;
+>>>>>>> b73e3e28e8db87dce8a83fd63328b04782fe64ab
                         }, 3000);
                     }
                 }">
@@ -166,7 +173,6 @@
                     </div>
                 </div>
             </section>
-
         </div>
 
         <footer>

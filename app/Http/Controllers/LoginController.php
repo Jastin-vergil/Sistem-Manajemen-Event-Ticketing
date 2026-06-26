@@ -16,8 +16,13 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+            'email' => 'required|email',
+            'password' => 'required',
+        ]
+        ,[
+            'email.required' => 'Email is required.',
+            'email.email' => 'Please enter a valid email address.',
+            'password.required' => 'Password is required.',
         ]);
 
         $admin = User::where('email', $request->email)
@@ -31,7 +36,7 @@ class LoginController extends Controller
             return redirect()->route('admin.ticket.interface');
         }
 
-        return back()->with('error', 'Email atau password salah.');
+        return back()->with('error', 'Your Email or Password Is Wrong.');
     }
 
     // Proses Log Out Hancurkan Session

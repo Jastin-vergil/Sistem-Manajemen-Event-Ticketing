@@ -26,12 +26,23 @@ class EventController extends Controller
 		$request->validate([
 			'nama' => 'required|string|max:255',
 			'tanggal' => 'required|date',
-			'lokasi' => 'nullable|string|max:255',
+			'lokasi' => 'required|string|max:255',
 			'deskripsi' => 'nullable|string',
 			'foto' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-			'jam_mulai'   => 'nullable|string',
-            'jam_selesai' => 'nullable|string',
-		]);
+			'jam_mulai'   => 'required|string',
+            'jam_selesai' => 'required|string',
+		]
+        , [
+            'nama.required'    => 'The event name field is required.',
+            'lokasi.required'  => 'The event location field is required.',
+            'tanggal.required' => 'The event date field is required.',
+            'jam_mulai.required' => 'The event start time field is required.',
+            'jam_selesai.required' => 'The event end time field is required.',
+            'foto.required' => 'The event image field is required.',
+            'foto.image' => 'The uploaded file must be an image.',
+            'foto.mimes' => 'The uploaded image must be in jpg, jpeg, png, or webp format.',
+            'foto.max' => 'The uploaded image must not exceed 2MB in size.',
+        ]);
 
 		$data = $request->only('nama', 'kategori_id', 'tanggal', 'jam_mulai', 'jam_selesai', 'lokasi', 'deskripsi');
 
@@ -55,13 +66,22 @@ class EventController extends Controller
 		$request->validate([
 			'nama' => 'required|string|max:255',
 			'tanggal' => 'required|date',
-			'lokasi' => 'nullable|string|max:255',
+			'lokasi' => 'required|string|max:255',
 			'deskripsi' => 'nullable|string',
-			'foto' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-           'jam_mulai'   => 'nullable|string',
-            'jam_selesai' => 'nullable|string',
-		]);
-
+			'foto' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+           'jam_mulai'   => 'required|string',
+            'jam_selesai' => 'required|string'],
+        [
+            'nama.required'    => 'The event name field is required.',
+            'lokasi.required'  => 'The event location field is required.',
+            'tanggal.required' => 'The event date field is required.',
+            'jam_mulai.required' => 'The event start time field is required.',
+            'jam_selesai.required' => 'The event end time field is required.',
+            'foto.required' => 'The event image field is required.',
+            'foto.image' => 'The uploaded file must be an image.',
+            'foto.mimes' => 'The uploaded image must be in jpg, jpeg, png, or webp format.',
+            'foto.max' => 'The uploaded image must not exceed 2MB in size.',
+        ]);
 		$data = $request->only('nama', 'kategori_id', 'tanggal', 'jam_mulai', 'jam_selesai', 'lokasi', 'deskripsi');
 		if ($request->hasFile('foto')) {
 			if ($event->foto) {
@@ -79,7 +99,7 @@ class EventController extends Controller
 	{
 		$event->delete();
 
-		return redirect()->route('admin.event.index')->with('success', 'Event berhasil dihapus.');
+		return redirect()->route('admin.event.index')->with('success', 'Event succesfully deleted.');
 	}
 
 	/**
@@ -94,7 +114,7 @@ class EventController extends Controller
 	        ->with('tiket')
 	        ->latest()
 	        ->get();
-	
+
 	    return response()->json([
 	        'event' => $event->nama,
 	        'participants' => $participants->map(fn($p) => [

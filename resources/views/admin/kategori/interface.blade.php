@@ -12,7 +12,7 @@
       @csrf
       <div style="margin-bottom:12px">
         <label style="display:block;font-size:12px;font-weight:500;color:#9ca3af;margin-bottom:5px">Category Name <span style="color:#f87171">*</span></label>
-        <input type="text" name="nama" required value="{{ old('nama') }}" placeholder="e.g. Music, Sports..."
+        <input type="text" name="nama" value="{{ old('nama') }}" placeholder="e.g. Music, Sports..."
           style="width:100%;background:#13151f;border:1px solid #2a2d3e;border-radius:8px;padding:8px 12px;font-size:13px;color:#e2e8f0;outline:none;box-sizing:border-box">
         @error('nama')<p style="color:#f87171;font-size:11px;margin-top:4px">{{ $message }}</p>@enderror
       </div>
