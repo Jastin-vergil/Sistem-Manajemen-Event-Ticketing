@@ -20,7 +20,7 @@ class PembayaranController extends Controller
                 ->orWhere('email', 'like', '%' . $request->search . '%');
         }
 
-        $pembayaran = $query->latest()->get(); //Mengambil seluruh data, urut dari yg terakhir atau terbaru
+        $pembayaran = $query->latest()->get(); 
 
         // Pastikan $stats juga dikirim agar tidak memicu error undefined variable kembali
         $stats = [
@@ -49,7 +49,7 @@ class PembayaranController extends Controller
         $fileName = null; // Membuat variabel untuk menyimpan nama file.
         if ($request->hasFile('proof')) {
             $file = $request->file('proof');
-            // Menamai file agar unik: contoh 'bukti_1654300000.png'
+            
             $fileName = 'bukti_' . time() . '.' . $file->getClientOriginalExtension();
             // Dipindahkan ke direktori local: public/uploads/proofs/
             $file->move(public_path('uploads/proofs'), $fileName);
@@ -78,7 +78,9 @@ class PembayaranController extends Controller
 
     public function approve(Pembayaran $pembayaran)
     {
-        $pembayaran->update(['status' => 'Approved']);
+        $pembayaran->update([
+            'status' => 'Approved'
+        ]);
 
         $tiket = Tiket::where('id', $pembayaran->tiket_id)->first();
         

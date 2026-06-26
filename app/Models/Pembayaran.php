@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Pembayaran extends Model
 {
-    // Mengarahkan ke tabel manual phpMyAdmin kamu
+    // Mengarahkan ke tabel manual phpMyAdmin 
     protected $table = 'pembayaran';
 
     // Kolom-kolom yang boleh diisi

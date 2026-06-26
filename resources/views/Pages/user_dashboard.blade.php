@@ -199,19 +199,6 @@
             renderEvents(e.target.value);
         });
 
-        wrapper.addEventListener('mousedown', startDrag);
-        wrapper.addEventListener('touchstart', startDrag);
-        window.addEventListener('mouseup', stopDrag);
-        window.addEventListener('touchend', stopDrag);
-        wrapper.addEventListener('mousemove', moveDrag);
-        wrapper.addEventListener('touchmove', moveDrag);
-
-        filter.addEventListener('change', (e) => {
-            wrapper.style.scrollBehavior = 'smooth';
-            wrapper.scrollLeft = 0;
-            renderEvents(e.target.value);
-        });
-
         renderEvents();
     </script>
 </body>

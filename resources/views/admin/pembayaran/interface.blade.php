@@ -154,7 +154,7 @@
       @csrf
       <div style="margin-bottom:16px">
         <label style="display:block;font-size:12px;font-weight:500;color:#9ca3af;margin-bottom:5px">Reason (optional)</label>
-        <textarea name="catatan" rows="3" placeholder="e.g. Blurry proof, wrong amount..."
+        <textarea name="catatan" rows="3" required placeholder="e.g. Blurry proof, wrong amount..."
           style="width:100%;background:#13151f;border:1px solid #2a2d3e;border-radius:8px;padding:8px 12px;font-size:13px;color:#e2e8f0;outline:none;box-sizing:border-box;resize:none"></textarea>
       </div>
       <div style="display:flex;gap:12px">
@@ -185,12 +185,23 @@ function closeProof() {
 function openReject(id) {
   document.getElementById('form-reject').action = '/pembayaran/' + id + '/reject';
   document.getElementById('modal-reject').style.display = 'flex';
+  document.querySelector('[name="catatan"]').value = '';
 }
 function closeReject() {
   document.getElementById('modal-reject').style.display = 'none';
 }
+
 document.getElementById('modal-reject').addEventListener('click', function(e) {
   if (e.target === this) closeReject();
+});
+
+document.getElementById('form-reject').addEventListener('submit', function(e) {
+  const field = document.querySelector('[name="catatan"]');
+  if (!field.value.trim()) {
+    e.preventDefault();
+    field.style.borderColor = '#f87171';
+    field.focus();
+  }
 });
 </script>
 
