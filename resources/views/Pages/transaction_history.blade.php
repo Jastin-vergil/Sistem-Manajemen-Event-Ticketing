@@ -218,6 +218,29 @@
       flex-shrink: 0;
     }
 
+    .inv-reject-box {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.25);
+  border-radius: 10px;
+}
+
+.inv-reject-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #f87171;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.inv-reject-text {
+  font-size: 12.5px;
+  color: #fecaca;
+  line-height: 1.5;
+}
+
     .dot-success { background: #4ade80; box-shadow: 0 0 6px rgba(74, 222, 128, 0.5); }
     .dot-pending { background: #facc15; box-shadow: 0 0 6px rgba(250, 204, 21, 0.5); }
     .dot-failed  { background: #f87171; box-shadow: 0 0 6px rgba(248, 113, 113, 0.5); }
@@ -412,6 +435,12 @@
           <p class="inv-status-text">Payment status: <strong id="inv-status-text"></strong></p>
         </div>
 
+                <!-- Alasan Penolakan, hanya tampil jika status failed -->
+        <div class="inv-reject-box hidden" id="inv-reject-box">
+          <p class="inv-reject-label">Alasan Penolakan</p>
+          <p class="inv-reject-text" id="inv-reject-text"></p>
+        </div>
+
       </div><!-- /modal-body -->
 
       <!-- Modal Footer -->
@@ -451,21 +480,31 @@
       failed:  'Failed'
     };
 
-    //invoice modal
-    function openInvoice(tx) {
-      document.getElementById('inv-id').textContent       = tx.id;
-      document.getElementById('inv-date').textContent     = tx.date;
-      document.getElementById('inv-event').textContent    = tx.event;
-      document.getElementById('inv-ticket').textContent   = tx.ticket + ' Ticket';
-      document.getElementById('inv-datetime').textContent = tx.eventDatetime;
-      document.getElementById('inv-amount').textContent   = tx.amount;
-
-      const dot = document.getElementById('inv-dot');
-      dot.className = 'inv-status-dot ' + dotClass[tx.status];
-
-      document.getElementById('inv-status-text').textContent = statusText[tx.status];
-      document.getElementById('invoice-modal').classList.add('open');
+      //invoice modal
+      function openInvoice(tx) {
+    document.getElementById('inv-id').textContent       = tx.id;
+    document.getElementById('inv-date').textContent     = tx.date;
+    document.getElementById('inv-event').textContent    = tx.event;
+    document.getElementById('inv-ticket').textContent   = tx.ticket + ' Ticket';
+    document.getElementById('inv-datetime').textContent = tx.eventDatetime;
+    document.getElementById('inv-amount').textContent   = tx.amount;
+  
+    const dot = document.getElementById('inv-dot');
+    dot.className = 'inv-status-dot ' + dotClass[tx.status];
+  
+    document.getElementById('inv-status-text').textContent = statusText[tx.status];
+  
+    // Tampilkan alasan penolakan hanya jika status failed/ditolak
+    const rejectBox = document.getElementById('inv-reject-box');
+    if (tx.status === 'failed' && tx.rejectReason) {
+      document.getElementById('inv-reject-text').textContent = tx.rejectReason;
+      rejectBox.classList.remove('hidden');
+    } else {
+      rejectBox.classList.add('hidden');
     }
+  
+    document.getElementById('invoice-modal').classList.add('open');
+  }
 
     function closeInvoice() {
       document.getElementById('invoice-modal').classList.remove('open');

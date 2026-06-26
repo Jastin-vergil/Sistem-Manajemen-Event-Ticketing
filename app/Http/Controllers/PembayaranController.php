@@ -160,6 +160,7 @@ class PembayaranController extends Controller
                     'Rejected' => 'failed',
                     default    => 'pending',
                 },
+                'rejectReason'  => $p->status === 'Rejected' ? $p->catatan : null, // alasan penolakan dari admin
             ];
         });
 
