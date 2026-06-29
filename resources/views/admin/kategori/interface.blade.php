@@ -5,7 +5,7 @@
 @section('content')
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start">
 
-  {{-- Form Tambah --}}
+  {{--form dikiri untuk nambah kategori--}}
   <div style="background:#1a1d2e;border:1px solid #2a2d3e;border-radius:12px;padding:24px">
     <h2 style="font-weight:600;color:#fff;font-size:14px;margin-bottom:16px">Add New Category</h2>
     <form action="{{ route('admin.kategori.store') }}" method="POST">
@@ -23,7 +23,7 @@
     </form>
   </div>
 
-  {{-- Tabel Kategori --}}
+  {{--list kategori--}}
   <div style="background:#1a1d2e;border:1px solid #2a2d3e;border-radius:12px;overflow:hidden">
     <div style="padding:14px 20px;border-bottom:1px solid #2a2d3e">
       <h2 style="font-weight:600;color:#fff;font-size:14px">Category List ({{ $kategori->count() }})</h2>
@@ -66,7 +66,7 @@
 
 </div>
 
-{{-- Modal Edit --}}
+{{--modal buat ngedit kategori--}}
 <div id="modal-edit" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:50;align-items:center;justify-content:center">
   <div style="background:#1a1d2e;border:1px solid #2a2d3e;border-radius:12px;padding:24px;width:400px">
     <h3 style="font-weight:600;color:#fff;font-size:14px;margin-bottom:16px">Edit Category</h3>

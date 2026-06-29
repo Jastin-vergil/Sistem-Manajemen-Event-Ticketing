@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Tiket extends Model
 {
     protected $table = 'tiket';
+    public $timestamps = false;
 
     protected $fillable = [
+        'admin_id',
         'event_id',
         'nama_tiket',
         'harga',
@@ -28,7 +30,6 @@ class Tiket extends Model
         'terjual' => 'integer',
     ];
 
-    // TAMBAHKAN INI
     protected static function boot()
     {
         parent::boot();

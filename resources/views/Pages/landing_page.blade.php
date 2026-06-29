@@ -111,12 +111,12 @@
                     </h1>
 
                     <p class="text-gray-400 mt-6 text-lg font-source-sans-pro max-w-md">
-                        Experience the ease of booking tickets for your favorite events with Tixly. Safe, fast, and reliable.
+                        Experience the ease of Buying tickets for your favorite events with Tixly. Safe, fast, and reliable.
                     </p>
 
-                    <a href="{{ route('user.dashboard') }}"
+                    <a href="{{ route('transaction.history') }}"
                         class="group relative px-10 py-4 mt-10 font-mitr text-white uppercase tracking-widest overflow-hidden rounded-full bg-indigo-600 transition-all duration-300 hover:bg-indigo-500 shadow-[0_0_20px_rgba(79,70,229,0.4)]">
-                        <span class="relative z-10">Find Event</span>
+                        <span class="relative z-10">Trace Your Transaction History</span>
                         <div class="absolute inset-0 w-0 bg-red-400 transition-all duration-300 group-hover:w-full"></div>
                     </a>
                 </div>
@@ -143,7 +143,7 @@
                                 :alt="event.name"
                                 class="w-full h-full object-cover rounded-[3rem] border border-white/5">
                             </div>
-                            
+
                         </template>
 
                         {{-- Dots Indicator --}}

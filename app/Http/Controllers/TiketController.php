@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Tiket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TiketController extends Controller
 {
     public function index()
     {
-        $tiket = Tiket::with('event')->latest()->get();
+        $tiket = Tiket::with('event')->latest('id')->get();
         $events = Event::orderBy('tanggal')->get();
 
         $stats = [
@@ -53,7 +54,9 @@ class TiketController extends Controller
             'tanggal_akhir.after_or_equal' => 'End date must be after or equal to start date.',
         ]);
 
-        Tiket::create($request->all());
+        Tiket::create(array_merge($request->all(), [
+            'admin_id' => Auth::id(),
+        ]));
 
         return redirect()->route('admin.ticket.interface')->with('success', 'Ticket Has Been Added.');
     }
@@ -88,7 +91,9 @@ class TiketController extends Controller
             'tanggal_akhir.after_or_equal' => 'End date must be after or equal to start date.',
         ]);
 
-        $tiket->update($request->all());
+        $tiket->update(array_merge($request->all(), [
+            'admin_id' => Auth::id(),
+        ]));
 
         return redirect()->route('admin.ticket.interface')->with('success', 'Tiket berhasil diperbarui.');
     }

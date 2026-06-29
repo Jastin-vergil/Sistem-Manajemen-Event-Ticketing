@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -50,7 +51,9 @@ class EventController extends Controller
 			$data['foto'] = $request->file('foto')->store('events', 'public');
 		}
 
-		Event::create($data);
+		Event::create(array_merge($data, [
+            'admin_id' => Auth::id(),
+        ]));
 
 		return redirect()->route('admin.event.index')->with('success', 'Event successfully added.');
 	}
@@ -90,7 +93,9 @@ class EventController extends Controller
 			$data['foto'] = $request->file('foto')->store('events', 'public');
 		}
 
-		$event->update($data);
+		Event::create(array_merge($request->all(), [
+            'admin_id' => Auth::id(),
+        ]));
 
 		return redirect()->route('admin.event.index')->with('success', 'Event successfully updated.');
 	}

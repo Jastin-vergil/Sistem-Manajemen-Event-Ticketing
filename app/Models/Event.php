@@ -10,9 +10,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Event extends Model
     {
+        public $timestamps = false;
         protected $table = 'events';
 
         protected $fillable = [
+            'admin_id',
             'nama',
             'kategori_id',
             'tanggal',
