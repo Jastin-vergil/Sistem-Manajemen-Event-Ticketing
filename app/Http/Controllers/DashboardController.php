@@ -12,7 +12,6 @@ class DashboardController extends Controller
         $events = Event::with('kategori')->get();
         $kategori = Kategori::all();
 
-        return view('Pages.landing_page', compact('events', 'kategori'));
+        return view('Pages.landing_page', compact('events', 'kategori',));
     }
 }
-

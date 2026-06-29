@@ -10,7 +10,7 @@ class KategoriController extends Controller
 {
     public function index()
     {
-        $kategori = Kategori::withCount('events')->orderBy('nama')->get();
+        $kategori = Kategori::withCount('events')->orderBy('nama_kategori')->get();
 
         return view('admin.kategori.interface', compact('kategori'));
     }
@@ -18,15 +18,15 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required|string|max:100|unique:kategori,nama',
+            'nama_kategori' => 'required|string|max:100',
         ], [
-            'nama.required' => 'Category name is required.',
-            'nama.max' => 'Category name cannot exceed 100 characters.',
-            'nama.unique' => 'This category name already exists.',
+            'nama_kategori.required' => 'Category name is required.',
+            'nama_kategori.max' => 'Category name cannot exceed 100 characters.',
+            'nama_kategori.unique' => 'This category name already exists.',
         ]);
 
         Kategori::create([
-            'nama' => $request->nama,
+            'nama_kategori' => $request->nama_kategori,
             'admin_id' => Auth::id(),
         ]);
 
@@ -36,11 +36,11 @@ class KategoriController extends Controller
     public function update(Request $request, Kategori $kategori)
     {
         $request->validate([
-            'nama' => 'required|string|max:100|unique:kategori,nama,' . $kategori->id,
+            'nama_kategori' => 'required|string|max:100|unique:kategori,nama_kategori,' . $kategori->id,
         ]);
 
         $kategori->update([
-            'nama' => $request->nama,
+            'nama_kategori' => $request->nama_kategori,
             'admin_id' => Auth::id(),
         ]);
 

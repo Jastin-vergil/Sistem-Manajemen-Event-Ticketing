@@ -15,7 +15,7 @@
       style="width:100%;background:#13151f;border:1px solid #2a2d3e;border-radius:8px;padding:8px 12px;font-size:13px;color:#e2e8f0;outline:none;box-sizing:border-box">
       <option value="">Select event...</option>
       @foreach($events as $ev)
-        <option value="{{ $ev->id }}" {{ old('event_id', $tiket->event_id ?? '') == $ev->id ? 'selected' : '' }}>{{ $ev->nama }}</option>
+        <option value="{{ $ev->id_event }}" {{ old('event_id', $tiket->event_id ?? '') == $ev->id_event ? 'selected' : '' }}>{{ $ev->nama }}</option>
       @endforeach
     </select>
     @error('event_id')<p style="color:#f87171;font-size:11px;margin-top:4px">{{ $message }}</p>@enderror

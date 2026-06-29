@@ -22,7 +22,7 @@ class PembayaranController extends Controller
                 ->orWhere('email', 'like', '%' . $request->search . '%');
         }
 
-        $pembayaran = $query->latest('id')->get();
+        $pembayaran = $query->latest('id_pembayaran')->get();
 
         // Pastikan $stats juga dikirim agar tidak memicu error undefined variable kembali
         $stats = [
@@ -80,7 +80,7 @@ class PembayaranController extends Controller
 
    public function approve(Pembayaran $pembayaran)
     {
-        $tiket = Tiket::where('id', $pembayaran->tiket_id)->first();
+        $tiket = Tiket::where('id_tiket', $pembayaran->tiket_id)->first();
 
         // Ganti jumlah_tiket → kuota
         if (!$tiket || ($tiket->kuota - $tiket->terjual) <= 0) {

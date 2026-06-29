@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Tiket extends Model
 {
+    protected $primaryKey = 'id_tiket';
     protected $table = 'tiket';
     public $timestamps = false;
 
@@ -43,7 +44,7 @@ class Tiket extends Model
 
     public function event(): BelongsTo
     {
-        return $this->belongsTo(Event::class, 'event_id', 'id');
+        return $this->belongsTo(Event::class, 'event_id', 'id_event');
     }
 
     public function getSisaAttribute(): int
@@ -58,6 +59,6 @@ class Tiket extends Model
 
     public function pembayaran()
     {
-        return $this->hasMany(Pembayaran::class, 'tiket_id', 'id');
+        return $this->hasMany(Pembayaran::class, 'tiket_id', 'id_tiket');
     }
 }

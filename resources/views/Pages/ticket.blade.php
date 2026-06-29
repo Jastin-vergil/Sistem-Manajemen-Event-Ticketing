@@ -36,7 +36,7 @@
                     type="text"
                     name="name"
                     placeholder="Enter Your Name"
-                    class="w-full h-11 px-4 rounded-lg bg-transparent border border-gray-600 text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 outline-none"
+                    class="w-full h-11 px-4 rounded-lg bg-transparent border border-gray-600 text-white placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 outline-none"
                     required
                 >
 
@@ -45,20 +45,20 @@
                     type="email"
                     name="email"
                     placeholder="Enter your E-Mail"
-                    class="w-full h-11 px-4 rounded-lg bg-transparent border border-gray-600 text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 outline-none"
+                    class="w-full h-11 px-4 rounded-lg bg-transparent border border-gray-600 text-white placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 outline-none"
                     required
                 >
 
                 <!-- Ticket -->
                 <select
                     name="ticket_type"
-                    class="w-full h-11 px-4 rounded-lg bg-transparent border border-gray-600 text-gray-300 focus:ring-2 focus:ring-purple-500 outline-none"
+                    class="w-full h-11 px-4 rounded-lg bg-transparent border border-gray-600 text-gray-300 focus:ring-2 focus:ring-indigo-500 outline-none"
                     required
                 >
                     <option value="" class="text-black">Select Ticket Type</option>
 
                     @foreach ($tickets as $ticket)
-                        <option value="{{ $ticket->id }}" class="text-black">
+                        <option value="{{ $ticket->id_tiket }}" class="text-black">
                             {{ $ticket->nama_tiket }} - Rp {{ number_format($ticket->harga, 0, ',', '.') }}
                         </option>
                     @endforeach
@@ -70,7 +70,7 @@
                 <!-- Button -->
                 <button
                     type="submit"
-                    class="w-full h-11 bg-purple-600 hover:bg-purple-700 transition rounded-lg font-semibold"
+                    class="w-full h-11 bg-indigo-600 hover:bg-indigo-700 transition rounded-lg font-semibold"
                 >
                     Confirm
                 </button>

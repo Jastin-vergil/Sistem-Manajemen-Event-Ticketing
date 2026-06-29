@@ -19,7 +19,7 @@ class EventController extends Controller
 
 	public function create()
 {
-	$kategori = \App\Models\Kategori::orderBy('nama')->get();
+	$kategori = \App\Models\Kategori::orderBy('nama_kategori')->get();
 	return view('admin.event.create_event', compact('kategori'));
 }
 	public function store(Request $request)
@@ -39,7 +39,6 @@ class EventController extends Controller
             'tanggal.required' => 'The event date field is required.',
             'jam_mulai.required' => 'The event start time field is required.',
             'jam_selesai.required' => 'The event end time field is required.',
-            'foto.required' => 'The event image field is required.',
             'foto.image' => 'The uploaded file must be an image.',
             'foto.mimes' => 'The uploaded image must be in jpg, jpeg, png, or webp format.',
             'foto.max' => 'The uploaded image must not exceed 2MB in size.',
@@ -60,7 +59,7 @@ class EventController extends Controller
 
 	public function edit(Event $event)
 {
-	$kategori = Kategori::orderBy('nama')->get();
+	$kategori = Kategori::orderBy('nama_kategori')->get();
 	return view('admin.event.edit_event', compact('event', 'kategori'));
 }
 
@@ -71,7 +70,7 @@ class EventController extends Controller
 			'tanggal' => 'required|date',
 			'lokasi' => 'required|string|max:255',
 			'deskripsi' => 'nullable|string',
-			'foto' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+			'foto' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
            'jam_mulai'   => 'required|string',
             'jam_selesai' => 'required|string'],
         [
@@ -80,7 +79,6 @@ class EventController extends Controller
             'tanggal.required' => 'The event date field is required.',
             'jam_mulai.required' => 'The event start time field is required.',
             'jam_selesai.required' => 'The event end time field is required.',
-            'foto.required' => 'The event image field is required.',
             'foto.image' => 'The uploaded file must be an image.',
             'foto.mimes' => 'The uploaded image must be in jpg, jpeg, png, or webp format.',
             'foto.max' => 'The uploaded image must not exceed 2MB in size.',

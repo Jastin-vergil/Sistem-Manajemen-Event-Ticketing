@@ -11,7 +11,7 @@ class TiketController extends Controller
 {
     public function index()
     {
-        $tiket = Tiket::with('event')->latest('id')->get();
+        $tiket = Tiket::with('event')->latest('id_tiket')->get();
         $events = Event::orderBy('tanggal')->get();
 
         $stats = [
@@ -34,7 +34,7 @@ class TiketController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'event_id' => 'required|exists:events,id',
+            'event_id' => 'required|exists:events,id_event',
             'nama_tiket' => 'required|string|max:100',
             'harga' => 'required|integer|min:0',
             'kuota' => 'required|integer|min:1',
@@ -71,7 +71,7 @@ class TiketController extends Controller
     public function update(Request $request, Tiket $tiket)
     {
         $request->validate([
-            'event_id' => 'required|exists:events,id',
+            'event_id' => 'required|exists:events,id_event',
             'nama_tiket' => 'required|string|max:100',
             'harga' => 'required|integer|min:0',
             'kuota' => 'required|integer|min:1',

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Event extends Model
     {
+        protected $primaryKey  = 'id_event';
         public $timestamps = false;
         protected $table = 'events';
 
@@ -31,11 +32,11 @@ class Event extends Model
 
       public function kategori(): BelongsTo
     {
-        return $this->belongsTo(Kategori::class, 'kategori_id');
+        return $this->belongsTo(Kategori::class, 'kategori_id', 'id_kategori');
     }
 
     public function tiket(): HasMany
     {
-        return $this->hasMany(Tiket::class, 'event_id', 'id');
+        return $this->hasMany(Tiket::class, 'event_id', 'id_event');
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Pembayaran extends Model
 {
+    protected $primaryKey = 'id_pembayaran';
     protected $table = 'pembayaran';
 
     // Kolom-kolom yang boleh diisi
@@ -22,6 +23,6 @@ class Pembayaran extends Model
 
     public function tiket(): BelongsTo
     {
-        return $this->belongsTo(Tiket::class, 'tiket_id', 'id');
+        return $this->belongsTo(Tiket::class, 'tiket_id', 'id_tiket');
     }
 }

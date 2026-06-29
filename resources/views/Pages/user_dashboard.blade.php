@@ -38,8 +38,8 @@
                 class="w-full md:w-64 bg-indigo-950 border border-indigo-800 text-white rounded-xl p-3 outline-none">
                 <option value="all">All Categories</option>
                 @foreach($kategori as $kat)
-                    <option value="{{ $kat->nama }}">
-                        {{ $kat->nama }}
+                    <option value="{{ $kat->nama_kategori }}">
+                        {{ $kat->nama_kategori }}
                     </option>
                 @endforeach
             </select>
@@ -63,17 +63,36 @@
             <h2 id="modal-title" class="text-2xl font-bold mb-4"></h2>
 
             <div class="space-y-2 text-sm text-gray-300">
-                <p><b>📅 Date:</b> <span id="modal-date"></span></p>
-                <p><b>⏰ Time:</b> <span id="modal-time"></span></p>
-                <p><b>📍 Location:</b> <span id="modal-loc"></span></p>
+                <p class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;flex-shrink:0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                    </svg>
+                    <b>Date:</b> <span id="modal-date"></span>
+                </p>
+                <p class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;flex-shrink:0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <b>Time:</b> <span id="modal-time"></span>
+                </p>
+                <p class="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;flex-shrink:0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                    </svg>
+                    <b>Location:</b> <span id="modal-loc"></span>
+                </p>
             </div>
 
             <p id="modal-desc" class="mt-4 text-gray-400 text-sm"></p>
 
             <!-- BUY BUTTON -->
-            <button onclick="goToTicket()"
-                class="w-full mt-6 bg-purple-600 hover:bg-purple-700 transition py-2 rounded-xl font-semibold">
-                🎟 Buy Ticket
+            <button onmousedown="goToTicket()"
+                class="w-full mt-6 bg-purple-600 hover:bg-purple-700 transition py-2 rounded-xl font-semibold flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" style="width:18px;height:18px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 0 1 0 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 0 1 0-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375Z" />
+                </svg>
+                Buy Ticket
             </button>
 
         </div>
@@ -91,7 +110,7 @@
         const renderEvents = (category = 'all') => {
             const filteredData = eventData.filter(ev =>
                 category === 'all' ||
-                ev.kategori.nama === category
+                ev.kategori && ev.kategori.nama_kategori === category
             );
 
             wrapper.innerHTML = filteredData.map(ev => `
@@ -104,7 +123,7 @@
                         <div class="p-6 flex-grow flex flex-col">
 
                             <span class="text-[10px] font-bold bg-indigo-600 px-2 py-1 rounded uppercase w-fit">
-                                ${ev.kategori.nama}
+                                ${ev.kategori ? ev.kategori.nama_kategori : "-"}
                             </span>
 
                             <h3 class="text-xl font-bold mt-3">
@@ -156,7 +175,7 @@
             modal.classList.remove('flex');
         };
         const goToTicket = () => {
-            const eventId = window.selectedEvent.id
+            const eventId = window.selectedEvent.id_event
             window.location.href = `{{ route('ticket.form') }}?event=${eventId}`;
         };
 

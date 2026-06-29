@@ -61,7 +61,7 @@
                         <td style="padding:12px 16px">
                             @if ($ev->kategori)
                                 <span
-                                    style="font-size:11px;font-weight:500;padding:3px 10px;border-radius:99px;background:rgba(124,111,247,.15);color:#a78bfa">{{ $ev->kategori->nama }}</span>
+                                    style="font-size:11px;font-weight:500;padding:3px 10px;border-radius:99px;background:rgba(124,111,247,.15);color:#a78bfa">{{ $ev->kategori->nama_kategori }}</span>
                             @else
                                 <span style="color:#374151">—</span>
                             @endif
@@ -81,7 +81,7 @@
                         <td style="padding:12px 16px;text-align:center">
                             <div style="display:flex;justify-content:center;gap:8px">
 
-                                <button onclick="openParticipants({{ $ev->id }}, '{{ addslashes($ev->nama) }}')"
+                                <button onclick="openParticipants({{ $ev->id_event }}, '{{ addslashes($ev->nama) }}')"
                                     style="padding:5px 12px;border:1px solid #2a2d3e;border-radius:8px;color:#34d399;font-size:12px;background:transparent;cursor:pointer"
                                     onmouseover="this.style.background='rgba(52,211,153,0.1)'"
                                     onmouseout="this.style.background='transparent'">

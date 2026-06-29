@@ -33,8 +33,8 @@
                         style="width:100%;background:#13151f;border:1px solid #2a2d3e;border-radius:8px;padding:8px 12px;font-size:13px;color:#e2e8f0;outline:none;box-sizing:border-box">
                         <option value="">Select category...</option>
                         @foreach ($kategori as $kat)
-                            <option value="{{ $kat->id }}" {{ old('kategori_id') == $kat->id ? 'selected' : '' }}>
-                                {{ $kat->nama }}</option>
+                            <option value="{{ $kat->id_kategori }}" {{ old('kategori_id') == $kat->id_kategori ? 'selected' : '' }}>
+                                {{ $kat->nama_kategori }}</option>
                         @endforeach
                     </select>
                 </div>

@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Kategori extends Model
 {
+    protected $primaryKey = 'id_kategori';
     public $timestamps = false;
     protected $table = 'kategori';
-    protected $fillable = ['nama', 'admin_id'];
+    protected $fillable = ['nama_kategori', 'admin_id'];
 
     public function events(): HasMany
     {
