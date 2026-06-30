@@ -2,16 +2,16 @@
 
 @section('content')
     <div class="container">
-        <h2>Peserta Event: {{ $event->nama }}</h2>
+        <h2>Participants for Event: {{ $event->nama }}</h2>
 
         <table class="table">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Nama</th>
+                    <th>Name</th>
                     <th>Email</th>
                     <th>Status</th>
-                    <th>Tanggal Daftar</th>
+                    <th>Registration Date</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,7 +25,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="text-center">Belum ada peserta</td>
+                        <td colspan="5" class="text-center">No participants found</td>
                     </tr>
                 @endforelse
             </tbody>

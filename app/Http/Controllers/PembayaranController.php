@@ -84,7 +84,7 @@ class PembayaranController extends Controller
 
         // Ganti jumlah_tiket → kuota
         if (!$tiket || ($tiket->kuota - $tiket->terjual) <= 0) {
-            return redirect()->back()->withErrors(['error' => 'Stok tiket sudah habis, tidak bisa di-approve.']);
+            return redirect()->back()->withErrors(['error' => 'Ticket stock is out, cannot be approved']);
         }
 
         $pembayaran->update(['status' => 'Approved']);
@@ -132,7 +132,7 @@ class PembayaranController extends Controller
         $email = $request->query('email');
 
         if (!$email || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            return response()->json(['error' => 'Email tidak valid'], 422);
+            return response()->json(['error' => 'Email is not valid'], 422);
         }
 
         $pembayarans = Pembayaran::with('tiket.event')

@@ -95,7 +95,7 @@ class TiketController extends Controller
             'admin_id' => Auth::id(),
         ]));
 
-        return redirect()->route('admin.ticket.interface')->with('success', 'Tiket berhasil diperbarui.');
+        return redirect()->route('admin.ticket.interface')->with('success', 'Ticket has been updated.');
     }
 
     public function destroy(Tiket $tiket)
