@@ -437,7 +437,7 @@
 
                 <!-- Alasan Penolakan, hanya tampil jika status failed -->
         <div class="inv-reject-box hidden" id="inv-reject-box">
-          <p class="inv-reject-label">Alasan Penolakan</p>
+          <p class="inv-reject-label">Rejection Reason</p>
           <p class="inv-reject-text" id="inv-reject-text"></p>
         </div>
 
@@ -454,7 +454,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
   <script>
-   
+
     //status helpers
     const statusClass = {
       success: 'badge-success',
@@ -465,7 +465,7 @@
     const statusLabel = {
       success: '✓ Success',
       pending: '⏳ Pending',
-      failed:  '✕ Failed'
+      failed:  '✕ Rejected'
     };
 
     const dotClass = {
@@ -477,7 +477,7 @@
     const statusText = {
       success: 'Paid',
       pending: 'Pending',
-      failed:  'Failed'
+      failed:  'Rejected'
     };
 
       //invoice modal
@@ -488,12 +488,12 @@
     document.getElementById('inv-ticket').textContent   = tx.ticket + ' Ticket';
     document.getElementById('inv-datetime').textContent = tx.eventDatetime;
     document.getElementById('inv-amount').textContent   = tx.amount;
-  
+
     const dot = document.getElementById('inv-dot');
     dot.className = 'inv-status-dot ' + dotClass[tx.status];
-  
+
     document.getElementById('inv-status-text').textContent = statusText[tx.status];
-  
+
     // Tampilkan alasan penolakan hanya jika status failed/ditolak
     const rejectBox = document.getElementById('inv-reject-box');
     if (tx.status === 'failed' && tx.rejectReason) {
@@ -502,7 +502,7 @@
     } else {
       rejectBox.classList.add('hidden');
     }
-  
+
     document.getElementById('invoice-modal').classList.add('open');
   }
 

@@ -76,7 +76,7 @@
           <td style="padding:12px 16px;text-align:right;color:#e2e8f0;white-space:nowrap">Rp {{ number_format($p->total_bayar, 0, ',', '.') }}</td>
           <td style="padding:12px 16px;text-align:center">
             @if($p->bukti_transfer)
-              <a href="javascript:void(0)" 
+              <a href="javascript:void(0)"
                onclick="showProof('{{ asset('uploads/proofs/' . $p->bukti_transfer) }}')"
                style="font-size:11px;padding:3px 10px;border-radius:99px;background:rgba(52,211,153,.15);color:#34d399;text-decoration:none;cursor:pointer">View</a>
             @else
@@ -106,7 +106,7 @@
                   style="padding:5px 10px;border:1px solid #1a3d2e;border-radius:8px;color:#34d399;font-size:12px;background:transparent;cursor:pointer"
                   onmouseover="this.style.background='rgba(52,211,153,0.1)'" onmouseout="this.style.background='transparent'">Approve</button>
               </form>
-              <button onclick="openReject({{ $p->id }})"
+              <button onclick="openReject({{ $p->id_pembayaran }})"
                 style="padding:5px 10px;border:1px solid #3d1f1f;border-radius:8px;color:#f87171;font-size:12px;background:transparent;cursor:pointer"
                 onmouseover="this.style.background='rgba(248,113,113,0.1)'" onmouseout="this.style.background='transparent'">Reject</button>
               @endif
@@ -128,16 +128,16 @@
   </div>
 
 {{-- Modal Proof --}}
-<div id="modal-proof" onclick="closeProof()" 
+<div id="modal-proof" onclick="closeProof()"
   style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:60;align-items:center;justify-content:center">
-  <div onclick="event.stopPropagation()" 
+  <div onclick="event.stopPropagation()"
     style="background:#1a1d2e;border:1px solid #2a2d3e;border-radius:12px;padding:24px;max-width:520px;width:90%">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
       <h3 style="font-weight:600;color:#fff;font-size:14px;margin:0">Transfer Proof</h3>
-      <button onclick="closeProof()" 
+      <button onclick="closeProof()"
         style="background:transparent;border:none;color:#6b7280;font-size:22px;cursor:pointer;line-height:1">&times;</button>
     </div>
-    <img id="proof-img" src="" alt="Transfer Proof" 
+    <img id="proof-img" src="" alt="Transfer Proof"
       style="width:100%;border-radius:8px;border:1px solid #2a2d3e;max-height:480px;object-fit:contain">
     <a id="proof-link" href="" target="_blank"
       style="display:inline-block;margin-top:12px;padding:8px 16px;border:1px solid #2a2d3e;border-radius:8px;color:#a78bfa;text-decoration:none;font-size:13px">
