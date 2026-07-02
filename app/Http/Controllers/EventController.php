@@ -111,7 +111,7 @@ class EventController extends Controller
 	public function showParticipants(Event $event)
 	{
 	    $participants = Pembayaran::whereHas('tiket', function($q) use ($event) {
-	            $q->where('event_id', $event->id);
+	            $q->where('event_id', $event->id_event);
 	        })
 	        ->where('status', 'Approved')
 	        ->with('tiket')
