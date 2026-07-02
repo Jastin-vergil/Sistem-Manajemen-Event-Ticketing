@@ -10,7 +10,6 @@ class Pembayaran extends Model
     protected $primaryKey = 'id_pembayaran';
     protected $table = 'pembayaran';
 
-    // Kolom-kolom yang boleh diisi
     protected $fillable = [
         'tiket_id',
         'nama_peserta',
