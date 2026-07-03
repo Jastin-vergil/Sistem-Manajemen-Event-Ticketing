@@ -64,40 +64,39 @@ class EventController extends Controller
 }
 
 	public function update(Request $request, Event $event)
-	{
-		$request->validate([
-			'nama' => 'required|string|max:255',
-			'tanggal' => 'required|date',
-			'lokasi' => 'required|string|max:255',
-			'deskripsi' => 'nullable|string',
-			'foto' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-           'jam_mulai'   => 'required|string',
-            'jam_selesai' => 'required|string'],
-        [
-            'nama.required'    => 'The event name field is required.',
-            'lokasi.required'  => 'The event location field is required.',
-            'tanggal.required' => 'The event date field is required.',
-            'jam_mulai.required' => 'The event start time field is required.',
-            'jam_selesai.required' => 'The event end time field is required.',
-            'foto.image' => 'The uploaded file must be an image.',
-            'foto.mimes' => 'The uploaded image must be in jpg, jpeg, png, or webp format.',
-            'foto.max' => 'The uploaded image must not exceed 2MB in size.',
-        ]);
-		$data = $request->only('nama', 'kategori_id', 'tanggal', 'jam_mulai', 'jam_selesai', 'lokasi', 'deskripsi');
-		if ($request->hasFile('foto')) {
-			if ($event->foto) {
-				Storage::disk('public')->delete($event->foto);
-			}
-			$data['foto'] = $request->file('foto')->store('events', 'public');
-		}
+{
+    $request->validate([
+        'nama' => 'required|string|max:255',
+        'tanggal' => 'required|date',
+        'lokasi' => 'required|string|max:255',
+        'deskripsi' => 'nullable|string',
+        'foto' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        'jam_mulai'   => 'required|string',
+        'jam_selesai' => 'required|string',
+    ], [
+        'nama.required'    => 'The event name field is required.',
+        'lokasi.required'  => 'The event location field is required.',
+        'tanggal.required' => 'The event date field is required.',
+        'jam_mulai.required' => 'The event start time field is required.',
+        'jam_selesai.required' => 'The event end time field is required.',
+        'foto.image' => 'The uploaded file must be an image.',
+        'foto.mimes' => 'The uploaded image must be in jpg, jpeg, png, or webp format.',
+        'foto.max' => 'The uploaded image must not exceed 2MB in size.',
+    ]);
 
-		Event::create(array_merge($request->all(), [
-            'admin_id' => Auth::id(),
-        ]));
+    $data = $request->only('nama', 'kategori_id', 'tanggal', 'jam_mulai', 'jam_selesai', 'lokasi', 'deskripsi');
 
-		return redirect()->route('admin.event.index')->with('success', 'Event successfully updated.');
-	}
+    if ($request->hasFile('foto')) {
+        if ($event->foto) {
+            Storage::disk('public')->delete($event->foto);
+        }
+        $data['foto'] = $request->file('foto')->store('events', 'public');
+    }
 
+    $event->update($data);
+
+    return redirect()->route('admin.event.index')->with('success', 'Event successfully updated.');
+}
 	public function destroy(Event $event)
 	{
 		$event->delete();
