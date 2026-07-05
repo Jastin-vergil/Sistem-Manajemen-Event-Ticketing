@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Polibatam Event Hub - Global Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background: #0b0e29; color: white; overflow-x: hidden; font-family: 'Inter', sans-serif; }
+        body {
+            background: #0b0e29;
+            color: white;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
 
         #scroll-wrapper {
-            display: flex; gap: 24px; padding: 20px; cursor: grab;
-            overflow-x: auto; user-select: none; scroll-behavior: smooth;
+            display: flex;
+            gap: 24px;
+            padding: 20px;
+            cursor: grab;
+            overflow-x: auto;
+            user-select: none;
+            scroll-behavior: smooth;
         }
-        #scroll-wrapper:active { cursor: grabbing; }
 
-        .event-card { flex: 0 0 300px; min-width: 300px; }
+        #scroll-wrapper:active {
+            cursor: grabbing;
+        }
+
+        .event-card {
+            flex: 0 0 300px;
+            min-width: 300px;
+        }
 
         .glass {
             background: rgba(30, 27, 75, 0.4);
@@ -23,9 +40,13 @@
             border-radius: 24px;
             transition: border 0.3s ease;
         }
-        .glass:hover { border-color: rgba(99, 102, 241, 0.5); }
+
+        .glass:hover {
+            border-color: rgba(99, 102, 241, 0.5);
+        }
     </style>
 </head>
+
 <body>
 
     <main class="max-w-7xl mx-auto px-6 py-16">
@@ -37,7 +58,7 @@
             <select id="filter"
                 class="w-full md:w-64 bg-indigo-950 border border-indigo-800 text-white rounded-xl p-3 outline-none">
                 <option value="all">All Categories</option>
-                @foreach($kategori as $kat)
+                @foreach ($kategori as $kat)
                     <option value="{{ $kat->nama_kategori }}">
                         {{ $kat->nama_kategori }}
                     </option>
@@ -58,27 +79,37 @@
             </button>
 
             <!-- Gambar -->
-            <img id="modal-img" class="w-full h-48 object-cover rounded-xl mb-4">
+            <div
+                class="w-full max-h-[46vh] bg-black/30 rounded-xl mb-4 overflow-hidden flex items-center justify-center">
+                <img id="modal-img" class="max-w-full max-h-[70vh] object-contain">
+            </div>
 
             <h2 id="modal-title" class="text-2xl font-bold mb-4"></h2>
 
             <div class="space-y-2 text-sm text-gray-300">
                 <p class="flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;flex-shrink:0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                    <svg xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;flex-shrink:0" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
                     </svg>
                     <b>Date:</b> <span id="modal-date"></span>
                 </p>
                 <p class="flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;flex-shrink:0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;flex-shrink:0" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
                     <b>Time:</b> <span id="modal-time"></span>
                 </p>
                 <p class="flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;flex-shrink:0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;flex-shrink:0" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                     </svg>
                     <b>Location:</b> <span id="modal-loc"></span>
                 </p>
@@ -89,8 +120,10 @@
             <!-- BUY BUTTON -->
             <button onmousedown="goToTicket()"
                 class="w-full mt-6 bg-purple-600 hover:bg-purple-700 transition py-2 rounded-xl font-semibold flex items-center justify-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" style="width:18px;height:18px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 0 1 0 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 0 1 0-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375Z" />
+                <svg xmlns="http://www.w3.org/2000/svg" style="width:18px;height:18px" fill="none"
+                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 0 1 0 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 0 1 0-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375Z" />
                 </svg>
                 Buy Ticket
             </button>
@@ -155,8 +188,8 @@
                     year: 'numeric'
                 });
 
-        const start = ev.jam_mulai ? ev.jam_mulai.substring(0, 5) : 'WIB';
-        const end = ev.jam_selesai ? ev.jam_selesai.substring(0, 5) : 'Selesai';
+            const start = ev.jam_mulai ? ev.jam_mulai.substring(0, 5) : 'WIB';
+            const end = ev.jam_selesai ? ev.jam_selesai.substring(0, 5) : 'Selesai';
             document.getElementById('modal-time').innerText = `${start} - ${end} WIB`;
 
             document.getElementById('modal-loc').innerText = ev.lokasi;
@@ -184,7 +217,8 @@
         });
 
         // DRAG KIRI KANAN
-        let isDown = false, startX, scrollLeft;
+        let isDown = false,
+            startX, scrollLeft;
 
         const startDrag = (e) => {
             isDown = true;
@@ -221,4 +255,5 @@
         renderEvents();
     </script>
 </body>
+
 </html>
