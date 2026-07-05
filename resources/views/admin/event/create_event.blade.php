@@ -78,8 +78,7 @@
                 </div>
 
                 <div>
-                    <label style="display:block;font-size:12px;font-weight:500;color:#9ca3af;margin-bottom:5px">Event
-                        Photo
+                    <label style="display:block;font-size:12px;font-weight:500;color:#9ca3af;margin-bottom:5px">Photo/Poster
                         <span style="color:#f87171">*</span></label>
                     <input type="file" name="foto" accept="image/*"
                         style="width:100%;background:#13151f;border:1px solid #2a2d3e;border-radius:8px;padding:8px 12px;font-size:13px;color:#9ca3af;outline:none;box-sizing:border-box">

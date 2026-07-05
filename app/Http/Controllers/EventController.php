@@ -107,25 +107,32 @@ class EventController extends Controller
 	/**
 	 * Menampilkan halaman khusus berisi tabel peserta dari event tertentu
 	 */
-	public function showParticipants(Event $event)
-	{
-	    $participants = Pembayaran::whereHas('tiket', function($q) use ($event) {
-	            $q->where('event_id', $event->id_event);
-	        })
-	        ->where('status', 'Approved')
-	        ->with('tiket')
-	        ->latest()
-	        ->get();
+public function showParticipants(Request $request, Event $event)
+{
+    $search = $request->input('search');
 
-	    return response()->json([
-	        'event' => $event->nama,
-	        'participants' => $participants->map(fn($p) => [
-	            'nama'        => $p->nama_peserta,
-	            'email'       => $p->email,
-	            'tiket'       => $p->tiket->nama_tiket ?? '-',
-	            'total_bayar' => 'Rp ' . number_format($p->total_bayar, 0, ',', '.'),
-	            'status'      => $p->status,
-	        ])
-	    ]);
-	}
-}
+    $participants = Pembayaran::whereHas('tiket', function ($q) use ($event) {
+            $q->where('event_id', $event->id_event);
+        })
+        ->where('status', 'Approved')
+        ->when($search, function ($query) use ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('nama_peserta', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+            });
+        })
+        ->with('tiket')
+        ->latest()
+        ->get();
+
+    return response()->json([
+        'event' => $event->nama,
+        'participants' => $participants->map(fn($p) => [
+            'nama'        => $p->nama_peserta,
+            'email'       => $p->email,
+            'tiket'       => $p->tiket->nama_tiket ?? '-',
+            'total_bayar' => 'Rp ' . number_format($p->total_bayar, 0, ',', '.'),
+            'status'      => $p->status,
+        ])
+    ]);
+}};

@@ -73,7 +73,7 @@
                             {{ $ev->jam_selesai ? ' - ' . \Carbon\Carbon::parse($ev->jam_selesai)->format('H:i') : '' }}
                         </td>
                         <td style="padding:12px 16px;color:#6b7280">{{ $ev->lokasi ?: '—' }}</td>
-                        <td style="padm   ding:12px 16px;text-align:center">
+                        <td style="padding:12px 16px;text-align:center">
                             <span
                                 style="font-size:11px;font-weight:500;padding:3px 10px;border-radius:99px;background:rgba(124,111,247,.15);color:#a78bfa">{{ $ev->tiket_count }}
                                 tickets</span>
@@ -134,6 +134,14 @@
             {{-- Body --}}
             <div style="overflow-y:auto;padding:16px 20px;flex:1">
 
+                {{-- Search Box --}}
+                <div style="margin-bottom:14px;flex-shrink:0">
+                    <input type="text" id="modalSearchInput" placeholder="Search by name or email..."
+                        oninput="filterParticipants(this.value)"
+                        style="width:100%;padding:9px 14px;background:#13151f;border:1px solid #2a2d3e;border-radius:8px;color:#e2e8f0;font-size:13px;outline:none"
+                        onfocus="this.style.borderColor='#6366f1'" onblur="this.style.borderColor='#2a2d3e'">
+                </div>
+
                 {{-- Loading --}}
                 <div id="modalLoading" style="text-align:center;padding:40px;color:#6b7280">
                     <div style="font-size:13px">Loading...</div>
@@ -148,16 +156,16 @@
                                 No</th>
                             <th
                                 style="text-align:left;padding:10px 12px;color:#4b5563;font-size:11px;text-transform:uppercase;font-weight:500">
-                                Nama</th>
+                                Name</th>
                             <th
                                 style="text-align:left;padding:10px 12px;color:#4b5563;font-size:11px;text-transform:uppercase;font-weight:500">
                                 Email</th>
                             <th
                                 style="text-align:left;padding:10px 12px;color:#4b5563;font-size:11px;text-transform:uppercase;font-weight:500">
-                                Tiket</th>
+                                Ticket</th>
                             <th
                                 style="text-align:left;padding:10px 12px;color:#4b5563;font-size:11px;text-transform:uppercase;font-weight:500">
-                                Total Bayar</th>
+                                Total Paid</th>
                             <th
                                 style="text-align:center;padding:10px 12px;color:#4b5563;font-size:11px;text-transform:uppercase;font-weight:500">
                                 Status</th>
@@ -166,9 +174,14 @@
                     <tbody id="modalBody"></tbody>
                 </table>
 
-                {{-- Empty --}}
+                {{-- Empty (no data at all) --}}
                 <div id="modalEmpty" style="display:none;text-align:center;padding:40px;color:#4b5563;font-size:13px">
-                    Belum ada peserta yang dikonfirmasi.
+                    No confirmed participants yet.
+                </div>
+
+                {{-- No search results --}}
+                <div id="modalNoResult" style="display:none;text-align:center;padding:40px;color:#4b5563;font-size:13px">
+                    No participants match your search.
                 </div>
 
             </div>
@@ -176,14 +189,19 @@
     </div>
 
     <script>
+        let currentParticipants = [];
+
         function openParticipants(eventId, eventName) {
             const modal = document.getElementById('participantsModal');
             modal.style.display = 'flex';
             document.getElementById('modalTitle').textContent = eventName;
             document.getElementById('modalCount').textContent = '';
+            document.getElementById('modalSearchInput').value = '';
             document.getElementById('modalLoading').style.display = 'block';
             document.getElementById('modalTable').style.display = 'none';
             document.getElementById('modalEmpty').style.display = 'none';
+            document.getElementById('modalNoResult').style.display = 'none';
+            currentParticipants = [];
 
             fetch(`/admin/event/${eventId}/participants`, {
                     headers: {
@@ -193,16 +211,29 @@
                 .then(r => r.json())
                 .then(data => {
                     document.getElementById('modalLoading').style.display = 'none';
+                    currentParticipants = data.participants || [];
 
-                    if (!data.participants.length) {
+                    if (!currentParticipants.length) {
                         document.getElementById('modalEmpty').style.display = 'block';
                         return;
                     }
 
-                    document.getElementById('modalCount').textContent = data.participants.length +
-                        ' peserta terkonfirmasi';
+                    document.getElementById('modalTable').style.display = 'table';
+                    renderParticipants(currentParticipants);
+                })
+                .catch(() => {
+                    document.getElementById('modalLoading').innerHTML =
+                        '<div style="color:#f87171;font-size:13px">Failed to load data.</div>';
+                });
+        }
 
-                    document.getElementById('modalBody').innerHTML = data.participants.map((p, i) => `
+        function renderParticipants(list) {
+            document.getElementById('modalCount').textContent = list.length + ' confirmed participants';
+
+            document.getElementById('modalNoResult').style.display = list.length ? 'none' : 'block';
+            document.getElementById('modalTable').style.display = list.length ? 'table' : 'none';
+
+            document.getElementById('modalBody').innerHTML = list.map((p, i) => `
       <tr style="border-top:1px solid #2a2d3e"
           onmouseover="this.style.background='rgba(255,255,255,0.02)'"
           onmouseout="this.style.background='transparent'">
@@ -222,13 +253,22 @@
         </td>
       </tr>
     `).join('');
+        }
 
-                    document.getElementById('modalTable').style.display = 'table';
-                })
-                .catch(() => {
-                    document.getElementById('modalLoading').innerHTML =
-                        '<div style="color:#f87171;font-size:13px">Gagal memuat data.</div>';
-                });
+        function filterParticipants(keyword) {
+            const kw = keyword.trim().toLowerCase();
+
+            if (!kw) {
+                renderParticipants(currentParticipants);
+                return;
+            }
+
+            const filtered = currentParticipants.filter(p =>
+                (p.nama && p.nama.toLowerCase().includes(kw)) ||
+                (p.email && p.email.toLowerCase().includes(kw))
+            );
+
+            renderParticipants(filtered);
         }
 
         function closeModal() {

@@ -1,17 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\TiketController;
-use App\Http\Controllers\PembayaranController;
-use App\Http\Controllers\KategoriController;
-
-use App\Models\Event;
-use App\Models\Kategori;
 use App\Http\Controllers\AdminParticipantController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\TiketController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('admin.login.submit');
@@ -27,32 +23,31 @@ Route::get('/', function () {
 Route::resource('tiket', TiketController::class)
     ->except(['show'])
     ->names([
-        'index'   => 'admin.ticket.interface',
-        'create'  => 'admin.ticket.create_ticket',
-        'store'   => 'admin.ticket.store',
-        'edit'    => 'admin.ticket.edit_ticket',
-        'update'  => 'admin.ticket.update',
+        'index' => 'admin.ticket.interface',
+        'create' => 'admin.ticket.create_ticket',
+        'store' => 'admin.ticket.store',
+        'edit' => 'admin.ticket.edit_ticket',
+        'update' => 'admin.ticket.update',
         'destroy' => 'admin.ticket.destroy',
     ]);
 
 Route::resource('events', EventController::class)
     ->except(['show'])
     ->names([
-        'index'   => 'admin.event.index',
-        'create'  => 'admin.event.create',
-        'store'   => 'admin.event.store',
-        'edit'    => 'admin.event.edit',
-        'update'  => 'admin.event.update',
+        'index' => 'admin.event.index',
+        'create' => 'admin.event.create',
+        'store' => 'admin.event.store',
+        'edit' => 'admin.event.edit',
+        'update' => 'admin.event.update',
         'destroy' => 'admin.event.destroy',
     ]);
-
 
 Route::resource('kategori', KategoriController::class)
     ->except(['show', 'create', 'edit'])
     ->names([
-        'index'   => 'admin.kategori.index',
-        'store'   => 'admin.kategori.store',
-        'update'  => 'admin.kategori.update',
+        'index' => 'admin.kategori.index',
+        'store' => 'admin.kategori.store',
+        'update' => 'admin.kategori.update',
         'destroy' => 'admin.kategori.destroy',
     ]);
 

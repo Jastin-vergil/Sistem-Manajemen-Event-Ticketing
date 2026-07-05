@@ -70,23 +70,26 @@
   </div>
 
   {{-- Bukti Transfer --}}
+ {{-- Bukti Transfer --}}
   <div style="background:#1a1d2e;border:1px solid #2a2d3e;border-radius:12px;padding:24px">
     <h2 style="font-weight:600;color:#fff;font-size:14px;margin-bottom:16px">Transfer Proof</h2>
     @if($pembayaran->bukti_transfer)
-      <img src="{{ asset('uploads/proofs/' . $pembayaran->bukti_transfer) }}" alt="Transfer Proof"
-        style="width:100%;border-radius:8px;border:1px solid #2a2d3e">
-      <a href="{{ asset('uploads/proofs/' . $pembayaran->bukti_transfer) }}" target="_blank"
-        style="display:inline-block;margin-top:12px;padding:8px 16px;border:1px solid #2a2d3e;border-radius:8px;color:#a78bfa;text-decoration:none;font-size:13px">
-        Open Full Image
-      </a>
+      <div style="display:flex;justify-content:center">
+        <img src="{{ asset('uploads/proofs/' . $pembayaran->bukti_transfer) }}" alt="Transfer Proof"
+          style="max-width:260px;width:100%;border-radius:8px;border:1px solid #2a2d3e;object-fit:cover">
+      </div>
+      <div style="text-align:center">
+        <a href="{{ asset('uploads/proofs/' . $pembayaran->bukti_transfer) }}" target="_blank"
+          style="display:inline-block;margin-top:12px;padding:8px 16px;border:1px solid #2a2d3e;border-radius:8px;color:#a78bfa;text-decoration:none;font-size:13px">
+          Open Full Image
+        </a>
+      </div>
     @else
       <div style="width:100%;height:200px;background:#13151f;border-radius:8px;border:1px solid #2a2d3e;display:flex;align-items:center;justify-content:center;color:#4b5563;font-size:13px">
         No proof uploaded
       </div>
     @endif
   </div>
-
-</div>
 
 {{-- Modal Reject --}}
 <div id="modal-reject" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:50;align-items:center;justify-content:center">
