@@ -21,7 +21,7 @@ Route::get('/userdashboard', [DashboardController::class, 'index'])
     ->name('user.dashboard');
 
 Route::get('/', function () {
-    return redirect()->route('admin.ticket.interface');
+    return redirect()->route('user.dashboard');
 });
 
 Route::resource('tiket', TiketController::class)

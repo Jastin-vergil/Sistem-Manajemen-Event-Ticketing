@@ -115,18 +115,6 @@ class PembayaranController extends Controller
             ->with('success', 'Payment rejected.');
     }
 
-    public function destroy(Pembayaran $pembayaran)
-    {
-        if ($pembayaran->bukti_transfer) {
-            $filePath = public_path('uploads/proofs/' . $pembayaran->bukti_transfer);
-            if (file_exists($filePath)) {
-                unlink($filePath);
-            }
-        }
-        $pembayaran->delete();
-        return redirect()->route('admin.pembayaran.index')
-            ->with('success', 'Payment record deleted.');
-    }
     public function searchByEmail(Request $request)
     {
         $email = $request->query('email');

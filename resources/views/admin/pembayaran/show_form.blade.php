@@ -31,11 +31,11 @@
       </span>
     </div>
 
-    @foreach([
+   @foreach([
       ['Participant', $pembayaran->nama_peserta],
       ['Email',       $pembayaran->email],
-      ['Ticket',      $pembayaran->tiket->nama_tiket],
-      ['Event',       $pembayaran->tiket?->event?->nama ?? 'Event Tidak Ditemukan'],
+      ['Ticket',      $pembayaran->tiket?->nama_tiket ?? 'Tiket Tidak Ditemukan'],
+      ['Event',       $pembayaran->tiket?->event?->nama_tiket ?? 'Event Tidak Ditemukan'],
       ['Total',       'Rp ' . number_format($pembayaran->total_bayar, 0, ',', '.')],
       ['Submitted',   $pembayaran->created_at->format('d M Y, H:i')],
     ] as [$lbl, $val])
@@ -61,7 +61,7 @@
           ✓ Approve
         </button>
       </form>
-      <button onclick="openReject({{ $pembayaran->id }})"
+      <button onclick="openReject({{ $pembayaran->id_pembayaran }})"
         style="padding:10px 24px;background:rgba(248,113,113,.15);color:#f87171;border:1px solid rgba(248,113,113,.3);border-radius:8px;font-size:13px;font-weight:500;cursor:pointer">
         ✕ Reject
       </button>

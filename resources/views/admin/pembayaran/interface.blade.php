@@ -111,12 +111,6 @@
                 onmouseover="this.style.background='rgba(248,113,113,0.1)'" onmouseout="this.style.background='transparent'">Reject</button>
               @endif
 
-              <form action="{{ route('admin.pembayaran.destroy', $p) }}" method="POST" onsubmit="return confirm('Delete this record?')" style="margin:0">
-                @csrf @method('DELETE')
-                <button type="submit"
-                  style="padding:5px 10px;border:1px solid #3d1f1f;border-radius:8px;color:#f87171;font-size:12px;background:transparent;cursor:pointer"
-                  onmouseover="this.style.background='rgba(248,113,113,0.1)'" onmouseout="this.style.background='transparent'">Delete</button>
-              </form>
             </div>
           </td>
         </tr>
