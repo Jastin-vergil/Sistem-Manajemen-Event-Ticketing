@@ -9,7 +9,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $events = Event::with('kategori')->get();
+        $events = Event::with('kategori', 'tiket')->get();
         $kategori = Kategori::all();
 
         return view('Pages.landing_page', compact('events', 'kategori',));

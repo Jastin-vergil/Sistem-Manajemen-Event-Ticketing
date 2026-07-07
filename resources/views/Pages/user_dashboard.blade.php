@@ -117,6 +117,11 @@
 
             <p id="modal-desc" class="mt-4 text-gray-400 text-sm"></p>
 
+            <div class="mt-4">
+                <h4 class="text-sm font-semibold text-gray-300 mb-2">Jenis Tiket</h4>
+                <div id="modal-tiket-list" class="space-y-2"></div>
+            </div>
+
             <!-- BUY BUTTON -->
             <button onmousedown="goToTicket()"
                 class="w-full mt-6 bg-purple-600 hover:bg-purple-700 transition py-2 rounded-xl font-semibold flex items-center justify-center gap-2">
@@ -141,12 +146,35 @@
 
         // RENDER
         const renderEvents = (category = 'all') => {
-            const filteredData = eventData.filter(ev =>
-                category === 'all' ||
-                ev.kategori && ev.kategori.nama_kategori === category
-            );
+        const filteredData = eventData.filter(ev =>
+            category === 'all' ||
+            ev.kategori && ev.kategori.nama_kategori === category
+        );
 
-            wrapper.innerHTML = filteredData.map(ev => `
+        wrapper.innerHTML = filteredData.map(ev => {
+            const tikets = ev.tiket || [];
+
+            // Total sisa kuota dari semua jenis tiket
+            const totalSisa = tikets.reduce((sum, t) => sum + (t.kuota - t.terjual), 0);
+
+            // Harga termurah (untuk ditampilkan "mulai dari")
+            const hargaTermurah = tikets.length
+                ? Math.min(...tikets.map(t => t.harga))
+                : null;
+
+            const hargaText = hargaTermurah !== null
+                ? 'Mulai Rp ' + hargaTermurah.toLocaleString('id-ID')
+                : 'Harga belum tersedia';
+
+            const kuotaText = tikets.length
+                ? (totalSisa > 0 ? `Sisa ${totalSisa} tiket` : 'Tiket Habis')
+                : 'Tiket belum tersedia';
+
+            const kuotaBadgeClass = totalSisa > 0
+                ? 'bg-emerald-600'
+                : 'bg-red-600';
+
+            return `
                 <div class="event-card">
                     <div class="glass overflow-hidden h-full flex flex-col">
 
@@ -155,9 +183,14 @@
 
                         <div class="p-6 flex-grow flex flex-col">
 
-                            <span class="text-[10px] font-bold bg-indigo-600 px-2 py-1 rounded uppercase w-fit">
-                                ${ev.kategori ? ev.kategori.nama_kategori : "-"}
-                            </span>
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="text-[10px] font-bold bg-indigo-600 px-2 py-1 rounded uppercase w-fit">
+                                    ${ev.kategori ? ev.kategori.nama_kategori : "-"}
+                                </span>
+                                <span class="text-[10px] font-bold ${kuotaBadgeClass} px-2 py-1 rounded uppercase w-fit">
+                                    ${kuotaText}
+                                </span>
+                            </div>
 
                             <h3 class="text-xl font-bold mt-3">
                                 ${ev.nama}
@@ -167,6 +200,10 @@
                                 ${ev.lokasi}
                             </p>
 
+                            <p class="text-indigo-300 text-sm font-semibold mt-1">
+                                ${hargaText}
+                            </p>
+
                             <button onclick='openModal(${JSON.stringify(ev)})'
                                 class="w-full mt-auto bg-white text-indigo-950 font-bold py-2 rounded-xl hover:bg-indigo-500 hover:text-white transition-colors">
                                 View Details
@@ -174,35 +211,60 @@
                         </div>
                     </div>
                 </div>
-            `).join('');
-        };
+            `;
+        }).join('');
+    };
 
         // MODAL
         const openModal = (ev) => {
-            document.getElementById('modal-title').innerText = ev.nama;
-            const tanggal = new Date(ev.tanggal);
-            document.getElementById('modal-date').innerText =
-                tanggal.toLocaleDateString('id-ID', {
-                    day: '2-digit',
-                    month: 'long',
-                    year: 'numeric'
-                });
+        document.getElementById('modal-title').innerText = ev.nama;
+        const tanggal = new Date(ev.tanggal);
+        document.getElementById('modal-date').innerText =
+            tanggal.toLocaleDateString('id-ID', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
+            });
 
-            const start = ev.jam_mulai ? ev.jam_mulai.substring(0, 5) : 'WIB';
-            const end = ev.jam_selesai ? ev.jam_selesai.substring(0, 5) : 'Selesai';
-            document.getElementById('modal-time').innerText = `${start} - ${end} WIB`;
+        const start = ev.jam_mulai ? ev.jam_mulai.substring(0, 5) : 'WIB';
+        const end = ev.jam_selesai ? ev.jam_selesai.substring(0, 5) : 'Selesai';
+        document.getElementById('modal-time').innerText = `${start} - ${end} WIB`;
 
-            document.getElementById('modal-loc').innerText = ev.lokasi;
-            document.getElementById('modal-desc').innerText = ev.deskripsi;
+        document.getElementById('modal-loc').innerText = ev.lokasi;
+        document.getElementById('modal-desc').innerText = ev.deskripsi;
 
-            document.getElementById('modal-img').src =
-                `/storage/${ev.foto}`;
+        document.getElementById('modal-img').src =
+            `/storage/${ev.foto}`;
 
-            window.selectedEvent = ev;
+        // Render jenis tiket
+        const tikets = ev.tiket || [];
+        const tiketList = document.getElementById('modal-tiket-list');
+        if (tikets.length) {
+            tiketList.innerHTML = tikets.map(t => {
+                const sisa = t.kuota - t.terjual;
+                const habis = sisa <= 0;
+                return `
+                    <div class="flex items-center justify-between border border-indigo-800 rounded-lg px-3 py-2">
+                        <div>
+                            <p class="font-semibold text-sm">${t.nama_tiket}</p>
+                            <p class="text-xs text-gray-400">Rp ${Number(t.harga).toLocaleString('id-ID')}</p>
+                        </div>
+                        <span class="text-xs font-bold px-2 py-1 rounded ${habis ? 'bg-red-600' : 'bg-emerald-600'}">
+                            ${habis ? 'Habis' : `Sisa ${sisa}`}
+                        </span>
+                    </div>
+                `;
+            }).join('');
+        } else {
+            tiketList.innerHTML = `<p class="text-sm text-gray-500">Belum ada tiket tersedia.</p>`;
+        }
 
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        };
+        window.selectedEvent = ev;
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    };
+
         const closeModal = () => {
             modal.classList.add('hidden');
             modal.classList.remove('flex');
