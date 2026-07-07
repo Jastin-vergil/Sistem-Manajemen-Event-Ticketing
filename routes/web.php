@@ -61,7 +61,6 @@ Route::get('/pembayaran/{pembayaran}', [PembayaranController::class, 'show'])->n
 Route::post('/pembayaran', [PembayaranController::class, 'store'])->name('payment.store');
 Route::post('/pembayaran/{pembayaran}/approve', [PembayaranController::class, 'approve'])->name('admin.pembayaran.approve');
 Route::post('/pembayaran/{pembayaran}/reject', [PembayaranController::class, 'reject'])->name('admin.pembayaran.reject');
-Route::delete('/pembayaran/{pembayaran}', [PembayaranController::class, 'destroy'])->name('admin.pembayaran.destroy');
 
 Route::get('/ticket-form', [TiketController::class, 'ticketForm'])->name('ticket.form');
 

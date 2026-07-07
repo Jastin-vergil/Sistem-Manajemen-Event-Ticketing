@@ -9,7 +9,6 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         /*Validation*/
-
         $request->validate([
             'ticket_type' => 'required',
             'price' => 'required',
@@ -17,14 +16,12 @@ class PaymentController extends Controller
         ]);
 
         /*Upload Proof File*/
-
         $proofPath = $request->file('proof')->store(
             'payment_proofs',
             'public'
         );
 
         /*Example Data*/
-
         $paymentData = [
             'ticket_type' => $request->ticket_type,
             'price' => $request->price,
@@ -32,7 +29,6 @@ class PaymentController extends Controller
         ];
 
         /*Return*/
-
         return back()->with(
             'success',
             'Payment uploaded successfully!'

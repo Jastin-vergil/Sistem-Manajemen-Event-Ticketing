@@ -13,18 +13,24 @@ class PembayaranController extends Controller
 {
   public function index(Request $request) // Fungsi untuk menampilkan data pembayaran.
     {
-        // WAJIB menggunakan with(['tiket.event']) agar relasi berantai dimuat
         $query = Pembayaran::with(['tiket.event']);
 
         // Mencari nama peserta yang mengandung kata tertentu atau email
-        if ($request->has('search')) {
-            $query->where('nama_peserta', 'like', '%' . $request->search . '%')
-                ->orWhere('email', 'like', '%' . $request->search . '%');
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('nama_peserta', 'like', '%' . $search . '%')
+                ->orWhere('email', 'like', '%' . $search . '%');
+            });
+        }
+
+        // Filter berdasarkan status
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
         }
 
         $pembayaran = $query->latest('id_pembayaran')->get();
 
-        // Pastikan $stats juga dikirim agar tidak memicu error undefined variable kembali
         $stats = [
             'total'    => Pembayaran::count(),
             'pending'  => Pembayaran::where('status', 'Pending')->count(),
@@ -38,7 +44,7 @@ class PembayaranController extends Controller
 
     public function store(Request $request)
     {
-        // 1. Menjalankan validasi sebelum data disimpan.
+        // validasi sebelum data disimpan.
         $request->validate([
             'nama_peserta' => 'required|string|max:255',
             'email'        => 'required|email|max:255',
@@ -47,18 +53,16 @@ class PembayaranController extends Controller
             'proof'        => 'required|image|mimes:jpeg,png,jpg|max:2048', // Batasi gambar maks 2MB
         ]);
 
-        // 2. Kelola penyimpanan file bukti transfer
-        $fileName = null; // Membuat variabel untuk menyimpan nama file.
+        $fileName = null; 
         if ($request->hasFile('proof')) {
             $file = $request->file('proof');
 
             $fileName = 'bukti_' . time() . '.' . $file->getClientOriginalExtension();
-            // Dipindahkan ke direktori local: public/uploads/proofs/
+        
             $file->move(public_path('uploads/proofs'), $fileName);
         }
 
-        // 3. Insert data ke database
-        // Menambahkan data baru ke tabel pembayaran.
+        
         Pembayaran::create([
             'tiket_id'      => $request->ticket_type,
             'nama_peserta'  => $request->nama_peserta,
@@ -68,7 +72,6 @@ class PembayaranController extends Controller
             'status'        => 'Pending',
         ]);
 
-        // 4. Redirect kembali dengan flash message sukses
         return redirect()->back()->with('success', 'Payment proof submitted successfully! Please wait for admin confirmation.');
     }
 
