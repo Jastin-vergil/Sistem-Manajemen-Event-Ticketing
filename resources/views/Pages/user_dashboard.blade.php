@@ -167,8 +167,8 @@
                 : 'Harga belum tersedia';
 
             const kuotaText = tikets.length
-                ? (totalSisa > 0 ? `Sisa ${totalSisa} tiket` : 'Tiket Habis')
-                : 'Tiket belum tersedia';
+                ? (totalSisa > 0 ? `Remaining ${totalSisa} ticket(s)` : 'Sold Out')
+                : 'Ticket is not available';
 
             const kuotaBadgeClass = totalSisa > 0
                 ? 'bg-emerald-600'
