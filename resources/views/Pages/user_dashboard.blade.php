@@ -163,8 +163,8 @@
                 : null;
 
             const hargaText = hargaTermurah !== null
-                ? 'Mulai Rp ' + hargaTermurah.toLocaleString('id-ID')
-                : 'Harga belum tersedia';
+                ? 'Start from Rp ' + hargaTermurah.toLocaleString('id-ID')
+                : 'Price is not available';
 
             const kuotaText = tikets.length
                 ? (totalSisa > 0 ? `Remaining ${totalSisa} ticket(s)` : 'Sold Out')
