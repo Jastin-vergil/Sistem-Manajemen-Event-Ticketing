@@ -70,19 +70,19 @@
     </main>
 
     <!-- MODAL -->
-    <div id="modal" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-50">
-        <div class="glass w-full max-w-md p-6 relative">
+        <div id="modal" class="fixed inset-0 bg-black/70 hidden items-start justify-center z-[60] overflow-y-auto p-6 pt-24">
+            <div class="glass w-full max-w-md p-6 relative my-auto">
 
-            <!-- Close -->
-            <button onclick="closeModal()" class="absolute top-3 right-4 text-gray-400 hover:text-white text-xl">
-                ✕
-            </button>
+                <!-- Close -->
+                <button onclick="closeModal()" class="absolute top-3 right-4 text-gray-400 hover:text-white text-xl z-10">
+                    ✕
+                </button>
 
-            <!-- Gambar -->
-            <div
-                class="w-full max-h-[46vh] bg-black/30 rounded-xl mb-4 overflow-hidden flex items-center justify-center">
-                <img id="modal-img" class="max-w-full max-h-[70vh] object-contain">
-            </div>
+                <!-- Gambar -->
+                <div
+                    class="w-full max-h-[40vh] bg-black/30 rounded-xl mb-4 overflow-hidden flex items-center justify-center">
+                    <img id="modal-img" class="max-w-full max-h-[40vh] object-contain">
+                </div>
 
             <h2 id="modal-title" class="text-2xl font-bold mb-4"></h2>
 
