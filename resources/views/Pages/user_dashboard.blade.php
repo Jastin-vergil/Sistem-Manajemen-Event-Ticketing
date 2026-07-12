@@ -118,7 +118,7 @@
             <p id="modal-desc" class="mt-4 text-gray-400 text-sm"></p>
 
             <div class="mt-4">
-                <h4 class="text-sm font-semibold text-gray-300 mb-2">Jenis Tiket</h4>
+                <h4 class="text-sm font-semibold text-gray-300 mb-2">Ticket Type</h4>
                 <div id="modal-tiket-list" class="space-y-2"></div>
             </div>
 
