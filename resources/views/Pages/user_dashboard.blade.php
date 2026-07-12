@@ -250,13 +250,13 @@
                             <p class="text-xs text-gray-400">Rp ${Number(t.harga).toLocaleString('id-ID')}</p>
                         </div>
                         <span class="text-xs font-bold px-2 py-1 rounded ${habis ? 'bg-red-600' : 'bg-emerald-600'}">
-                            ${habis ? 'Habis' : `Sisa ${sisa}`}
+                            ${habis ? 'Sold Out' : `Remaining ${sisa}`}
                         </span>
                     </div>
                 `;
             }).join('');
         } else {
-            tiketList.innerHTML = `<p class="text-sm text-gray-500">Belum ada tiket tersedia.</p>`;
+            tiketList.innerHTML = `<p class="text-sm text-gray-500">No Ticket Available.</p>`;
         }
 
         window.selectedEvent = ev;
