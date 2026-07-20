@@ -93,7 +93,7 @@
                 @empty
                     <tr>
                         <td colspan="7" class="px-4 py-6 text-center text-gray-400">
-                            {{ request('search') ? 'Tidak ada data yang cocok dengan pencarian.' : 'Belum ada data pembayaran' }}
+                            {{ request('search') ? 'No data matches the search.' : 'No payment data available yet.' }}
                         </td>
                     </tr>
                 @endforelse
