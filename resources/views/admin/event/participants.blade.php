@@ -4,8 +4,8 @@
 <div class="p-6">
 
     <div class="mb-6">
-        <h2 class="text-2xl font-semibold text-gray-100">Data Pembayaran & Peserta</h2>
-        <p class="text-gray-400 text-sm">Kelola dan pantau seluruh transaksi pembayaran tiket</p>
+        <h2 class="text-2xl font-semibold text-gray-100">Payment & Participant Data</h2>
+        <p class="text-gray-400 text-sm">Manage and monitor all ticket payment transactions.</p>
     </div>
 
     {{-- Stats Cards --}}
