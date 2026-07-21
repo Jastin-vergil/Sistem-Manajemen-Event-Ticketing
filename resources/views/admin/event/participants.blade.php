@@ -11,7 +11,7 @@
     {{-- Stats Cards --}}
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <div class="bg-gray-800 border border-gray-700 rounded-xl p-4">
-            <p class="text-gray-400 text-sm">Total Transaksi</p>
+            <p class="text-gray-400 text-sm">Payment Total</p>
             <p class="text-2xl font-bold text-white">{{ $stats['total'] }}</p>
         </div>
         <div class="bg-gray-800 border border-gray-700 rounded-xl p-4">
@@ -39,7 +39,7 @@
                 class="w-full md:w-80 px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
             <button type="submit" class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition">
-                Cari
+                Search
             </button>
             @if(request('search'))
                 <a href="{{ route('admin.participants') }}" class="px-4 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-gray-200 font-medium transition">
