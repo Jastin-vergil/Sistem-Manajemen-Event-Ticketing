@@ -4,8 +4,8 @@
 <div class="p-6">
 
     <div class="mb-6">
-        <h2 class="text-2xl font-semibold text-gray-100">Data Pembayaran & Peserta</h2>
-        <p class="text-gray-400 text-sm">Kelola dan pantau seluruh transaksi pembayaran tiket</p>
+        <h2 class="text-2xl font-semibold text-gray-100">Payment & Participant Data</h2>
+        <p class="text-gray-400 text-sm">Manage and monitor all ticket payment transactions.</p>
     </div>
 
     {{-- Stats Cards --}}
@@ -93,7 +93,7 @@
                 @empty
                     <tr>
                         <td colspan="7" class="px-4 py-6 text-center text-gray-400">
-                            {{ request('search') ? 'Tidak ada data yang cocok dengan pencarian.' : 'Belum ada data pembayaran' }}
+                            {{ request('search') ? 'No data matches the search.' : 'No payment data available yet.' }}
                         </td>
                     </tr>
                 @endforelse

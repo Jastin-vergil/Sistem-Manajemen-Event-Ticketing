@@ -248,7 +248,7 @@
         <td style="padding:11px 12px;color:#34d399;font-weight:500">${p.total_bayar}</td>
         <td style="padding:11px 12px;text-align:center">
           <span style="font-size:11px;font-weight:500;padding:3px 10px;border-radius:99px;background:rgba(52,211,153,.15);color:#34d399">
-            Lunas
+            Paid in full
           </span>
         </td>
       </tr>

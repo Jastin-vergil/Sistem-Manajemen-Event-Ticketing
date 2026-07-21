@@ -31,17 +31,6 @@ class Tiket extends Model
         'terjual' => 'integer',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::retrieved(function ($tiket) {
-            if ($tiket->tanggal_akhir && $tiket->tanggal_akhir->isPast()) {
-                $tiket->delete();
-            }
-        });
-    }
-
     public function event(): BelongsTo
     {
         return $this->belongsTo(Event::class, 'event_id', 'id_event');
