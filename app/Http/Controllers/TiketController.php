@@ -111,13 +111,10 @@ class TiketController extends Controller
 
         $tickets = Tiket::where('status', 'Aktif')
             ->where('event_id', $eventId)
-            ->where('kuota', '>', 0) // hanya tiket yang punya kuota 
+            ->where('kuota', '>', 0) // hanya tiket yang punya kuota
             ->whereColumn('terjual', '<', 'kuota') // masih ada sisa
             ->get();
 
-        if ($tickets->isEmpty()) {
-            return redirect()->back()->with('error', 'Sorry, The Ticket Is No Longer Available.');
-        }
 
         return view('Pages.ticket', compact('tickets'));
     }

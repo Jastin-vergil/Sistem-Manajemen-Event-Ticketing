@@ -8,11 +8,11 @@
         <thead class="bg-white/10 text-xs uppercase tracking-wider text-purple-400 border-b border-white/10">
             <tr>
                 <th class="px-6 py-4 text-center">No</th>
-                <th class="px-6 py-4">Nama Peserta</th>
+                <th class="px-6 py-4">Participant Name</th>
                 <th class="px-6 py-4">Email</th>
-                <th class="px-6 py-4">Jenis Tiket</th>
-                <th class="px-6 py-4">Total Bayar</th>
-                <th class="px-6 py-4 text-center">Bukti</th>
+                <th class="px-6 py-4">Ticket Types</th>
+                <th class="px-6 py-4">Total Payment</th>
+                <th class="px-6 py-4 text-center">Proof</th>
                 <th class="px-6 py-4 text-center">Status</th>
             </tr>
         </thead>
@@ -33,7 +33,7 @@
                     <td class="px-6 py-4 text-center">
                         @if($p->proof)
                             <a href="{{ asset('uploads/proofs/' . $p->proof) }}" target="_blank" class="inline-flex items-center text-xs text-purple-400 hover:underline">
-                                👁️ View Image
+                                View Image
                             </a>
                         @else
                             <span class="text-xs text-gray-500">No File</span>
@@ -48,7 +48,7 @@
             @empty
                 <tr>
                     <td colspan="7" class="px-6 py-10 text-center text-gray-500">
-                        Belum ada data peserta yang dikonfirmasi.
+                        No confirmed participant data available.
                     </td>
                 </tr>
             @endforelse

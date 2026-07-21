@@ -71,7 +71,7 @@ Route::post('/pembayaran/{pembayaran}/reject', [PembayaranController::class, 're
 Route::delete('/pembayaran/{pembayaran}', [PembayaranController::class, 'destroy'])->name('admin.pembayaran.destroy');
 
 // Form beli tiket
-Route::get('/ticket-form', [TiketController::class, 'ticketForm'])->name('ticket.form');
+Route::get('/ticket_form', [TiketController::class, 'ticketForm'])->name('ticket.form');
 
 // Halaman payment
 Route::get('/payment', function () {

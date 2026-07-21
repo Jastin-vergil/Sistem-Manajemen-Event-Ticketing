@@ -118,7 +118,7 @@
             <p id="modal-desc" class="mt-4 text-gray-400 text-sm"></p>
 
             <div class="mt-4">
-                <h4 class="text-sm font-semibold text-gray-300 mb-2">Jenis Tiket</h4>
+                <h4 class="text-sm font-semibold text-gray-300 mb-2">Ticket List</h4>
                 <div id="modal-tiket-list" class="space-y-2"></div>
             </div>
 
@@ -227,7 +227,7 @@
             });
 
         const start = ev.jam_mulai ? ev.jam_mulai.substring(0, 5) : 'WIB';
-        const end = ev.jam_selesai ? ev.jam_selesai.substring(0, 5) : 'Selesai';
+        const end = ev.jam_selesai ? ev.jam_selesai.substring(0, 5) : 'Finished';
         document.getElementById('modal-time').innerText = `${start} - ${end} WIB`;
 
         document.getElementById('modal-loc').innerText = ev.lokasi;
@@ -250,13 +250,13 @@
                             <p class="text-xs text-gray-400">Rp ${Number(t.harga).toLocaleString('id-ID')}</p>
                         </div>
                         <span class="text-xs font-bold px-2 py-1 rounded ${habis ? 'bg-red-600' : 'bg-emerald-600'}">
-                            ${habis ? 'Habis' : `Sisa ${sisa}`}
+                            ${habis ? 'Out Of Stock' : `Remaining ${sisa}`}
                         </span>
                     </div>
                 `;
             }).join('');
         } else {
-            tiketList.innerHTML = `<p class="text-sm text-gray-500">Belum ada tiket tersedia.</p>`;
+            tiketList.innerHTML = `<p class="text-sm text-gray-500">No Ticket Available.</p>`;
         }
 
         window.selectedEvent = ev;
@@ -270,9 +270,13 @@
             modal.classList.remove('flex');
         };
         const goToTicket = () => {
-            const eventId = window.selectedEvent.id_event
-            window.location.href = `{{ route('ticket.form') }}?event=${eventId}`;
-        };
+    if (!window.selectedEvent) {
+        console.error('No event selected');
+        return;
+    }
+    const eventId = window.selectedEvent.id_event;
+    window.location.href = `{{ route('ticket.form') }}?event=${eventId}`;
+};
 
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeModal();

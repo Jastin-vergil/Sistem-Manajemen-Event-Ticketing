@@ -55,12 +55,12 @@
             <thead class="bg-gray-800">
                 <tr>
                     <th class="px-4 py-3 text-left">#</th>
-                    <th class="px-4 py-3 text-left">Nama Pembeli</th>
+                    <th class="px-4 py-3 text-left">Name</th>
                     <th class="px-4 py-3 text-left">Email</th>
                     <th class="px-4 py-3 text-left">Event</th>
                     <th class="px-4 py-3 text-left">Status</th>
-                    <th class="px-4 py-3 text-left">Tanggal Bayar</th>
-                    <th class="px-4 py-3 text-center">Aksi</th>
+                    <th class="px-4 py-3 text-left">Paid Date</th>
+                    <th class="px-4 py-3 text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
