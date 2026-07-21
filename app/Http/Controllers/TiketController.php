@@ -109,7 +109,7 @@ class TiketController extends Controller
     {
         $eventId = $request->query('event');
 
-        $tickets = Tiket::where('status', 'Aktif')
+        $tickets = Tiket::where('status', 'aktif')
             ->where('event_id', $eventId)
             ->where('kuota', '>', 0) // hanya tiket yang punya kuota
             ->whereColumn('terjual', '<', 'kuota') // masih ada sisa

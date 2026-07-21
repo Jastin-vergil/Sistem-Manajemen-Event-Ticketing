@@ -23,7 +23,7 @@
   {{-- Filter --}}
   <form method="GET" action="{{ route('admin.pembayaran.index') }}"
     style="background:#1a1d2e;border:1px solid #2a2d3e;border-radius:12px;padding:16px;display:flex;gap:12px;align-items:center">
-    <input type="text" name="search" value="{{ request('search') }}" placeholder="Search name or email..."
+    <input type="text" name="search" value="{{ request('search') }}" placeholder="Search email"
       style="flex:1;background:#13151f;border:1px solid #2a2d3e;border-radius:8px;padding:8px 12px;font-size:13px;color:#e2e8f0;outline:none">
     <select name="status"
       style="background:#13151f;border:1px solid #2a2d3e;border-radius:8px;padding:8px 12px;font-size:13px;color:#e2e8f0;outline:none">

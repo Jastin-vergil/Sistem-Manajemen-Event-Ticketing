@@ -57,8 +57,6 @@
       style="width:100%;background:#13151f;border:1px solid #2a2d3e;border-radius:8px;padding:8px 12px;font-size:13px;color:#e2e8f0;outline:none;box-sizing:border-box">
       <option value="Aktif"        {{ old('status', $tiket->status ?? 'Aktif') === 'Aktif'        ? 'selected' : '' }}>Active</option>
       <option value="Draft"        {{ old('status', $tiket->status ?? 'Aktif') === 'Draft'        ? 'selected' : '' }}>Draft</option>
-      <option value="Hampir Habis" {{ old('status', $tiket->status ?? 'Aktif') === 'Hampir Habis' ? 'selected' : '' }}>Almost Full</option>
-      <option value="Habis"        {{ old('status', $tiket->status ?? 'Aktif') === 'Habis'        ? 'selected' : '' }}>Sold Out</option>
     </select>
   </div>
 

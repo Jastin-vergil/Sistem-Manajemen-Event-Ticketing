@@ -54,9 +54,7 @@
             <td style="padding:12px 16px;text-align:center">
               @php
                 [$bg,$color,$label] = match($t->status) {
-                  'Aktif'        => ['rgba(52,211,153,.15)','#34d399','Active'],
-                  'Hampir Habis' => ['rgba(251,191,36,.15)','#fbbf24','Almost Full'],
-                  'Habis'        => ['rgba(248,113,113,.15)','#f87171','Sold Out'],
+                  'aktif'        => ['rgba(52,211,153,.15)','#34d399','Active'],
                   default        => ['rgba(107,114,128,.15)','#6b7280','Draft'],
                 };
               @endphp
